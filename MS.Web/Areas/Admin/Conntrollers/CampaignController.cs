@@ -212,9 +212,12 @@ namespace MS.Web.Areas.Admin.Conntrollers
                     {
                         var campaign = new Campaign();
                         JsonController objjson = new JsonController();
-                        if (objjson.MovePhotos("temp", "campimage", item))
+                        //if (objjson.MovePhotos("temp", "campimage", item))
+                        //{
+                        String ix = objjson.MovePhotos("temp", "campimage", item);
+                        if (!ix.Equals("false"))
                         {
-                            campaign.ImageLink = SiteKeys.DBImagePath + "/campimage/" + item;
+                            campaign.ImageLink = SiteKeys.DBImagePath + "/campimage/" + ix;
                         }
                         else
                         {
@@ -223,9 +226,12 @@ namespace MS.Web.Areas.Admin.Conntrollers
 
                         if (campaignViewModel.CategoryTag=="gordugunuzeinanin")
                         {
-                            if (objjson.MovePhotos("temp", "campimage", images_2[i].ToString()))
+                            //if (objjson.MovePhotos("temp", "campimage", images_2[i].ToString()))
+                            //{
+                            String ixx = objjson.MovePhotos("temp", "campimage", images_2[i].ToString());
+                            if (!ixx.Equals("false"))
                             {
-                                campaign.ImageLink2 = SiteKeys.DBImagePath + "/campimage/" + images_2[i].ToString();
+                                campaign.ImageLink2 = SiteKeys.DBImagePath + "/campimage/" + ixx;
                             }
                             else
                             {
@@ -487,9 +493,12 @@ namespace MS.Web.Areas.Admin.Conntrollers
                             foreach (var item in Images.Split(new string[] { "##" }, StringSplitOptions.None))
                             {
                                 JsonController objjson = new JsonController();
-                                if (objjson.MovePhotos("temp", "campimage", item))
+                                //if (objjson.MovePhotos("temp", "campimage", item))
+                                //{
+                                String ix = objjson.MovePhotos("temp", "campimage", item);
+                                if (!ix.Equals("false"))
                                 {
-                                    campaign.ImageLink = SiteKeys.DBImagePath + "/campimage/" + item;
+                                    campaign.ImageLink = SiteKeys.DBImagePath + "/campimage/" + ix;
                                 }
                                 else
                                 {
@@ -504,9 +513,12 @@ namespace MS.Web.Areas.Admin.Conntrollers
                             foreach (var item in Images.Split(new string[] { "##" }, StringSplitOptions.None))
                             {
                                 JsonController objjson = new JsonController();
-                                if (objjson.MovePhotos("temp", "campimage", item))
+                                //if (objjson.MovePhotos("temp", "campimage", item))
+                                //{
+                                String ix = objjson.MovePhotos("temp", "campimage", item);
+                                if (!ix.Equals("false"))
                                 {
-                                    campaign.ImageLink2 = SiteKeys.DBImagePath + "/campimage/" + item;
+                                    campaign.ImageLink2 = SiteKeys.DBImagePath + "/campimage/" + ix;
                                 }
                                 else
                                 {
@@ -583,9 +595,12 @@ namespace MS.Web.Areas.Admin.Conntrollers
                             foreach (var item in Images.Split(new string[] { "##" }, StringSplitOptions.None))
                             {
                                 JsonController objjson = new JsonController();
-                                if (objjson.MovePhotos("temp", "campimage", item))
+                                //if (objjson.MovePhotos("temp", "campimage", item))
+                                //{
+                                String ix = objjson.MovePhotos("temp", "campimage", item);
+                                if (!ix.Equals("false"))
                                 {
-                                    campaign.ImageLink = SiteKeys.DBImagePath + "/campimage/" + item;
+                                    campaign.ImageLink = SiteKeys.DBImagePath + "/campimage/" + ix;
                                 }
                                 else
                                 {
@@ -600,9 +615,12 @@ namespace MS.Web.Areas.Admin.Conntrollers
                             foreach (var item in Images.Split(new string[] { "##" }, StringSplitOptions.None))
                             {
                                 JsonController objjson = new JsonController();
-                                if (objjson.MovePhotos("temp", "campimage", item))
+                                //if (objjson.MovePhotos("temp", "campimage", item))
+                                //{
+                                String ix = objjson.MovePhotos("temp", "campimage", item);
+                                if (!ix.Equals("false"))
                                 {
-                                    campaign.ImageLink2 = SiteKeys.DBImagePath + "/campimage/" + item;
+                                    campaign.ImageLink2 = SiteKeys.DBImagePath + "/campimage/" + ix;
                                 }
                                 else
                                 {

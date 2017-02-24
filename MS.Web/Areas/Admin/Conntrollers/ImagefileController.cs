@@ -75,11 +75,12 @@ namespace MS.Web.Areas.Admin.Conntrollers
                             }
 
 
-                            if (objjson.MovePhotos("temp", DemoImagefileDirectory, item))
+                            String ix=objjson.MovePhotos("temp", DemoImagefileDirectory, item);
+                            if (!ix.Equals("false"))
                             {
                                 tblImage objphotos = new tblImage
                                   {
-                                      Image = SiteKeys.DBImagePath+DemoImagefileDirectory+"/" + item,
+                                      Image = SiteKeys.DBImagePath+DemoImagefileDirectory+"/" + ix,
                                       ImageDirectory= model.ImageDirectory.Value
                                   };
                                 Global.Context.tblImages.AddObject(objphotos);

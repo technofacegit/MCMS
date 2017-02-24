@@ -87,9 +87,12 @@ namespace MS.Web.Areas.Admin.Conntrollers
                             foreach (var item in Images.Split(new string[] { "##" }, StringSplitOptions.None))
                             {
                                 JsonController objjson = new JsonController();
-                                if (objjson.MovePhotos("temp", "KazancBackgroundImage", item))
+                                //if (objjson.MovePhotos("temp", "KazancBackgroundImage", item))
+                                //{
+                                String ix = objjson.MovePhotos("temp", "KazancBackgroundImage", item);
+                                if (!ix.Equals("false"))
                                 {
-                                    kazanclarDataById.KazancBackground = item;
+                                    kazanclarDataById.KazancBackground = ix;
                                 }
                             }
                         }
@@ -117,9 +120,12 @@ namespace MS.Web.Areas.Admin.Conntrollers
                             foreach (var item in Images.Split(new string[] { "##" }, StringSplitOptions.None))
                             {
                                 JsonController objjson = new JsonController();
-                                if (objjson.MovePhotos("temp", "KazancBackgroundImage", item))
+                                //if (objjson.MovePhotos("temp", "KazancBackgroundImage", item))
+                                //{
+                                String ix = objjson.MovePhotos("temp", "KazancBackgroundImage", item);
+                                if (!ix.Equals("false"))
                                 {
-                                    kazanclarDataById.KazancBackground = item;
+                                    kazanclarDataById.KazancBackground = ix;
                                 }
                             }
                         }

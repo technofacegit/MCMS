@@ -106,13 +106,17 @@ namespace MS.Web.Areas.Admin.Conntrollers
                             foreach (var item in Images.Split(new string[] { "##" }, StringSplitOptions.None))
                             {
                                 JsonController objjson = new JsonController();
-                                if (objjson.MovePhotos("temp", "sallakazan", item))
+                                //if (objjson.MovePhotos("temp", "sallakazan", item))
+                                //{
+
+                                String ix = objjson.MovePhotos("temp", "sallakazan", item);
+                                if (!ix.Equals("false"))
                                 {
-                                    SallaKazanDataById.UrunGorsel = SiteKeys.DBImagePath + "/sallakazan/" + item;
+                                    SallaKazanDataById.UrunGorsel = SiteKeys.DBImagePath + "/sallakazan/" + ix;
 
                                     string targetPath = System.Web.Hosting.HostingEnvironment.MapPath("~/uploads/kampanyalar/");
-                                    string sourceFile = System.Web.Hosting.HostingEnvironment.MapPath("~/uploads/sallakazan/" + item);
-                                    string destFile = System.Web.Hosting.HostingEnvironment.MapPath("~/uploads/kampanyalar/" + item);
+                                    string sourceFile = System.Web.Hosting.HostingEnvironment.MapPath("~/uploads/sallakazan/" + ix);
+                                    string destFile = System.Web.Hosting.HostingEnvironment.MapPath("~/uploads/kampanyalar/" + ix);
                                     if (!Directory.Exists(targetPath))
                                     {
                                         Directory.CreateDirectory(targetPath);
@@ -157,14 +161,17 @@ namespace MS.Web.Areas.Admin.Conntrollers
                             foreach (var item in Images.Split(new string[] { "##" }, StringSplitOptions.None))
                             {
                                 JsonController objjson = new JsonController();
-                                if (objjson.MovePhotos("temp", "sallakazan", item))
+                                //if (objjson.MovePhotos("temp", "sallakazan", item))
+                                //{
+                                String ix = objjson.MovePhotos("temp", "sallakazan", item);
+                                if (!ix.Equals("false"))
                                 {
-                                    SallaKazan.UrunGorsel = SiteKeys.DBImagePath + "/sallakazan/" + item;
+                                    SallaKazan.UrunGorsel = SiteKeys.DBImagePath + "/sallakazan/" + ix;
 
 
                                     string targetPath = System.Web.Hosting.HostingEnvironment.MapPath("~/uploads/kampanyalar/");
-                                    string sourceFile = System.Web.Hosting.HostingEnvironment.MapPath("~/uploads/sallakazan/" + item);
-                                    string destFile = System.Web.Hosting.HostingEnvironment.MapPath("~/uploads/kampanyalar/" + item);
+                                    string sourceFile = System.Web.Hosting.HostingEnvironment.MapPath("~/uploads/sallakazan/" + ix);
+                                    string destFile = System.Web.Hosting.HostingEnvironment.MapPath("~/uploads/kampanyalar/" + ix);
                                     if (!Directory.Exists(targetPath))
                                     {
                                         Directory.CreateDirectory(targetPath);

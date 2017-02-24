@@ -41,10 +41,17 @@ namespace MS.Web.Controllers
                 if (filenameToSave != "")
                 {
                     string path = Server.MapPath(currentpath + folder + "/" + filenameToSave);
+
                     if (System.IO.File.Exists(path))
                     {
-                        System.IO.File.Delete(path);
+                        filenameToSave = DateTime.Now.Ticks.ToString() + "_" + filenameToSave;
+                        path = Server.MapPath(currentpath + folder + "/" + filenameToSave);
                     }
+
+                    //if (System.IO.File.Exists(path))
+                    //{
+                    //    System.IO.File.Delete(path);
+                    //}
 
 
 
@@ -80,13 +87,20 @@ namespace MS.Web.Controllers
             }
         }
 
-        public bool MovePhotos(string containsfolder, string movefolder, string filename, bool? isfront = false)
+        public String MovePhotos(string containsfolder, string movefolder, string filename, bool? isfront = false)
         {
             string currentpath = (isfront.Value == true ? "~/uploads/" : "~/areas/admin/content/images/uploads/");
             try
             {
                 FileInfo file = new FileInfo(System.Web.Hosting.HostingEnvironment.MapPath(currentpath + containsfolder + "/") + filename);
                 FileInfo file2 = new FileInfo(System.Web.Hosting.HostingEnvironment.MapPath("~/uploads/" + movefolder + "/") + filename);
+
+                if (file2.Exists)
+                {
+                    filename = DateTime.Now.Ticks.ToString() +"_"+ filename;
+                    file2 = new FileInfo(System.Web.Hosting.HostingEnvironment.MapPath("~/uploads/" + movefolder + "/") + filename);
+                }
+
                 if (file2.Exists)
                 {
                     file2.Delete();
@@ -95,11 +109,13 @@ namespace MS.Web.Controllers
                 {
                     file.MoveTo(System.Web.Hosting.HostingEnvironment.MapPath("~/uploads/" + movefolder + "/") + filename);
                 }
-                return true;
+                filename = filename;
+                return filename;
             }
             catch (Exception ex)
             {
-                return false;
+                filename = filename;
+                return "false";
             }
         }
 

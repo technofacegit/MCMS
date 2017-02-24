@@ -137,9 +137,12 @@ namespace MS.Web.Areas.Admin.Conntrollers
                             foreach (var item in Images.Split(new string[] { "##" }, StringSplitOptions.None))
                             {
                                 JsonController objjson = new JsonController();
-                                if (objjson.MovePhotos("temp", "categoryimage", item))
+                                //if (objjson.MovePhotos("temp", "categoryimage", item))
+                                //{
+                                String ix = objjson.MovePhotos("temp", "categoryimage", item);
+                                if (!ix.Equals("false"))
                                 {
-                                    campaigncategory.CategoryImage = SiteKeys.DBImagePath + "/categoryimage/" + item;
+                                    campaigncategory.CategoryImage = SiteKeys.DBImagePath + "/categoryimage/" + ix;
                                 }
                                 else {
                                     campaigncategory.CategoryImage = item;
@@ -154,9 +157,12 @@ namespace MS.Web.Areas.Admin.Conntrollers
                             foreach (var item in Images.Split(new string[] { "##" }, StringSplitOptions.None))
                             {
                                 JsonController objjson = new JsonController();
-                                if (objjson.MovePhotos("temp", "categorybgimage", item))
+                                //if (objjson.MovePhotos("temp", "categorybgimage", item))
+                                //{
+                                String ix = objjson.MovePhotos("temp", "categorybgimage", item);
+                                if (!ix.Equals("false"))
                                 {
-                                    campaigncategory.CategoryBackground = SiteKeys.DBImagePath + "/categorybgimage/" + item;
+                                    campaigncategory.CategoryBackground = SiteKeys.DBImagePath + "/categorybgimage/" + ix;
                                 }
                                 else
                                 {
@@ -171,9 +177,12 @@ namespace MS.Web.Areas.Admin.Conntrollers
                             foreach (var item in Images.Split(new string[] { "##" }, StringSplitOptions.None))
                             {
                                 JsonController objjson = new JsonController();
-                                if (objjson.MovePhotos("temp", "newcategorybgimage", item))
+                                //if (objjson.MovePhotos("temp", "newcategorybgimage", item))
+                                //{
+                                String ix = objjson.MovePhotos("temp", "newcategorybgimage", item);
+                                if (!ix.Equals("false"))
                                 {
-                                    campaigncategory.NewCategoryBackground = SiteKeys.DBImagePath + "/newcategorybgimage/" + item;
+                                    campaigncategory.NewCategoryBackground = SiteKeys.DBImagePath + "/newcategorybgimage/" + ix;
                                 }
                                 else
                                 {
@@ -188,9 +197,12 @@ namespace MS.Web.Areas.Admin.Conntrollers
                             foreach (var item in Images.Split(new string[] { "##" }, StringSplitOptions.None))
                             {
                                 JsonController objjson = new JsonController();
-                                if (objjson.MovePhotos("temp", "newcategoryimage", item))
+                                //if (objjson.MovePhotos("temp", "newcategoryimage", item))
+                                //{
+                                String ix = objjson.MovePhotos("temp", "newcategoryimage", item);
+                                if (!ix.Equals("false"))
                                 {
-                                    campaigncategory.NewCategoryBoardImage = SiteKeys.DBImagePath + "/newcategoryimage/" + item;
+                                    campaigncategory.NewCategoryBoardImage = SiteKeys.DBImagePath + "/newcategoryimage/" + ix;
                                 }
                                 else
                                 {
@@ -241,9 +253,12 @@ namespace MS.Web.Areas.Admin.Conntrollers
                             foreach (var item in Images.Split(new string[] { "##" }, StringSplitOptions.None))
                             {
                                 JsonController objjson = new JsonController();
-                                if (objjson.MovePhotos("temp", "categoryimage", item))
+                                //if (objjson.MovePhotos("temp", "categoryimage", item))
+                                //{
+                                String ix = objjson.MovePhotos("temp", "categoryimage",item);
+                                if (!ix.Equals("false"))
                                 {
-                                    campaigncategory.CategoryImage = SiteKeys.DBImagePath + "/categoryimage/" + item;
+                                    campaigncategory.CategoryImage = SiteKeys.DBImagePath + "/categoryimage/" + ix;
                                 }
                             }
                         }
@@ -254,9 +269,12 @@ namespace MS.Web.Areas.Admin.Conntrollers
                             foreach (var item in Images.Split(new string[] { "##" }, StringSplitOptions.None))
                             {
                                 JsonController objjson = new JsonController();
-                                if (objjson.MovePhotos("temp", "categorybgimage", item))
+                                //if (objjson.MovePhotos("temp", "categorybgimage", item))
+                                //{
+                                String ix = objjson.MovePhotos("temp", "categorybgimage", item);
+                                if (!ix.Equals("false"))
                                 {
-                                    campaigncategory.CategoryBackground = SiteKeys.DBImagePath + "/categorybgimage/" + item;
+                                    campaigncategory.CategoryBackground = SiteKeys.DBImagePath + "/categorybgimage/" + ix;
                                 }
                             }
                         }
@@ -266,9 +284,12 @@ namespace MS.Web.Areas.Admin.Conntrollers
                             foreach (var item in Images.Split(new string[] { "##" }, StringSplitOptions.None))
                             {
                                 JsonController objjson = new JsonController();
-                                if (objjson.MovePhotos("temp", "newcategoryimage", item))
+                                //if (objjson.MovePhotos("temp", "newcategoryimage", item))
+                                //{
+                                String ix = objjson.MovePhotos("temp", "newcategoryimage", item);
+                                if (!ix.Equals("false"))
                                 {
-                                    campaigncategory.NewCategoryBoardImage = SiteKeys.DBImagePath + "/newcategoryimage/" + item;
+                                    campaigncategory.NewCategoryBoardImage = SiteKeys.DBImagePath + "/newcategoryimage/" + ix;
                                 }
                             }
                         }
@@ -279,9 +300,12 @@ namespace MS.Web.Areas.Admin.Conntrollers
                             foreach (var item in Images.Split(new string[] { "##" }, StringSplitOptions.None))
                             {
                                 JsonController objjson = new JsonController();
-                                if (objjson.MovePhotos("temp", "newcategorybgimage", item))
+                                //if (objjson.MovePhotos("temp", "newcategorybgimage", item))
+                                //{
+                                String ix = objjson.MovePhotos("temp", "newcategorybgimage", item);
+                                if (!ix.Equals("false"))
                                 {
-                                    campaigncategory.NewCategoryBoardImage =  SiteKeys.DBImagePath + "/newcategorybgimage/" + item;
+                                    campaigncategory.NewCategoryBoardImage =  SiteKeys.DBImagePath + "/newcategorybgimage/" + ix;
                                 }
                             }
                         }

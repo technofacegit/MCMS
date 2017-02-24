@@ -82,9 +82,12 @@ namespace MS.Web.Areas.Admin.Conntrollers
                             foreach (var item in Images.Split(new string[] { "##" }, StringSplitOptions.None))
                             {
                                 JsonController objjson = new JsonController();
-                                if (objjson.MovePhotos("temp", "MilKatalogImage", item))
+
+                                String ix = objjson.MovePhotos("temp", "MilKatalogImage", item);
+                                if (!ix.Equals("false"))
                                 {
-                                    milKatalogUrunleri.UrunGorsel = item;
+                                //if (objjson.MovePhotos("temp", "MilKatalogImage", item))
+                                    milKatalogUrunleri.UrunGorsel = ix;
                                 }
                             }
                         }
@@ -108,9 +111,14 @@ namespace MS.Web.Areas.Admin.Conntrollers
                             foreach (var item in Images.Split(new string[] { "##" }, StringSplitOptions.None))
                             {
                                 JsonController objjson = new JsonController();
-                                if (objjson.MovePhotos("temp", "MilKatalogImage", item))
+                                
+                                
+                                //if (objjson.MovePhotos("temp", "MilKatalogImage", item))
+                                //{
+                                String ix = objjson.MovePhotos("temp", "MilKatalogImage", item);
+                                if (!ix.Equals("false"))
                                 {
-                                   milKatalogUrunleri.UrunGorsel  = item;
+                                   milKatalogUrunleri.UrunGorsel  = ix;
                                 }
                             }
                         }
