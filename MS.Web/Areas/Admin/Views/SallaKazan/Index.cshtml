@@ -1,0 +1,98 @@
+﻿@using MS.Core.Language;
+@using MS.Business;
+@using MS.Web.Models.Others;
+@using MvcContrib.UI.Grid;
+@using MS.Web.Code.LIBS;
+
+@model List<SallaKazan>
+@{
+    ViewBag.Title = "SallaKazan";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section HeadContent {
+    @Styles.Render("~/Areas/Admin/Content/css/uploadfile.css",
+                    "~/Areas/Admin/Content/css/FileUpload.css",
+                                "~/Areas/Admin/Content/bootstrap-switch.css",
+                             "~/Areas/Admin/Content/dataTables.bootstrap.css",
+                             "~/Content/datepicker3.css")
+}
+<section class="content-header">
+    <h1>Salla Kazan</h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.Partial("_AdminNotification")
+            <div class="box">
+                 <div class="box-header">
+                    <div class="col-xs-6">
+                        <h3 class="box-title">
+                            <a data-toggle="modal" href="@Url.Action("addedit")" data-target="#modal-create-edit-SallaKazan" class="btn bg-orange">
+                                @Resource_tr_TR.AddNew <i class="fa fa-plus"></i>
+                            </a></h3>
+                    </div>
+                    <div class="col-xs-6">
+                        <h3 class="box-title" style="text-align: right;float: right; margin-right: -15px;">
+                            <a href="@Url.Action("getactive")" class="btn bg-green" style="display:inline-block">Aktif Kampanyaları Getir 
+                            </a>
+                            <a href="@Url.Action("getpassive")" class="btn bg-red" style="display:inline-block">Pasif Kampanyaları Getir 
+                            </a>
+                        </h3>
+                    </div>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive">
+                    @Html.Grid(Model.OrderByDescending(a=>a.BaslangicTarih)).Columns(column =>
+                    {
+                        column.For(a => a.UrunAdi).Attributes(@class => "width10p");
+                        column.For(a => a.Kota).Attributes(@class => "width10p");
+                        column.For(a => a.IndirimOran).Attributes(@class => "width10p");
+                        column.For(a => a.Metin).Attributes(@class => "width10p");
+                        column.For(a => Convert.ToDateTime(a.BaslangicTarih).ToString("dd.MM.yyyy")).Attributes(@class => "width10p").Named("Başlangıç Tarihi");
+                        column.For(a => Convert.ToDateTime(a.BitisTarih).ToString("dd.MM.yyyy")).Attributes(@class => "width10p").Named("Bitiş Tarihi");
+                        column.For(a => Html.CheckBox("Status", a.Durum.Value, new { @value = a.id, @class = "switchBox switch-small simple" })).Named(Resource_tr_TR.ActivePassive).Attributes(@class => "width10p");
+
+                        column.For(a => "<a class=\"btn btn-primary btn-sm\" href=\"" + Url.Action("addedit", new { id = a.id }) + "\" data-target=\"#modal-create-edit-SallaKazan\" data-toggle=\"modal\">" + Resource_tr_TR.Edit + " <i class=\"fa fa-edit\"></i></a>" +
+                                        " <a class=\"btn btn-danger btn-sm\" href=\"" + Url.Action("delete", new { id = a.id }) + "\" data-target=\"#modal-delete-SallaKazan\" data-toggle=\"modal\">" + Resource_tr_TR.Delete + " <i class=\"fa fa-trash-o\"></i></a>").Attributes(@class => "width15p")
+                                        .Named(Resource_tr_TR.Operations).Encode(false);
+
+                        column.For(a => Convert.ToDateTime(a.BaslangicTarih).ToString("yyyy.MM.dd")).Named("Başlangıç Tarihi").Attributes(@class => "width10p");
+                    }).Attributes(@id => "grid-SallaKazan", @class => "table table-bordered table-hover")
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_Modal", new Modal { ID = "modal-create-edit-SallaKazan", AreaLabeledID = "modal-create-edit-SallaKazan-label", Size = ModalSize.Medium })
+    @Html.Partial("_Modal", new Modal { ID = "modal-delete-SallaKazan", AreaLabeledID = "modal-delete-SallaKazan-label" })
+    @Html.Partial("_Modal", new Modal { ID = "modal-add-photos", AreaLabeledID = "modal-add-photos-label", Size = ModalSize.Medium })
+</section>
+
+
+@section ScriptContent{
+    @Scripts.Render("~/Areas/Admin/Script/jquery.dataTables.js",
+        "~/Areas/Admin/Script/dataTables.bootstrap.js",
+                "~/Areas/Admin/Script/bootstrap-collapse.js",
+                "~/Areas/Admin/Script/bootstrap-transition.js",
+          "~/Areas/Admin/Script/global.js",
+           "~/Scripts/jquery.uploadfile.js",
+          "~/Areas/Admin/Script/bootstrap-switch.js",
+          "~/Areas/Admin/Script/bootstrap-datepicker.js",
+                        "~/Areas/Admin/Script/views/SallaKazan-index.js")
+
+    <script type="text/javascript">
+        $(function () {
+            $('#grid-SallaKazan').DataTable({
+                stateSave: true,
+                bDestroy: true,
+                "aaSorting": [[8, 'desc']],
+                aoColumnDefs: [
+                  { 'iDataSort': 8, 'aTargets': [4] },
+        { 'bVisible': false, 'aTargets': [8] },
+        { 'bSortable': false, 'aTargets': [6,7] }
+                ]
+            });
+
+        });
+     </script>
+
+}
+

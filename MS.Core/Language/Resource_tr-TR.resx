@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Admin" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="AdministratorLogin" xml:space="preserve">
+    <value>Yönetici Girişi</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Kategoriler</value>
+  </data>
+  <data name="CopyrightMigrosCMS" xml:space="preserve">
+    <value>Tüm Hakları Saklıdır</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Ana Sayfa</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Merhaba</value>
+  </data>
+  <data name="InvalidUserErrorMessage" xml:space="preserve">
+    <value>Geçersiz kullanıcı adı veya şifre</value>
+  </data>
+  <data name="Migros" xml:space="preserve">
+    <value>Migros</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Parola</value>
+  </data>
+  <data name="Rememberme" xml:space="preserve">
+    <value>Beni hatırla</value>
+  </data>
+  <data name="required" xml:space="preserve">
+    <value>* Lütfen Doldurunuz</value>
+  </data>
+  <data name="Signmein" xml:space="preserve">
+    <value>Giriş</value>
+  </data>
+  <data name="Signout" xml:space="preserve">
+    <value>Oturumu Kapat</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Ana Sayfa</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Kullanıcı Adı</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Aktif</value>
+  </data>
+  <data name="ActivePassive" xml:space="preserve">
+    <value>Aktif/Pasif</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Ekle</value>
+  </data>
+  <data name="CategoryBackground" xml:space="preserve">
+    <value>Kategori Arkaplan</value>
+  </data>
+  <data name="CategoryImage" xml:space="preserve">
+    <value>Kategori Görsel</value>
+  </data>
+  <data name="CategoryManagement" xml:space="preserve">
+    <value>Kategori Yönetimi</value>
+  </data>
+  <data name="CategoryName" xml:space="preserve">
+    <value>Kategori Adı</value>
+  </data>
+  <data name="CategoryTag" xml:space="preserve">
+    <value>Kampanya Kategorisi</value>
+  </data>
+  <data name="CategoryType" xml:space="preserve">
+    <value>Kategori Tipi</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Oluşturulma Tarihi</value>
+  </data>
+  <data name="DisplayOrder" xml:space="preserve">
+    <value>Gösterim Sırası</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Düzenle</value>
+  </data>
+  <data name="Operations" xml:space="preserve">
+    <value>İşlemler</value>
+  </data>
+  <data name="VisibleOnMainPage" xml:space="preserve">
+    <value>Ana Sayfada göster</value>
+  </data>
+  <data name="Campaign" xml:space="preserve">
+    <value>Kampanya</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Seçiniz</value>
+  </data>
+  <data name="CampaignBody" xml:space="preserve">
+    <value>Bildirim Metni</value>
+  </data>
+  <data name="CampaignNo" xml:space="preserve">
+    <value>Kampanya No:</value>
+  </data>
+  <data name="DeviceToken" xml:space="preserve">
+    <value>Cihaz Simgesi</value>
+  </data>
+  <data name="MachineName" xml:space="preserve">
+    <value>Makine Adı</value>
+  </data>
+  <data name="OSVersion" xml:space="preserve">
+    <value>OS Sürümü</value>
+  </data>
+  <data name="PushNotification" xml:space="preserve">
+    <value>Bildirim Gönder</value>
+  </data>
+  <data name="SendNotification" xml:space="preserve">
+    <value>Bildirim gönder</value>
+  </data>
+  <data name="TextBody" xml:space="preserve">
+    <value>Metin</value>
+  </data>
+  <data name="Discount" xml:space="preserve">
+    <value>İndirim</value>
+  </data>
+  <data name="DiscountType" xml:space="preserve">
+    <value>İndirim Tipi</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Bitiş tarihi</value>
+  </data>
+  <data name="ExtraData" xml:space="preserve">
+    <value>Ekstra Veri</value>
+  </data>
+  <data name="ImageLink" xml:space="preserve">
+    <value>Resim Yolu</value>
+  </data>
+  <data name="OfferDesc" xml:space="preserve">
+    <value>Teklif Detayı</value>
+  </data>
+  <data name="OfferName" xml:space="preserve">
+    <value>Teklif Adı</value>
+  </data>
+  <data name="OfferNo" xml:space="preserve">
+    <value>Teklif No(OfferNo)</value>
+  </data>
+  <data name="PromoNo" xml:space="preserve">
+    <value>Promosyon No(PromoNo)</value>
+  </data>
+  <data name="UploadImages" xml:space="preserve">
+    <value>Görsel Yükle</value>
+  </data>
+  <data name="SelectCategory" xml:space="preserve">
+    <value>Kategori Seç</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Resim</value>
+  </data>
+  <data name="ImageName" xml:space="preserve">
+    <value>Görüntü Adı</value>
+  </data>
+  <data name="ImagePath" xml:space="preserve">
+    <value>Görüntü Yolu</value>
+  </data>
+  <data name="Campaigns" xml:space="preserve">
+    <value>Kampanyalar</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Kategoriler</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>Resimler</value>
+  </data>
+  <data name="NotificationDevice" xml:space="preserve">
+    <value>Bildirim Cihaz</value>
+  </data>
+  <data name="NotificationDevices" xml:space="preserve">
+    <value>Bildirim Cihazları</value>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>Yeni Ekle</value>
+  </data>
+  <data name="Clickheretoupload" xml:space="preserve">
+    <value>Resim Seçiniz</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="GotoCampaings" xml:space="preserve">
+    <value>Kampanyalara Git</value>
+  </data>
+  <data name="ImageUpload" xml:space="preserve">
+    <value>Resim Yükle</value>
+  </data>
+  <data name="PdfUpload" xml:space="preserve">
+    <value>Zip Yükle</value>
+  </data>
+  <data name="PdfPath" xml:space="preserve">
+    <value>Dosya Yolu</value>
+  </data>
+  <data name="UploadImage" xml:space="preserve">
+    <value>Resim Yükleme</value>
+  </data>
+  <data name="ViewAll" xml:space="preserve">
+    <value>Tümünü Gör</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Kataloğu İndir</value>
+  </data>
+  <data name="BitisTarih" xml:space="preserve">
+    <value>Bitiş Tarihi</value>
+  </data>
+  <data name="IndirimOran" xml:space="preserve">
+    <value>İndirim Oranı</value>
+  </data>
+  <data name="Itembaşlık" xml:space="preserve">
+    <value>Ürün Başlığı</value>
+  </data>
+  <data name="KazancBackground" xml:space="preserve">
+    <value>Kazanç Arka Plan</value>
+  </data>
+  <data name="KazancTipi" xml:space="preserve">
+    <value>Kazanç Tipi</value>
+  </data>
+  <data name="KazancTitle" xml:space="preserve">
+    <value>Başlık</value>
+  </data>
+  <data name="requiredID" xml:space="preserve">
+    <value>Kullanıcı adı gereklidir</value>
+  </data>
+  <data name="requiredPassword" xml:space="preserve">
+    <value>Şifre gereklidir</value>
+  </data>
+  <data name="UrunAdi" xml:space="preserve">
+    <value>Ürün Adı</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Başlangıç Tarihi</value>
+  </data>
+  <data name="NewCategoryBackground" xml:space="preserve">
+    <value>Yeni Kategori Arkaplan</value>
+  </data>
+  <data name="NewCategoryBoardImage" xml:space="preserve">
+    <value>Yeni Kategori Görsel</value>
+  </data>
+</root>

@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<p style="float: right; margin-top: 9px; margin-right: 20px">
+    @Html.ActionLink("Create New", "Create", "", new { @class = "btn btn-sm btn-success" })
+</p>
+<script>
+    function GetClick(element) {
+
+        var id = $(element).closest('tr').find('td:first').text().trim();
+        alert(id);
+
+        //$(element).data('href', $(element).data('href') + id)
+
+        //var newHref = $(element).data('href');
+        //window.location.href = newHref;
+        //if (isDelete) {
+        //    $(element).closest('tr').remove();
+        //}
+    }
+
+    $(document).ready(function () {
+        $('#example').dataTable({
+            "processing": true, // control the processing indicator.
+            "serverSide": true, // recommended to use serverSide when data is more than 10000 rows for performance reasons
+            "info": true,   // control table information display field
+            "stateSave": true,  //restore table state on page reload,
+            "lengthMenu": [[10, 20, 50], [10, 20, 50]],    // use the first inner array as the page length values and the second inner array as the displayed options
+            "ajax": {
+                "url": "@Url.Action("/AjaxGetJsonData")",
+                "type": "GET",
+
+            },
+            "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                jQuery(nRow).attr('id', aData['primary_id_field']);
+                return nRow;
+            },
+
+            "columns": [
+                { "data": "Product_Id", "orderable": false },
+                { "data": "Product_Name", "orderable": true },
+                { "data": "Product_Price", "orderable": true },
+                {
+                    "data": null,
+                    "orderable": false,
+                    "sDefaultContent": '<button class="btn btn-flat btn-sm btn-success" data-href="/Product/Edit/" onclick="GetClick(this)" >Edit</button>',
+                },
+                {
+                    "data": null,
+                    "orderable": false,
+                    "sDefaultContent": '<button class="btn btn-flat btn-sm btn-info" data-href="/Product/Details/" onclick="GetClick(this)" >Detail</button>',
+                },
+                {
+                    "data": null,
+                    "orderable": false,
+                    "sDefaultContent": '<button class="btn btn-flat btn-sm btn-danger" data-href="/Product/Delete/" onclick="GetClick(this,true)" >Delete</button>',
+                },
+            ],
+            "order": [[0, "asc"]]
+        });
+    });
+</script>
+<div class="col-md-12">
+    @if (TempData["Message"] != null)
+    {
+        @Html.Raw(TempData["Message"])
+    }
+    @if (TempData["Warring"] != null)
+    {
+        @Html.Raw(TempData["Warring"])
+    }
+</div>
+
+<div style="margin:30px;">
+    <table id="example" class="table table-striped responsive-utilities jambo_table bulk_action" cellspacing="0" width="100%">
+        <thead>
+            <tr class="even pointer">
+                <th>Id</th>
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Edit</th>
+                <th>View</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+    </table>
+</div>

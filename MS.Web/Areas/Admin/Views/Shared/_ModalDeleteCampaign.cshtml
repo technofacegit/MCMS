@@ -1,0 +1,47 @@
+﻿
+@model MS.Web.Areas.Admin.Models.CampaignViewModel
+
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+    <h4 class="modal-title">Delete Campaign</h4>
+    @Html.HiddenFor(model=>model.CampaignID)
+</div>
+    <div class="modal-body">
+        İlgili kampanya kaydını tamamen silmek üzeresiniz. Devam etmek istiyor musunuz ?
+    </div>
+<div class="modal-footer">
+        <button type="button" class="btn btn-default modalsubmit" data-dismiss="modal" id="btnCancel">İptal</button>
+            <button type="button" class="btn btn-primary" id="btnDeleteCampaign">Kaydet</button>
+</div>
+
+
+@section ScriptContent{
+    <script>
+
+@*        $("#btnDeleteCampaign").click(function (e) {
+            var campid = '@Model.CampaignID';
+            $.post('@Url.Action("deleteCampaign", "Campaign")', { ID: campid}, function (result) {
+                //if (!result.isSuccess) {
+                //}
+            });
+        });*@
+
+@*        $("#btnDeleteCampaign").click(function (e) {
+            e.preventDefault();
+            var campid = '@Model.CampaignID';
+            //var formdata= $("#editCampaignForm").serialize();
+            $.ajax({
+                url: '@Url.Action("delete", "Campaign")',
+                type: 'POST',
+                data: campid,
+                success: function (data) {
+                    if (data.isRedirect) {
+                        url = '@Url.Action("getactivepassive", "Campaign")';
+                window.location.href = url + '?catid=' + data.id + '&campaignstatus=true';
+            }
+        }
+            });
+         });*@
+    </script>
+    }

@@ -1,0 +1,113 @@
+﻿@using MS.Web.Models.Others;
+@using MS.Web.Code.LIBS;
+@using MS.Core.Language;
+@model MS.Web.Areas.Admin.Models.CampaignViewModel
+@{
+    ViewBag.Title = @Resource_tr_TR.AddNew;
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section HeadContent {
+    @Styles.Render("~/Areas/Admin/Content/css/uploadfile.css",
+                    "~/Areas/Admin/Content/css/FileUpload.css",
+                    "~/Areas/Admin/Content/bootstrap-switch.css",
+                    "~/Areas/Admin/Content/datepicker3.css",
+                     "~/Areas/Admin/Content/dataTables.bootstrap.css",
+                    "~/Areas/Admin/Content/bootstrap-datetimepicker.min.css"
+                             )
+}
+<div>
+    @using (Html.BeginForm("AddCampaign", "campaign", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div id="validation-summary"></div>
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.CategoryId)
+        @Html.HiddenFor(model => model.CategoryTag)
+
+       
+        <div class="modal-body box-body">
+<div class="row">
+            <div class="col-lg-6">
+
+                <div class="row">
+                    @Html.LabelFor(model => model.ImageLink, "Kampanya Görsellerini Yükle")
+
+                    <a data-toggle="modal" href="@Url.Action("AddPhotos")" data-target="#modal-add-photos" class="btn bg-maroon btn-flat btn-sm">
+                        @Resource_tr_TR.UploadImage  <i class="fa fa-upload"></i>
+                    </a>
+                    <br /> 
+
+                </div>
+                
+                    <div id="divimages" class="upload_images upload-gallery">
+                       @* @if (Model.CategoryId > 0 && Model.ImageLink != null)
+                        {
+                            <div class='single' rel='@Model.ImageLink'>
+                                <img src="@Url.Content(Model.ImageLink)" />
+                            </div>
+                            <div class="ajax-file-upload-red deletePhoto" rel="@Model.ImageLink" style="display: inline-block;">Delete</div><br />
+                        }*@
+                    </div>
+                    @Html.Hidden("UploadedImages", Model.ImageLink)
+
+               
+
+            </div>
+    @if (Model.CategoryTag=="gordugunuzeinanin")
+    {
+                               <div class="col-lg-6">
+
+                <div class="row">
+                    @Html.LabelFor(model => model.ImageLink2, "Kare Görselleri Yükle")
+
+                    <a data-toggle="modal" href="@Url.Action("AddPhotos")" data-target="#modal-add2-photos" class="btn bg-maroon btn-flat btn-sm">
+                        @Resource_tr_TR.UploadImage  <i class="fa fa-upload"></i>
+                    </a>
+                    <br />
+
+                </div>
+                    <div id="divimages2" class="upload_images upload-gallery">
+                       
+                    </div>
+                    @Html.Hidden("UploadedImages2", Model.ImageLink2)
+
+                </div>
+    }
+ 
+
+        </div>
+</div>
+        <div class="row">
+        <div class="message-error">
+            <span style="white-space: pre-line">@Model.UpdateLogs</span>
+        </div>
+</div>
+
+        @Html.Partial("_ModalFooter", new ModalFooter())
+    }
+
+    
+    @Html.Partial("_Modal", new Modal { ID = "modal-add-photos", AreaLabeledID = "modal-add-photos-label", Size = ModalSize.Medium })
+    @Html.Partial("_Modal", new Modal { ID = "modal-add2-photos", AreaLabeledID = "modal-add2-photos-label", Size = ModalSize.Medium })
+</div>
+
+
+@section ScriptContent{
+    @Scripts.Render(
+"~/Areas/Admin/Script/jquery.dataTables.js",
+        "~/Areas/Admin/Script/dataTables.bootstrap.js",
+                        "~/Areas/Admin/Script/bootstrap-datepicker.js",
+                        "~/Scripts/moment.js",
+                "~/Scripts/locale/tr.js",
+                "~/Areas/Admin/Script/bootstrap-collapse.js",
+                "~/Areas/Admin/Script/bootstrap-transition.js",
+                "~/Scripts/bootstrap-datetimepicker.min.js",
+          "~/Areas/Admin/Script/global.js",
+          "~/Scripts/jquery.uploadfile.js",
+          "~/Areas/Admin/Script/bootstrap-switch.js",
+          "~/Areas/Admin/Script/views/campaign-index.js",
+          "~/Areas/Admin/Script/views/campaign-image-upload.js"
+                    )
+
+}

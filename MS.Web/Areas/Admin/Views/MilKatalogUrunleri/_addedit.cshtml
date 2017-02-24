@@ -1,0 +1,78 @@
+﻿@using MS.Web.Models.Others;
+@using MS.Web.Code.LIBS;
+@using MS.Core.Language;
+@model MS.Web.Areas.Admin.Models.MilKatalogUrunleriViewModel
+
+<div id="category-box">
+    @using (Html.BeginForm("addedit", "MilKatalogUrunleri", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Partial("_ModalHeader", new ModalHeader { ID = "modal-create-edit-MilKatalog", Title = (Model.MilKatalogUrunID <= 0 ? "Mil Kataloğu " + Resource_tr_TR.Create : "Mil Kataloğu " + Resource_tr_TR.Edit) })
+        <div id="validation-summary"></div>
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.MilKatalogUrunID)
+        <div class="modal-body box-body">
+            <div class="row">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.UrunAdi)
+                    @Html.TextBoxFor(model => model.UrunAdi, true, null, new { @class = "form-control", @data_msg_required = Resource_tr_TR.required })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.Marka)
+                    @Html.TextBoxFor(model => model.Marka, true, null, new { @class = "form-control", @data_msg_required = Resource_tr_TR.required })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.KampanyaID)
+                    @Html.TextBoxFor(model => model.KampanyaID, true, null, new { @class = "form-control", @data_msg_required = Resource_tr_TR.required })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.KampanyaMetin)
+                    @Html.TextBoxFor(model => model.KampanyaMetin, true, null, new { @class = "form-control", @data_msg_required = Resource_tr_TR.required })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DisplayOrder, Resource_tr_TR.DisplayOrder)
+                    @Html.TextBoxFor(model => model.DisplayOrder, true, null, new { @class = "form-control", @data_rule_number = "true", @data_msg_number = "number only" })
+                </div>
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-lg-6">
+                    @Html.LabelFor(model => model.UrunGorsel)
+
+                </div>
+                <div class="col-lg-6">
+                    <a data-toggle="modal" href="@Url.Action("AddPhotos")" data-target="#modal-add-photos" class="btn bg-maroon btn-flat btn-sm">
+                        @Resource_tr_TR.UploadImage <i class="fa fa-upload"></i>
+                    </a>
+                    <br />
+                    <div id="divimages" class="upload_images upload-gallery">
+                        @if (Model.MilKatalogUrunID > 0 && Model.UrunGorsel != null)
+                        {
+                            <div class='single' rel='@Model.UrunGorsel'><img src="@Url.Content("~/areas/admin/content/images/uploads/MilKatalogImage/" + Model.UrunGorsel)" /></div>
+                            <div class="ajax-file-upload-red deletePhoto" rel="@Model.UrunGorsel" style="display: inline-block;">Delete</div>
+                        }
+                    </div>
+                    @Html.Hidden("UploadedImages", Model.UrunGorsel)
+
+                </div>
+
+            </div>
+        </div>
+        @Html.Partial("_ModalFooter", new ModalFooter())
+    }
+</div>

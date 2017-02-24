@@ -1,0 +1,42 @@
+﻿@using MS.Web.Models.Others;
+@using MS.Web.Code.LIBS;
+@using MS.Core.Language;
+@model MS.Web.Areas.Admin.Models.BebeMoneyKatalogKategorileriViewModel
+
+<div id="category-box">
+    @using (Html.BeginForm("addeditBebeMoneyKatalogKategorileri", "BebeMoneyKatalogKategorileri", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Partial("_ModalHeader", new ModalHeader { ID = "modal-create-edit-BebeMoneyKatalogKategorileri", Title = (Model.BebeMoneyKategoriID <= 0 ? "Bebe Money Kataloğu " + Resource_tr_TR.Create : "Bebe Money Kataloğu " + Resource_tr_TR.Edit) })
+        <div id="validation-summary"></div>
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.BebeMoneyKategoriID)
+        <div class="modal-body box-body">
+            <div class="row">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.BebeMoneyKategoriAdi)
+                    @Html.TextBoxFor(model => model.BebeMoneyKategoriAdi, true, null, new { @class = "form-control", @data_msg_required = Resource_tr_TR.required })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.KategoriTag)
+                    @Html.TextBoxFor(model => model.KategoriTag, true, null, new { @class = "form-control", @data_msg_required = Resource_tr_TR.required })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DisplayOrder, Resource_tr_TR.DisplayOrder)
+                    @Html.TextBoxFor(model => model.DisplayOrder, true, null, new { @class = "form-control", @data_rule_number = "true", @data_msg_number = "number only" })
+                </div>
+            </div>
+
+
+
+        </div>
+        @Html.Partial("_ModalFooter", new ModalFooter())
+    }
+</div>

@@ -1,0 +1,63 @@
+﻿@using MS.Core.Language;
+@using MS.Business;
+@using MS.Web.Models.Others;
+@using MvcContrib.UI.Grid;
+@using MS.Web.Code.LIBS;
+
+@model List<BebeMoneyKatalogKategorileri>
+@{
+    ViewBag.Title = "Bebe Money Kataloğu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section HeadContent {
+    @Styles.Render("~/Areas/Admin/Content/css/uploadfile.css",
+                   "~/Areas/Admin/Content/css/FileUpload.css",
+                   "~/Areas/Admin/Content/bootstrap-switch.css",
+                   "~/Areas/Admin/Content/dataTables.bootstrap.css")
+}
+<section class="content-header">
+    <h1>Bebe Money Kataloğu</h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.Partial("_AdminNotification")
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">
+                        <a data-toggle="modal" href="@Url.Action("addeditBebeMoneyKatalogKategorileri")" data-target="#modal-create-edit-BebeMoneyKatalogKategorileri" class="btn bg-orange">
+                            @Resource_tr_TR.AddNew <i class="fa fa-plus"></i>
+                        </a>
+                    </h3>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive">
+                    @Html.Grid(Model).Columns(column =>
+                    {
+                        column.For(a => a.BebeMoneyKategoriAdi).Attributes(@class => "width15p");
+                        column.For(a => a.KategoriTag).Attributes(@class => "width15p");
+
+                        column.For(a => a.DisplayOrder).Named(Resource_tr_TR.DisplayOrder).Attributes(@class => "width10p");
+                        column.For(a => "<a class=\"btn btn-primary btn-sm\" href=\"" + Url.Action("addeditBebeMoneyKatalogKategorileri", new { id = a.BebeMoneyKategoriID }) + "\" data-target=\"#modal-create-edit-BebeMoneyKatalogKategorileri\" data-toggle=\"modal\">" + Resource_tr_TR.Edit + " <i class=\"fa fa-edit\"></i></a>" +
+                                        " <a class=\"btn btn-danger btn-sm\" href=\"" + Url.Action("delete", new { id = a.BebeMoneyKategoriID }) + "\" data-target=\"#modal-delete-BebeMoneyKatalogKategorileri\" data-toggle=\"modal\">" + Resource_tr_TR.Delete + " <i class=\"fa fa-trash-o\"></i></a>").Attributes(@class => "width15p")
+                                        .Named(Resource_tr_TR.Operations).Encode(false);
+                    }).Attributes(@id => "grid-BebeMoneyKatalogKategorileri", @class => "table table-bordered table-hover")
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_Modal", new Modal { ID = "modal-create-edit-BebeMoneyKatalogKategorileri", AreaLabeledID = "modal-create-edit-BebeMoneyKatalogKategorileri-label", Size = ModalSize.Medium })
+    @Html.Partial("_Modal", new Modal { ID = "modal-delete-BebeMoneyKatalogKategorileri", AreaLabeledID = "modal-delete-kazanclar-label" })
+</section>
+
+
+@section ScriptContent{
+    @Scripts.Render(
+"~/Areas/Admin/Script/jquery.dataTables.js",
+"~/Areas/Admin/Script/dataTables.bootstrap.js",
+"~/Areas/Admin/Script/global.js",
+"~/Scripts/jquery.uploadfile.js",
+"~/Areas/Admin/Script/bootstrap-switch.js",
+"~/Areas/Admin/Script/views/BebeMoneyKatalogKategorileri-index.js")
+}
+
+

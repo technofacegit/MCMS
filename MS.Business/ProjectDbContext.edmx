@@ -1,0 +1,784 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProjectDbContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BebeMoneyKatalogKategorileri">
+          <Key>
+            <PropertyRef Name="BebeMoneyKategoriID" />
+          </Key>
+          <Property Name="BebeMoneyKategoriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BebeMoneyKategoriAdi" Type="nvarchar(max)" />
+          <Property Name="KategoriTag" Type="nvarchar(max)" />
+          <Property Name="DisplayOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="CampaignCategories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar(max)" />
+          <Property Name="CategoryTag" Type="nvarchar(max)" />
+          <Property Name="CategoryImage" Type="nvarchar(max)" />
+          <Property Name="CategoryBackground" Type="nvarchar(max)" />
+          <Property Name="DisplayOrder" Type="int" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="CategoryType" Type="int" />
+          <Property Name="VisibleOnMainPage" Type="bit" Nullable="false" />
+          <Property Name="VisibleOnCampPage" Type="bit" Nullable="false" />
+          <Property Name="VisibleOnNotLogin" Type="bit" Nullable="false" />
+          <Property Name="ShowLoginPanel" Type="bit" Nullable="false" />
+          <Property Name="Cachekey" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="NewCategoryBackground" Type="nvarchar(max)" />
+          <Property Name="NewCategoryBoardImage" Type="nvarchar(max)" />
+          <Property Name="OptinText" Type="nvarchar(max)" />
+          <Property Name="OptinHoverText" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Campaigns">
+          <Key>
+            <PropertyRef Name="CampaignID" />
+          </Key>
+          <Property Name="CampaignID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PromoNo" Type="nvarchar(max)" />
+          <Property Name="OfferNo" Type="nvarchar(max)" />
+          <Property Name="OfferName" Type="nvarchar(max)" />
+          <Property Name="OfferDesc" Type="nvarchar(max)" />
+          <Property Name="Discount" Type="nvarchar(max)" />
+          <Property Name="DiscountType" Type="nvarchar(max)" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="OptinFlag" Type="bit" />
+          <Property Name="ImageLink" Type="nvarchar(max)" />
+          <Property Name="ImageLink2" Type="nvarchar(max)" />
+          <Property Name="CategoryTag" Type="nvarchar(max)" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="DisplayOrder" Type="int" />
+          <Property Name="ExtraData" Type="nvarchar(max)" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="CreatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="EventLogs">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventEntityID" Type="int" />
+          <Property Name="EventObjectType" Type="nvarchar(max)" />
+          <Property Name="EventData" Type="nvarchar(max)" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="EventDate" Type="datetime" />
+          <Property Name="EventType" Type="nvarchar(max)" />
+          <Property Name="EventText" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Kategoritipi">
+          <Key>
+            <PropertyRef Name="kimlik" />
+          </Key>
+          <Property Name="kimlik" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KategoriTipi" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Kazanclar">
+          <Key>
+            <PropertyRef Name="KazanciID" />
+          </Key>
+          <Property Name="KazanciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KazancTipi" Type="nvarchar(max)" />
+          <Property Name="KazancTitle" Type="nvarchar(max)" />
+          <Property Name="KazancOptinGerekliMi" Type="bit" />
+          <Property Name="KazancBackground" Type="nvarchar(max)" />
+          <Property Name="DisplayOrder" Type="int" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="ShowTL" Type="bit" />
+          <Property Name="ItemTitle" Type="nvarchar(max)" />
+          <Property Name="ShowInfo" Type="bit" />
+          <Property Name="KazancTag" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Magazalar">
+          <Key>
+            <PropertyRef Name="MagazaID" />
+          </Key>
+          <Property Name="MagazaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sira" Type="float" />
+          <Property Name="MagazaNo" Type="float" />
+          <Property Name="MagazaAdi" Type="nvarchar" MaxLength="255" />
+          <Property Name="Sube" Type="nvarchar" MaxLength="255" />
+          <Property Name="MarkaAdi" Type="nvarchar" MaxLength="255" />
+          <Property Name="FormatAdi" Type="nvarchar" MaxLength="255" />
+          <Property Name="Durum" Type="nvarchar" MaxLength="255" />
+          <Property Name="AcilisTarihi" Type="datetime" />
+          <Property Name="JetKasa" Type="float" />
+          <Property Name="Xkoordinat" Type="float" />
+          <Property Name="Ykoordinat" Type="float" />
+          <Property Name="Tel" Type="float" />
+          <Property Name="Tel2" Type="float" />
+          <Property Name="Tel3" Type="nvarchar" MaxLength="255" />
+          <Property Name="Tel4" Type="nvarchar" MaxLength="255" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="255" />
+          <Property Name="Il" Type="nvarchar" MaxLength="255" />
+          <Property Name="Ilce" Type="nvarchar" MaxLength="255" />
+          <Property Name="Acilis" Type="datetime" />
+          <Property Name="AcilisPazar" Type="datetime" />
+          <Property Name="Kapanis" Type="datetime" />
+          <Property Name="KapanisPazar" Type="datetime" />
+          <Property Name="UnluMamuller" Type="nvarchar" MaxLength="255" />
+          <Property Name="Kuruyemis" Type="nvarchar" MaxLength="255" />
+          <Property Name="MezeveHazirYemek" Type="nvarchar" MaxLength="255" />
+          <Property Name="Balikci" Type="nvarchar" MaxLength="255" />
+          <Property Name="BiletSatisi" Type="nvarchar" MaxLength="255" />
+          <Property Name="Cafe" Type="nvarchar" MaxLength="255" />
+          <Property Name="Iletisim" Type="nvarchar" MaxLength="255" />
+          <Property Name="Eczane" Type="nvarchar" MaxLength="255" />
+          <Property Name="FastFood" Type="nvarchar" MaxLength="255" />
+          <Property Name="Kitabevi" Type="nvarchar" MaxLength="255" />
+          <Property Name="Kurutemizleme" Type="nvarchar" MaxLength="255" />
+          <Property Name="MuzikMarket" Type="nvarchar" MaxLength="255" />
+          <Property Name="ATM" Type="nvarchar" MaxLength="255" />
+          <Property Name="CevreciKiosk" Type="nvarchar" MaxLength="255" />
+          <Property Name="EglenceDunyam" Type="nvarchar" MaxLength="255" />
+          <Property Name="MigrosTASATM" Type="nvarchar" MaxLength="255" />
+          <Property Name="FaturaTahsilat" Type="nvarchar" MaxLength="255" />
+          <Property Name="HediyemKart" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="MilKatalogUrunleri">
+          <Key>
+            <PropertyRef Name="MilKatalogUrunID" />
+          </Key>
+          <Property Name="MilKatalogUrunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Marka" Type="nvarchar(max)" />
+          <Property Name="UrunAdi" Type="nvarchar(max)" />
+          <Property Name="UrunGorsel" Type="nvarchar(max)" />
+          <Property Name="KampanyaMetin" Type="nvarchar(max)" />
+          <Property Name="KampanyaID" Type="nvarchar(max)" />
+          <Property Name="DisplayOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="SallaKazan">
+          <Key>
+            <PropertyRef Name="KampanyaID" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KampanyaID" Type="int" Nullable="false" />
+          <Property Name="UrunKodu" Type="float" />
+          <Property Name="UrunAdi" Type="nvarchar(max)" />
+          <Property Name="UrunGorsel" Type="nvarchar(max)" />
+          <Property Name="Kota" Type="int" />
+          <Property Name="IndirimOran" Type="int" />
+          <Property Name="BaslangicTarih" Type="datetime" />
+          <Property Name="BitisTarih" Type="datetime" />
+          <Property Name="Durum" Type="bit" />
+          <Property Name="Metin" Type="nvarchar(max)" />
+          <Property Name="Dusen" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TblDevices">
+          <Key>
+            <PropertyRef Name="UniqueID" />
+          </Key>
+          <Property Name="DeviceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeviceToken" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ApplicationName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="OSVersion" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RegisterationTime" Type="datetime" />
+          <Property Name="UniqueID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MachineName" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserAgent" Type="nvarchar(max)" />
+          <Property Name="Lang" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastLogTime" Type="datetime" />
+          <Property Name="LogCount" Type="int" />
+        </EntityType>
+        <EntityType Name="tblImage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="ImageDirectory" Type="int" />
+        </EntityType>
+        <EntityType Name="TblKullanicilar">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+          </Key>
+          <Property Name="KullaniciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="10" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="SicilNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsAdmin" Type="bit" />
+          <Property Name="Isim" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Campaigns_CampaignCategories">
+          <End Role="CampaignCategories" Type="Self.CampaignCategories" Multiplicity="0..1" />
+          <End Role="Campaigns" Type="Self.Campaigns" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CampaignCategories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Campaigns">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="spUpdateCategoryCacheKey" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="categoryId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spV4_AddNotificationLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DeviceID" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="DeviceToken" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NMessage" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Status" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NType" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="spV4_AllDevicesWithTrackingNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="trackingNumber" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ProjectDbContextStoreContainer">
+          <EntitySet Name="BebeMoneyKatalogKategorileri" EntityType="Self.BebeMoneyKatalogKategorileri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CampaignCategories" EntityType="Self.CampaignCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Campaigns" EntityType="Self.Campaigns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventLogs" EntityType="Self.EventLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategoritipi" EntityType="Self.Kategoritipi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kazanclar" EntityType="Self.Kazanclar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Magazalar" EntityType="Self.Magazalar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MilKatalogUrunleri" EntityType="Self.MilKatalogUrunleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SallaKazan" EntityType="Self.SallaKazan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblDevices" EntityType="Self.TblDevices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblImage" EntityType="Self.tblImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblKullanicilar" EntityType="Self.TblKullanicilar" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Campaigns_CampaignCategories" Association="Self.FK_Campaigns_CampaignCategories">
+            <End Role="CampaignCategories" EntitySet="CampaignCategories" />
+            <End Role="Campaigns" EntitySet="Campaigns" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ProjectDbContextModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ProjectDbContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CampaignCategories" EntityType="ProjectDbContextModel.CampaignCategory" />
+          <EntitySet Name="Kategoritipis" EntityType="ProjectDbContextModel.Kategoritipi" />
+          <EntitySet Name="TblKullanicilars" EntityType="ProjectDbContextModel.TblKullanicilar" />
+          <EntitySet Name="Campaigns" EntityType="ProjectDbContextModel.Campaign" />
+          <AssociationSet Name="FK_Campaigns_CampaignCategories" Association="ProjectDbContextModel.FK_Campaigns_CampaignCategories">
+            <End Role="CampaignCategory" EntitySet="CampaignCategories" />
+            <End Role="Campaign" EntitySet="Campaigns" />
+          </AssociationSet>
+          <EntitySet Name="Kazanclars" EntityType="ProjectDbContextModel.Kazanclar" />
+          <EntitySet Name="BebeMoneyKatalogKategorileris" EntityType="ProjectDbContextModel.BebeMoneyKatalogKategorileri" />
+          <EntitySet Name="MilKatalogUrunleris" EntityType="ProjectDbContextModel.MilKatalogUrunleri" />
+          <EntitySet Name="TblDevices" EntityType="ProjectDbContextModel.TblDevice" />
+          <EntitySet Name="SallaKazans" EntityType="ProjectDbContextModel.SallaKazan" />
+          <EntitySet Name="tblImages" EntityType="ProjectDbContextModel.tblImage" />
+          <EntitySet Name="EventLogs" EntityType="ProjectDbContextModel.EventLog" />
+          <FunctionImport Name="spV4_AllDevicesWithTrackingNumber" ReturnType="Collection(ProjectDbContextModel.spV4_AllDevicesWithTrackingNumber_Result)">
+          <Parameter Name="trackingNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spV4_AddNotificationLog">
+            <Parameter Name="DeviceID" Mode="In" Type="String" />
+            <Parameter Name="DeviceToken" Mode="In" Type="String" />
+            <Parameter Name="NMessage" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="String" />
+            <Parameter Name="NType" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Magazalar" EntityType="ProjectDbContextModel.Magazalar" />
+          <FunctionImport Name="spUpdateCategoryCacheKey">
+            <Parameter Name="categoryId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="CampaignCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryBackground" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayOrder" Type="Int32" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="CategoryType" Type="Int32" />
+          <Property Name="VisibleOnMainPage" Type="Boolean" Nullable="false" />
+          <Property Name="VisibleOnCampPage" Type="Boolean" Nullable="false" />
+          <Property Name="VisibleOnNotLogin" Type="Boolean" Nullable="false" />
+          <Property Name="ShowLoginPanel" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Campaigns" Relationship="ProjectDbContextModel.FK_Campaigns_CampaignCategories" FromRole="CampaignCategory" ToRole="Campaign" />
+          <Property Name="CacheKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CreatedBy" />
+          <Property Type="String" Name="NewCategoryBackground" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NewCategoryBoardImage" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="OptinText" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="OptinHoverText" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Kategoritipi">
+          <Key>
+            <PropertyRef Name="kimlik" />
+          </Key>
+          <Property Name="kimlik" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KategoriTipi1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TblKullanicilar">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+          </Key>
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sifre" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SicilNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsAdmin" Type="Boolean" />
+          <Property Name="Isim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Campaign">
+          <Key>
+            <PropertyRef Name="CampaignID" />
+          </Key>
+          <Property Name="CampaignID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PromoNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OfferNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OfferName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OfferDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discount" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="OptinFlag" Type="Boolean" />
+          <Property Name="ImageLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="DisplayOrder" Type="Int32" />
+          <Property Name="ExtraData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryId" Type="Int32" />
+          <NavigationProperty Name="CampaignCategory" Relationship="ProjectDbContextModel.FK_Campaigns_CampaignCategories" FromRole="Campaign" ToRole="CampaignCategory" />
+          <Property Type="Int32" Name="CreatedBy" />
+          <Property Type="DateTime" Name="StartDate" Precision="3" />
+          <Property Type="String" Name="ImageLink2" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Campaigns_CampaignCategories">
+          <End Type="ProjectDbContextModel.CampaignCategory" Role="CampaignCategory" Multiplicity="0..1" />
+          <End Type="ProjectDbContextModel.Campaign" Role="Campaign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CampaignCategory">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Campaign">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Kazanclar">
+          <Key>
+            <PropertyRef Name="KazanciID" />
+          </Key>
+          <Property Name="KazanciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KazancTipi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KazancTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KazancOptinGerekliMi" Type="Boolean" />
+          <Property Name="KazancBackground" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayOrder" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="ShowTL" Type="Boolean" />
+          <Property Name="ItemTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShowInfo" Type="Boolean" />
+          <Property Name="KazancTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BebeMoneyKatalogKategorileri">
+          <Key>
+            <PropertyRef Name="BebeMoneyKategoriID" />
+          </Key>
+          <Property Name="BebeMoneyKategoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BebeMoneyKategoriAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KategoriTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayOrder" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MilKatalogUrunleri">
+          <Key>
+            <PropertyRef Name="MilKatalogUrunID" />
+          </Key>
+          <Property Name="MilKatalogUrunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marka" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UrunAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UrunGorsel" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KampanyaMetin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KampanyaID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayOrder" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TblDevice">
+          <Key>
+            <PropertyRef Name="UniqueID" />
+          </Key>
+          <Property Name="DeviceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeviceToken" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicationName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OSVersion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RegisterationTime" Type="DateTime" Precision="3" />
+          <Property Name="UniqueID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MachineName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserAgent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Lang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastLogTime" Type="DateTime" Precision="3" />
+          <Property Name="LogCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SallaKazan">
+          <Key>
+            <PropertyRef Name="KampanyaID" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KampanyaID" Type="Int32" Nullable="false" />
+          <Property Name="UrunKodu" Type="Double" />
+          <Property Name="UrunAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UrunGorsel" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Kota" Type="Int32" />
+          <Property Name="IndirimOran" Type="Int32" />
+          <Property Name="BaslangicTarih" Type="DateTime" Precision="3" />
+          <Property Name="BitisTarih" Type="DateTime" Precision="3" />
+          <Property Name="Durum" Type="Boolean" />
+          <Property Name="Metin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Dusen" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblImage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageDirectory" Type="Int32" />
+        </EntityType>
+        <EntityType Name="EventLog">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Type="Int32" Name="EventID" Nullable="false" />
+          <Property Type="String" Name="EventData" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="UserID" />
+          <Property Type="DateTime" Name="EventDate" Precision="3" />
+          <Property Type="String" Name="EventType" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="EventEntityID" />
+          <Property Type="String" Name="EventObjectType" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EventText" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="spV4_AllDevicesWithTrackingNumber_Result">
+          <Property Type="Int64" Name="DeviceID" Nullable="true" />
+          <Property Type="String" Name="DeviceToken" Nullable="false" />
+          <Property Type="String" Name="UniqueID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="Magazalar">
+          <Key>
+            <PropertyRef Name="MagazaID" />
+          </Key>
+          <Property Type="Int32" Name="MagazaID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Double" Name="Sira" />
+          <Property Type="Double" Name="MagazaNo" />
+          <Property Type="String" Name="MagazaAdi" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Sube" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MarkaAdi" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FormatAdi" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Durum" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="AcilisTarihi" Precision="3" />
+          <Property Type="Double" Name="JetKasa" />
+          <Property Type="Double" Name="Xkoordinat" />
+          <Property Type="Double" Name="Ykoordinat" />
+          <Property Type="Double" Name="Tel" />
+          <Property Type="Double" Name="Tel2" />
+          <Property Type="String" Name="Tel3" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Tel4" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Adres" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Il" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Ilce" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Acilis" Precision="3" />
+          <Property Type="DateTime" Name="AcilisPazar" Precision="3" />
+          <Property Type="DateTime" Name="Kapanis" Precision="3" />
+          <Property Type="DateTime" Name="KapanisPazar" Precision="3" />
+          <Property Type="String" Name="UnluMamuller" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Kuruyemis" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MezeveHazirYemek" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Balikci" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BiletSatisi" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Cafe" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Iletisim" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Eczane" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FastFood" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Kitabevi" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Kurutemizleme" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MuzikMarket" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ATM" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CevreciKiosk" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EglenceDunyam" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MigrosTASATM" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FaturaTahsilat" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="HediyemKart" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="ProjectDbContext" />
+        <Alias Key="Target" Value="ProjectDbContext.Store" />
+        <EntityContainerMapping CdmEntityContainer="ProjectDbContext" StorageEntityContainer="ProjectDbContextStoreContainer">
+          <EntitySetMapping Name="CampaignCategories">
+            <EntityTypeMapping TypeName="ProjectDbContextModel.CampaignCategory">
+              <MappingFragment StoreEntitySet="CampaignCategories">
+                <ScalarProperty Name="OptinHoverText" ColumnName="OptinHoverText" />
+                <ScalarProperty Name="OptinText" ColumnName="OptinText" />
+                <ScalarProperty Name="NewCategoryBoardImage" ColumnName="NewCategoryBoardImage" />
+                <ScalarProperty Name="NewCategoryBackground" ColumnName="NewCategoryBackground" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CacheKey" ColumnName="Cachekey" />
+                <ScalarProperty Name="ShowLoginPanel" ColumnName="ShowLoginPanel" />
+                <ScalarProperty Name="VisibleOnNotLogin" ColumnName="VisibleOnNotLogin" />
+                <ScalarProperty Name="VisibleOnCampPage" ColumnName="VisibleOnCampPage" />
+                <ScalarProperty Name="VisibleOnMainPage" ColumnName="VisibleOnMainPage" />
+                <ScalarProperty Name="CategoryType" ColumnName="CategoryType" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="CategoryBackground" ColumnName="CategoryBackground" />
+                <ScalarProperty Name="CategoryImage" ColumnName="CategoryImage" />
+                <ScalarProperty Name="CategoryTag" ColumnName="CategoryTag" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategoritipis">
+            <EntityTypeMapping TypeName="ProjectDbContextModel.Kategoritipi">
+              <MappingFragment StoreEntitySet="Kategoritipi">
+                <ScalarProperty Name="KategoriTipi1" ColumnName="KategoriTipi" />
+                <ScalarProperty Name="kimlik" ColumnName="kimlik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblKullanicilars">
+            <EntityTypeMapping TypeName="ProjectDbContextModel.TblKullanicilar">
+              <MappingFragment StoreEntitySet="TblKullanicilar">
+                <ScalarProperty Name="Isim" ColumnName="Isim" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="SicilNo" ColumnName="SicilNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Campaigns">
+            <EntityTypeMapping TypeName="ProjectDbContextModel.Campaign">
+              <MappingFragment StoreEntitySet="Campaigns">
+                <ScalarProperty Name="ImageLink2" ColumnName="ImageLink2" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="ExtraData" ColumnName="ExtraData" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CategoryTag" ColumnName="CategoryTag" />
+                <ScalarProperty Name="ImageLink" ColumnName="ImageLink" />
+                <ScalarProperty Name="OptinFlag" ColumnName="OptinFlag" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="DiscountType" ColumnName="DiscountType" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="OfferDesc" ColumnName="OfferDesc" />
+                <ScalarProperty Name="OfferName" ColumnName="OfferName" />
+                <ScalarProperty Name="OfferNo" ColumnName="OfferNo" />
+                <ScalarProperty Name="PromoNo" ColumnName="PromoNo" />
+                <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kazanclars">
+            <EntityTypeMapping TypeName="ProjectDbContextModel.Kazanclar">
+              <MappingFragment StoreEntitySet="Kazanclar">
+                <ScalarProperty Name="KazancTag" ColumnName="KazancTag" />
+                <ScalarProperty Name="ShowInfo" ColumnName="ShowInfo" />
+                <ScalarProperty Name="ItemTitle" ColumnName="ItemTitle" />
+                <ScalarProperty Name="ShowTL" ColumnName="ShowTL" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="KazancBackground" ColumnName="KazancBackground" />
+                <ScalarProperty Name="KazancOptinGerekliMi" ColumnName="KazancOptinGerekliMi" />
+                <ScalarProperty Name="KazancTitle" ColumnName="KazancTitle" />
+                <ScalarProperty Name="KazancTipi" ColumnName="KazancTipi" />
+                <ScalarProperty Name="KazanciID" ColumnName="KazanciID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BebeMoneyKatalogKategorileris">
+            <EntityTypeMapping TypeName="ProjectDbContextModel.BebeMoneyKatalogKategorileri">
+              <MappingFragment StoreEntitySet="BebeMoneyKatalogKategorileri">
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="KategoriTag" ColumnName="KategoriTag" />
+                <ScalarProperty Name="BebeMoneyKategoriAdi" ColumnName="BebeMoneyKategoriAdi" />
+                <ScalarProperty Name="BebeMoneyKategoriID" ColumnName="BebeMoneyKategoriID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MilKatalogUrunleris">
+            <EntityTypeMapping TypeName="ProjectDbContextModel.MilKatalogUrunleri">
+              <MappingFragment StoreEntitySet="MilKatalogUrunleri">
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="KampanyaID" ColumnName="KampanyaID" />
+                <ScalarProperty Name="KampanyaMetin" ColumnName="KampanyaMetin" />
+                <ScalarProperty Name="UrunGorsel" ColumnName="UrunGorsel" />
+                <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+                <ScalarProperty Name="MilKatalogUrunID" ColumnName="MilKatalogUrunID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblDevices">
+            <EntityTypeMapping TypeName="ProjectDbContextModel.TblDevice">
+              <MappingFragment StoreEntitySet="TblDevices">
+                <ScalarProperty Name="LogCount" ColumnName="LogCount" />
+                <ScalarProperty Name="LastLogTime" ColumnName="LastLogTime" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Lang" ColumnName="Lang" />
+                <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
+                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+                <ScalarProperty Name="RegisterationTime" ColumnName="RegisterationTime" />
+                <ScalarProperty Name="OSVersion" ColumnName="OSVersion" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+                <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SallaKazans">
+            <EntityTypeMapping TypeName="ProjectDbContextModel.SallaKazan">
+              <MappingFragment StoreEntitySet="SallaKazan">
+                <ScalarProperty Name="Dusen" ColumnName="Dusen" />
+                <ScalarProperty Name="Metin" ColumnName="Metin" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="BitisTarih" ColumnName="BitisTarih" />
+                <ScalarProperty Name="BaslangicTarih" ColumnName="BaslangicTarih" />
+                <ScalarProperty Name="IndirimOran" ColumnName="IndirimOran" />
+                <ScalarProperty Name="Kota" ColumnName="Kota" />
+                <ScalarProperty Name="UrunGorsel" ColumnName="UrunGorsel" />
+                <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+                <ScalarProperty Name="UrunKodu" ColumnName="UrunKodu" />
+                <ScalarProperty Name="KampanyaID" ColumnName="KampanyaID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblImages">
+            <EntityTypeMapping TypeName="ProjectDbContextModel.tblImage">
+              <MappingFragment StoreEntitySet="tblImage">
+                <ScalarProperty Name="ImageDirectory" ColumnName="ImageDirectory" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventLogs">
+            <EntityTypeMapping TypeName="ProjectDbContextModel.EventLog">
+              <MappingFragment StoreEntitySet="EventLogs">
+                <ScalarProperty Name="EventText" ColumnName="EventText" />
+                <ScalarProperty Name="EventObjectType" ColumnName="EventObjectType" />
+                <ScalarProperty Name="EventEntityID" ColumnName="EventEntityID" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="EventData" ColumnName="EventData" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spV4_AllDevicesWithTrackingNumber" FunctionName="ProjectDbContext.Store.spV4_AllDevicesWithTrackingNumber">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjectDbContextModel.spV4_AllDevicesWithTrackingNumber_Result">
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+                <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spV4_AddNotificationLog" FunctionName="ProjectDbContext.Store.spV4_AddNotificationLog" />
+          <EntitySetMapping Name="Magazalar">
+            <EntityTypeMapping TypeName="ProjectDbContextModel.Magazalar">
+              <MappingFragment StoreEntitySet="Magazalar">
+                <ScalarProperty Name="HediyemKart" ColumnName="HediyemKart" />
+                <ScalarProperty Name="FaturaTahsilat" ColumnName="FaturaTahsilat" />
+                <ScalarProperty Name="MigrosTASATM" ColumnName="MigrosTASATM" />
+                <ScalarProperty Name="EglenceDunyam" ColumnName="EglenceDunyam" />
+                <ScalarProperty Name="CevreciKiosk" ColumnName="CevreciKiosk" />
+                <ScalarProperty Name="ATM" ColumnName="ATM" />
+                <ScalarProperty Name="MuzikMarket" ColumnName="MuzikMarket" />
+                <ScalarProperty Name="Kurutemizleme" ColumnName="Kurutemizleme" />
+                <ScalarProperty Name="Kitabevi" ColumnName="Kitabevi" />
+                <ScalarProperty Name="FastFood" ColumnName="FastFood" />
+                <ScalarProperty Name="Eczane" ColumnName="Eczane" />
+                <ScalarProperty Name="Iletisim" ColumnName="Iletisim" />
+                <ScalarProperty Name="Cafe" ColumnName="Cafe" />
+                <ScalarProperty Name="BiletSatisi" ColumnName="BiletSatisi" />
+                <ScalarProperty Name="Balikci" ColumnName="Balikci" />
+                <ScalarProperty Name="MezeveHazirYemek" ColumnName="MezeveHazirYemek" />
+                <ScalarProperty Name="Kuruyemis" ColumnName="Kuruyemis" />
+                <ScalarProperty Name="UnluMamuller" ColumnName="UnluMamuller" />
+                <ScalarProperty Name="KapanisPazar" ColumnName="KapanisPazar" />
+                <ScalarProperty Name="Kapanis" ColumnName="Kapanis" />
+                <ScalarProperty Name="AcilisPazar" ColumnName="AcilisPazar" />
+                <ScalarProperty Name="Acilis" ColumnName="Acilis" />
+                <ScalarProperty Name="Ilce" ColumnName="Ilce" />
+                <ScalarProperty Name="Il" ColumnName="Il" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Tel4" ColumnName="Tel4" />
+                <ScalarProperty Name="Tel3" ColumnName="Tel3" />
+                <ScalarProperty Name="Tel2" ColumnName="Tel2" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Ykoordinat" ColumnName="Ykoordinat" />
+                <ScalarProperty Name="Xkoordinat" ColumnName="Xkoordinat" />
+                <ScalarProperty Name="JetKasa" ColumnName="JetKasa" />
+                <ScalarProperty Name="AcilisTarihi" ColumnName="AcilisTarihi" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="FormatAdi" ColumnName="FormatAdi" />
+                <ScalarProperty Name="MarkaAdi" ColumnName="MarkaAdi" />
+                <ScalarProperty Name="Sube" ColumnName="Sube" />
+                <ScalarProperty Name="MagazaAdi" ColumnName="MagazaAdi" />
+                <ScalarProperty Name="MagazaNo" ColumnName="MagazaNo" />
+                <ScalarProperty Name="Sira" ColumnName="Sira" />
+                <ScalarProperty Name="MagazaID" ColumnName="MagazaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spUpdateCategoryCacheKey" FunctionName="ProjectDbContext.Store.spUpdateCategoryCacheKey" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7c045fab4709428287cc5d1d235335a2" Name="Diagram1" ZoomLevel="89" >
+        <EntityTypeShape EntityType="ProjectDbContextModel.CampaignCategory" Width="2.25" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ProjectDbContextModel.Kategoritipi" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ProjectDbContextModel.TblKullanicilar" Width="1.5" PointX="3.875" PointY="2.75" />
+        <EntityTypeShape EntityType="ProjectDbContextModel.Campaign" Width="2.125" PointX="6" PointY="3.375" />
+        <AssociationConnector Association="ProjectDbContextModel.FK_Campaigns_CampaignCategories" />
+        <EntityTypeShape EntityType="ProjectDbContextModel.Kazanclar" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="ProjectDbContextModel.BebeMoneyKatalogKategorileri" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ProjectDbContextModel.MilKatalogUrunleri" Width="1.5" PointX="8.125" PointY="3.125" />
+        <EntityTypeShape EntityType="ProjectDbContextModel.TblDevice" Width="1.5" PointX="3.375" PointY="8.75" />
+        <EntityTypeShape EntityType="ProjectDbContextModel.SallaKazan" Width="1.5" PointX="5.375" PointY="8.75" />
+        <EntityTypeShape EntityType="ProjectDbContextModel.tblImage" Width="1.5" PointX="7.375" PointY="8.75" />
+        <EntityTypeShape EntityType="ProjectDbContextModel.EventLog" Width="1.5" PointX="3.75" PointY="5.5" />
+        <EntityTypeShape EntityType="ProjectDbContextModel.Magazalar" Width="1.5" PointX="10.75" PointY="3.25" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,724 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{08420802-28EE-47D3-951A-C35B79AEF128}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MS.Web</RootNamespace>
+    <AssemblyName>MS.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>12.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Cyotek.GhostScript">
+      <HintPath>..\..\..\..\Users\okan\Downloads\Cyotek.GhostScript\Cyotek.GhostScript\bin\Debug\Cyotek.GhostScript.dll</HintPath>
+    </Reference>
+    <Reference Include="Cyotek.GhostScript.PdfConversion">
+      <HintPath>..\..\..\..\Users\okan\Downloads\Cyotek.GhostScript.PdfConversion\Cyotek.GhostScript.PdfConversion\bin\Debug\Cyotek.GhostScript.PdfConversion.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=5.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FluentValidation.5.5.0.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc">
+      <HintPath>..\packages\FluentValidation.MVC5.5.5.0.0\lib\Net45\FluentValidation.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="jQuery.Validation.Unobtrusive.Native">
+      <HintPath>..\packages\jQuery.Validation.Unobtrusive.Native.MVC5.1.1.2\lib\net45\jQuery.Validation.Unobtrusive.Native.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Mvc">
+      <HintPath>..\packages\Mvc4Futures.4.0.20710.0\lib\net40\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcContrib">
+      <HintPath>..\packages\MvcContrib.Mvc5.5.0.0.0\lib\MvcContrib.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PushSharp.Amazon.Adm, Version=2.2.1.0, Culture=neutral, PublicKeyToken=cf74b75eab2c0170, processorArchitecture=MSIL">
+      <HintPath>..\packages\PushSharp.2.2.1.0\lib\net40\PushSharp.Amazon.Adm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PushSharp.Android, Version=2.2.1.0, Culture=neutral, PublicKeyToken=cf74b75eab2c0170, processorArchitecture=MSIL">
+      <HintPath>..\packages\PushSharp.2.2.1.0\lib\net40\PushSharp.Android.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PushSharp.Apple, Version=2.2.1.0, Culture=neutral, PublicKeyToken=cf74b75eab2c0170, processorArchitecture=MSIL">
+      <HintPath>..\packages\PushSharp.2.2.1.0\lib\net40\PushSharp.Apple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PushSharp.Blackberry, Version=2.2.1.0, Culture=neutral, PublicKeyToken=cf74b75eab2c0170, processorArchitecture=MSIL">
+      <HintPath>..\packages\PushSharp.2.2.1.0\lib\net40\PushSharp.Blackberry.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PushSharp.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=cf74b75eab2c0170, processorArchitecture=MSIL">
+      <HintPath>..\packages\PushSharp.2.2.1.0\lib\net40\PushSharp.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PushSharp.FirefoxOS, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PushSharp.2.2.1.0\lib\net40\PushSharp.FirefoxOS.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PushSharp.Google.Chrome, Version=2.2.1.0, Culture=neutral, PublicKeyToken=cf74b75eab2c0170, processorArchitecture=MSIL">
+      <HintPath>..\packages\PushSharp.2.2.1.0\lib\net40\PushSharp.Google.Chrome.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PushSharp.Windows, Version=2.2.1.0, Culture=neutral, PublicKeyToken=cf74b75eab2c0170, processorArchitecture=MSIL">
+      <HintPath>..\packages\PushSharp.2.2.1.0\lib\net40\PushSharp.Windows.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PushSharp.WindowsPhone, Version=2.2.1.0, Culture=neutral, PublicKeyToken=cf74b75eab2c0170, processorArchitecture=MSIL">
+      <HintPath>..\packages\PushSharp.2.2.1.0\lib\net40\PushSharp.WindowsPhone.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.1\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Content\images\uploads\bebmoney\" />
+    <Folder Include="Areas\Admin\Content\images\uploads\CampaignImage\" />
+    <Folder Include="Areas\Admin\Content\images\uploads\CategoryImage\" />
+    <Folder Include="Areas\Admin\Content\images\uploads\DemoImagefile\" />
+    <Folder Include="Areas\Admin\Content\images\uploads\kampanyalar\" />
+    <Folder Include="Areas\Admin\Content\images\uploads\kategoriler\" />
+    <Folder Include="Areas\Admin\Content\images\uploads\KazancBackgroundImage\" />
+    <Folder Include="Areas\Admin\Content\images\uploads\MilKatalogImage\" />
+    <Folder Include="Areas\Admin\Content\images\uploads\money\" />
+    <Folder Include="Areas\Admin\Content\images\uploads\SallaKazanImage\" />
+    <Folder Include="Areas\Admin\Content\images\uploads\temp\" />
+    <Folder Include="Areas\Admin\Views\AdminBase\" />
+    <Folder Include="uploads\kampanyalar\" />
+    <Folder Include="uploads\kategoriler\" />
+    <Folder Include="uploads\temp\" />
+    <Folder Include="uploads\tmp\" />
+    <Folder Include="Views\Json\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Conntrollers\AdminBaseController.cs" />
+    <Compile Include="Areas\Admin\Conntrollers\BebeMoneyKatalogKategorileriController.cs" />
+    <Compile Include="Areas\Admin\Conntrollers\CampaignCategoryController.cs" />
+    <Compile Include="Areas\Admin\Conntrollers\CampaignController.cs" />
+    <Compile Include="Areas\Admin\Conntrollers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Conntrollers\ImagefileController.cs" />
+    <Compile Include="Areas\Admin\Conntrollers\KazanclarController.cs" />
+    <Compile Include="Areas\Admin\Conntrollers\MagazalarController.cs" />
+    <Compile Include="Areas\Admin\Conntrollers\MigroskopController.cs" />
+    <Compile Include="Areas\Admin\Conntrollers\MilKatalogUrunleriController.cs" />
+    <Compile Include="Areas\Admin\Conntrollers\SallaKazanController.cs" />
+    <Compile Include="Areas\Admin\Conntrollers\SendNotificationController.cs" />
+    <Compile Include="Areas\Admin\Conntrollers\SqlQueryController.cs" />
+    <Compile Include="Areas\Admin\Models\AdminLoginViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\AdminNotificationViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\BebeMoneyKatalogKategorileriViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\CampaignCategoryViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\CampaignsByCategoriesViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\CampaignViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\KazanclarViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\MilKatalogUrunleriViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\SallaKazanViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\TblDeviceViewModel.cs" />
+    <Compile Include="Code\Attributes\AdminAuthorization.cs" />
+    <Compile Include="Code\Attributes\CustomAuthorization.cs" />
+    <Compile Include="Code\LIBS\Android.cs" />
+    <Compile Include="Code\LIBS\Apple.cs" />
+    <Compile Include="Code\LIBS\BaseViewPage.cs" />
+    <Compile Include="Code\LIBS\Common.cs" />
+    <Compile Include="Code\LIBS\Constant.cs" />
+    <Compile Include="Code\LIBS\DownloadFileActionResult.cs" />
+    <Compile Include="Code\LIBS\EnumHelper.cs" />
+    <Compile Include="Code\LIBS\Enums.cs" />
+    <Compile Include="Code\LIBS\PasswordHash.cs" />
+    <Compile Include="Code\LIBS\PushNotificationApple.cs" />
+    <Compile Include="Code\LIBS\PushNotificationService.cs" />
+    <Compile Include="Code\LIBS\SiteKeys.cs" />
+    <Compile Include="Code\LIBS\SiteSession.cs" />
+    <Compile Include="Code\Serialization\JsonNetResult.cs" />
+    <Compile Include="Code\Validation\AdminLoginViewModelValidator.cs" />
+    <Compile Include="Code\Validation\BebeMoneyKatalogKategorileriViewModelValidator.cs" />
+    <Compile Include="Code\Validation\CampaignCategoryViewModelValidator.cs" />
+    <Compile Include="Code\Validation\CampaignViewModelValidator.cs" />
+    <Compile Include="Code\Validation\KazanclarViewModelValidator.cs" />
+    <Compile Include="Code\Validation\MilKatalogUrunleriViewModelValidator.cs" />
+    <Compile Include="Code\Validation\SallaKazanViewModelValidator.cs" />
+    <Compile Include="Code\Validation\TblDeviceViewModelValidator.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JsonController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Others\Modal.cs" />
+    <Compile Include="Models\Others\Notification.cs" />
+    <Compile Include="Models\Security\CustomPrincipal.cs" />
+    <Compile Include="Code\Validation\ValidatorFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\AdminLTE.css" />
+    <Content Include="Areas\Admin\Content\bootstrap-datetimepicker-standalone.css" />
+    <Content Include="Areas\Admin\Content\bootstrap-datetimepicker.css" />
+    <Content Include="Areas\Admin\Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Areas\Admin\Content\bootstrap-switch.css" />
+    <Content Include="Areas\Admin\Content\bootstrap.min.css" />
+    <Content Include="Areas\Admin\Content\bootstrap3-wysihtml5.min.css" />
+    <Content Include="Areas\Admin\Content\css\FileUpload.css" />
+    <Content Include="Areas\Admin\Content\css\select2-bootstrap.css" />
+    <Content Include="Areas\Admin\Content\css\select2.css" />
+    <Content Include="Areas\Admin\Content\css\uploadfile.css" />
+    <Content Include="Areas\Admin\Content\dataTables.bootstrap.css" />
+    <Content Include="Areas\Admin\Content\datepicker3.css" />
+    <Content Include="Areas\Admin\Content\design\dtpicker_mock.png" />
+    <Content Include="Areas\Admin\Content\design\dtpicker_mock.svg" />
+    <Content Include="Areas\Admin\Content\design\dtpicker_screenshot.png" />
+    <Content Include="Areas\Admin\Content\font-awesome.min.css" />
+    <Content Include="Areas\Admin\Content\images\active.png" />
+    <Content Include="Areas\Admin\Content\images\admin-logo_old.jpg" />
+    <Content Include="Areas\Admin\Content\images\green%402x.png" />
+    <Content Include="Areas\Admin\Content\images\green.png" />
+    <Content Include="Areas\Admin\Content\images\logo.png" />
+    <Content Include="Areas\Admin\Content\images\migros_back.jpg" />
+    <Content Include="Areas\Admin\Content\images\minimal%402x.png" />
+    <Content Include="Areas\Admin\Content\images\minimal.png" />
+    <Content Include="Areas\Admin\Content\images\next_button.gif" />
+    <Content Include="Areas\Admin\Content\images\noactive.png" />
+    <Content Include="Areas\Admin\Content\images\pre_button.gif" />
+    <Content Include="Areas\Admin\Content\images\sort_asc.png" />
+    <Content Include="Areas\Admin\Content\images\sort_asc_disabled.png" />
+    <Content Include="Areas\Admin\Content\images\sort_both.png" />
+    <Content Include="Areas\Admin\Content\images\sort_desc.png" />
+    <Content Include="Areas\Admin\Content\images\sort_desc_disabled.png" />
+    <Content Include="Areas\Admin\Content\images\subtle-dots.png" />
+    <Content Include="Areas\Admin\Content\images\usr.png" />
+    <Content Include="Areas\Admin\Content\ionicons.min.css" />
+    <Content Include="Areas\Admin\Content\jquery.datetimepicker.css" />
+    <Content Include="Areas\Admin\Content\jquery.simple-dtpicker.css" />
+    <Content Include="Areas\Admin\Content\select2-spinner.gif" />
+    <Content Include="Areas\Admin\Content\select2.css" />
+    <Content Include="Areas\Admin\Content\select2.png" />
+    <Content Include="Areas\Admin\Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Areas\Admin\Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Areas\Admin\Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Areas\Admin\Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Areas\Admin\Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Areas\Admin\Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Areas\Admin\Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Areas\Admin\Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Areas\Admin\Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Areas\Admin\Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Areas\Admin\Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Areas\Admin\Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Areas\Admin\Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Areas\Admin\Content\themes\base\jquery-ui.css" />
+    <Content Include="Areas\Admin\Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Areas\Admin\Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Areas\Admin\Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Areas\Admin\Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Areas\Admin\Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Areas\Admin\Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Areas\Admin\Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Areas\Admin\Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Areas\Admin\Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Areas\Admin\Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Areas\Admin\Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Areas\Admin\Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Areas\Admin\Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Areas\Admin\Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Areas\Admin\Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Areas\Admin\Script\app.js" />
+    <Content Include="Areas\Admin\Script\bootstrap-collapse.js" />
+    <Content Include="Areas\Admin\Script\bootstrap-datepicker.js" />
+    <Content Include="Areas\Admin\Script\bootstrap-datetimepicker.js" />
+    <Content Include="Areas\Admin\Script\bootstrap-switch.js" />
+    <Content Include="Areas\Admin\Script\bootstrap-timepicker.js" />
+    <Content Include="Areas\Admin\Script\bootstrap-transition.js" />
+    <Content Include="Areas\Admin\Script\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Script\dataTables.bootstrap.js" />
+    <Content Include="Areas\Admin\Script\date-de.js" />
+    <Content Include="Areas\Admin\Script\date-range.js" />
+    <Content Include="Areas\Admin\Script\date-uk.js" />
+    <Content Include="Areas\Admin\Script\draggabilly.pkgd.min.js" />
+    <Content Include="Areas\Admin\Script\draggable.js" />
+    <Content Include="Areas\Admin\Script\global.js" />
+    <Content Include="Areas\Admin\Script\html5shiv.js" />
+    <Content Include="Areas\Admin\Script\jquery-1.7.1.js" />
+    <Content Include="Areas\Admin\Script\jquery-ui-1.10.3.min.js" />
+    <Content Include="Areas\Admin\Script\jquery.dataTables.js" />
+    <Content Include="Areas\Admin\Script\jquery.dataTables.min.js" />
+    <Content Include="Areas\Admin\Script\jquery.dataTables_.js" />
+    <Content Include="Areas\Admin\Script\jquery.datetimepicker.full.js" />
+    <Content Include="Areas\Admin\Script\jquery.datetimepicker.full.min.js" />
+    <Content Include="Areas\Admin\Script\jquery.datetimepicker.js" />
+    <Content Include="Areas\Admin\Script\jquery.datetimepicker.min.js" />
+    <Content Include="Areas\Admin\Script\jquery.simple-dtpicker.js" />
+    <Content Include="Areas\Admin\Script\jquery.sparkline.min.js" />
+    <Content Include="Areas\Admin\Script\jquery.tablesorter.js" />
+    <Content Include="Areas\Admin\Script\jquery.tablesorter.min.js" />
+    <Content Include="Areas\Admin\Script\moment.js" />
+    <Content Include="Areas\Admin\Script\packery.pkgd.min.js" />
+    <Content Include="Areas\Admin\Script\prototype.js" />
+    <Content Include="Areas\Admin\Script\views\BebeMoneyKatalogKategorileri-index.js" />
+    <Content Include="Areas\Admin\Script\views\campaign-image-upload.js" />
+    <Content Include="Areas\Admin\Script\views\campaign-index.js" />
+    <Content Include="Areas\Admin\Script\views\category-image-upload.js" />
+    <Content Include="Areas\Admin\Script\views\category-index.js" />
+    <Content Include="Areas\Admin\Script\views\Migroskop-index.js" />
+    <Content Include="Areas\Admin\Script\views\home-login.js" />
+    <Content Include="Areas\Admin\Script\views\Imagefile-index.js" />
+    <Content Include="Areas\Admin\Script\views\Kazanclar-index.js" />
+    <Content Include="Areas\Admin\Script\views\MilKatalog-index.js" />
+    <Content Include="Areas\Admin\Script\views\SallaKazan-index.js" />
+    <Content Include="Areas\Admin\Script\views\TblDevice-index.js" />
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datepicker3.css" />
+    <Content Include="Content\FileUpload.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\uploadfile.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Admin\fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Admin\fonts\fontawesome-webfont.svg" />
+    <Content Include="Areas\Admin\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Areas\Admin\fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\Admin\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Areas\Admin\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Admin\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Admin\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\Admin\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\Admin\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Admin\fonts\ionicons.eot" />
+    <Content Include="Areas\Admin\fonts\ionicons.svg" />
+    <Content Include="Areas\Admin\fonts\ionicons.ttf" />
+    <Content Include="Areas\Admin\fonts\ionicons.woff" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminLeft.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminNotification.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Dashboard.cshtml" />
+    <Content Include="Areas\Admin\Views\CampaignCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CampaignCategory\_addeditcategory.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Modal.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_ModalDelete.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_ModalFooter.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_ModalHeader.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_ValidationSummary.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AddPhotos.cshtml" />
+    <Content Include="Areas\Admin\Views\Campaign\Index_.cshtml" />
+    <Content Include="Areas\Admin\Views\Campaign\_addeditcampaign.cshtml" />
+    <Content Include="Areas\Admin\Views\Kazanclar\_addeditKazanclar.cshtml" />
+    <Content Include="Areas\Admin\Views\Kazanclar\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BebeMoneyKatalogKategorileri\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BebeMoneyKatalogKategorileri\_addediBebeMoneyKatalogKategorileri.cshtml" />
+    <Content Include="Areas\Admin\Views\MilKatalogUrunleri\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MilKatalogUrunleri\_addedit.cshtml" />
+    <Content Include="Areas\Admin\Views\SendNotification\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SallaKazan\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SallaKazan\_addedit.cshtml" />
+    <Content Include="Areas\Admin\Views\Imagefile\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Imagefile\_addedit.cshtml" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\ionicons.eot" />
+    <Content Include="fonts\ionicons.ttf" />
+    <Content Include="fonts\ionicons.woff" />
+    <Content Include="Areas\Admin\Views\Migroskop\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Migroskop\_addedit.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AddPdf.cshtml" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap\wells.less" />
+    <Content Include="Content\bootstrap\variables.less" />
+    <Content Include="Content\bootstrap\utilities.less" />
+    <Content Include="Content\bootstrap\type.less" />
+    <Content Include="Content\bootstrap\tooltip.less" />
+    <Content Include="Content\bootstrap\thumbnails.less" />
+    <Content Include="Content\bootstrap\theme.less" />
+    <Content Include="Content\bootstrap\tables.less" />
+    <Content Include="Content\bootstrap\scaffolding.less" />
+    <Content Include="Content\bootstrap\responsive-utilities.less" />
+    <Content Include="Content\bootstrap\responsive-embed.less" />
+    <Content Include="Content\bootstrap\progress-bars.less" />
+    <Content Include="Content\bootstrap\print.less" />
+    <Content Include="Content\bootstrap\popovers.less" />
+    <Content Include="Content\bootstrap\panels.less" />
+    <Content Include="Content\bootstrap\pagination.less" />
+    <Content Include="Content\bootstrap\pager.less" />
+    <Content Include="Content\bootstrap\normalize.less" />
+    <Content Include="Content\bootstrap\navs.less" />
+    <Content Include="Content\bootstrap\navbar.less" />
+    <Content Include="Content\bootstrap\modals.less" />
+    <Content Include="Content\bootstrap\mixins\vendor-prefixes.less" />
+    <Content Include="Content\bootstrap\mixins\text-overflow.less" />
+    <Content Include="Content\bootstrap\mixins\text-emphasis.less" />
+    <Content Include="Content\bootstrap\mixins\table-row.less" />
+    <Content Include="Content\bootstrap\mixins\tab-focus.less" />
+    <Content Include="Content\bootstrap\mixins\size.less" />
+    <Content Include="Content\bootstrap\mixins\responsive-visibility.less" />
+    <Content Include="Content\bootstrap\mixins\resize.less" />
+    <Content Include="Content\bootstrap\mixins\reset-text.less" />
+    <Content Include="Content\bootstrap\mixins\reset-filter.less" />
+    <Content Include="Content\bootstrap\mixins\progress-bar.less" />
+    <Content Include="Content\bootstrap\mixins\panels.less" />
+    <Content Include="Content\bootstrap\mixins\pagination.less" />
+    <Content Include="Content\bootstrap\mixins\opacity.less" />
+    <Content Include="Content\bootstrap\mixins\nav-vertical-align.less" />
+    <Content Include="Content\bootstrap\mixins\nav-divider.less" />
+    <Content Include="Content\bootstrap\mixins\list-group.less" />
+    <Content Include="Content\bootstrap\mixins\labels.less" />
+    <Content Include="Content\bootstrap\mixins\image.less" />
+    <Content Include="Content\bootstrap\mixins\hide-text.less" />
+    <Content Include="Content\bootstrap\mixins\grid-framework.less" />
+    <Content Include="Content\bootstrap\mixins\grid.less" />
+    <Content Include="Content\bootstrap\mixins\gradients.less" />
+    <Content Include="Content\bootstrap\mixins\forms.less" />
+    <Content Include="Content\bootstrap\mixins\clearfix.less" />
+    <Content Include="Content\bootstrap\mixins\center-block.less" />
+    <Content Include="Content\bootstrap\mixins\buttons.less" />
+    <Content Include="Content\bootstrap\mixins\border-radius.less" />
+    <Content Include="Content\bootstrap\mixins\background-variant.less" />
+    <Content Include="Content\bootstrap\mixins\alerts.less" />
+    <Content Include="Content\bootstrap\mixins.less" />
+    <Content Include="Content\bootstrap\media.less" />
+    <Content Include="Content\bootstrap\list-group.less" />
+    <Content Include="Content\bootstrap\labels.less" />
+    <Content Include="Content\bootstrap\jumbotron.less" />
+    <Content Include="Content\bootstrap\input-groups.less" />
+    <Content Include="Content\bootstrap\grid.less" />
+    <Content Include="Content\bootstrap\glyphicons.less" />
+    <Content Include="Content\bootstrap\forms.less" />
+    <Content Include="Content\bootstrap\dropdowns.less" />
+    <Content Include="Content\bootstrap\component-animations.less" />
+    <Content Include="Content\bootstrap\code.less" />
+    <Content Include="Content\bootstrap\close.less" />
+    <Content Include="Content\bootstrap\carousel.less" />
+    <Content Include="Content\bootstrap\buttons.less" />
+    <Content Include="Content\bootstrap\button-groups.less" />
+    <Content Include="Content\bootstrap\breadcrumbs.less" />
+    <Content Include="Content\bootstrap\bootstrap.less" />
+    <Content Include="Content\bootstrap\badges.less" />
+    <Content Include="Content\bootstrap\alerts.less" />
+    <Content Include="Content\bootstrap-datetimepicker-build.less" />
+    <Content Include="Content\_bootstrap-datetimepicker.less" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Code\Cert\migros_push_appstore.p12" />
+    <Content Include="Areas\Admin\Views\Magazalar\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SqlQuery\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Campaign\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Campaign\EditorTemplates\CampaignViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Campaign\AddCampaign.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_ModalDeleteCampaign.cshtml" />
+    <None Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\ionicons.svg" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\migros.pubxml" />
+    <None Include="Properties\PublishProfiles\Published_Migros.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\global.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
+    <Content Include="Scripts\jquery.uploadfile.js" />
+    <Content Include="Scripts\jquery.uploadfile.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\locale\tr.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\select2.js" />
+    <Content Include="Scripts\tr.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="uploads\bebemoney\a6e8e74e-b7a6-49b5-9855-e1a56bf39ba2_112265_1.jpg" />
+    <Content Include="uploads\campimage\805d6876-0eaa-4b30-a253-b6039d5ff7d3_112269_1.jpg" />
+    <Content Include="uploads\campimage\9474cec5-9fbb-443a-b25e-6e155894e3ef_112265_1.jpg" />
+    <Content Include="uploads\campimage\c8149877-0097-4535-975f-9118702f3488_112269_1.jpg" />
+    <Content Include="uploads\categorybgimage\1119cece-f13c-420a-bfee-5cc7eeff7727_112265_1.jpg" />
+    <Content Include="uploads\categorybgimage\11ccd1f6-b9c2-4627-bfc5-39c30d61ccec_112265_1.jpg" />
+    <Content Include="uploads\categorybgimage\14b8e69a-3f51-4bcd-8054-61b2e50bc9f2_112265_1.jpg" />
+    <Content Include="uploads\categorybgimage\34f9b7a0-e59a-47c7-82f9-89edeb232f36_img079.jpg" />
+    <Content Include="uploads\categorybgimage\4456d119-2719-4121-89d6-c4b60175ba08_112265_1.jpg" />
+    <Content Include="uploads\categorybgimage\5c977c8e-48a7-4306-988d-4f46b5189d59_112265_1.jpg" />
+    <Content Include="uploads\categorybgimage\61d44a37-c9e2-4b62-8f94-a4693494fcc9_112265_1.jpg" />
+    <Content Include="uploads\categorybgimage\825f87c1-8991-4100-a156-152bc14ba3c1_112210_1.jpg" />
+    <Content Include="uploads\categorybgimage\c69fd4fe-cf77-4f4f-8448-9e51a915b6a0_112265_1.jpg" />
+    <Content Include="uploads\categoryimage\04b2ce26-ea69-4c27-9be6-22cb9a386c1d_komsufirin_daypart_kapsam.jpg" />
+    <Content Include="uploads\categoryimage\06b89bba-ef71-4dda-86a0-00bd65394e17_112269_1.jpg" />
+    <Content Include="uploads\categoryimage\1009bdb4-fda9-435f-96e4-0ff31b50d5bf_Screen_Shot_2015-06-29_at_10.52.53.png" />
+    <Content Include="uploads\categoryimage\16a3b4a4-59d1-446d-9e6e-45fb411ed4a6_uygulama_revize_görsel.jpg" />
+    <Content Include="uploads\categoryimage\2ab96769-9185-4f96-98f3-5f89075f3ae4_112210_1.jpg" />
+    <Content Include="uploads\categoryimage\45c44d97-9ca4-41e7-a484-de97c1042c7c_112269_1.jpg" />
+    <Content Include="uploads\categoryimage\75245f52-a279-4518-9096-cf0be055768d_gör_inan.jpg" />
+    <Content Include="uploads\categoryimage\79c30211-2dbf-42c6-8e93-c2d5e9f47a0c_uygulama_revize_görsel.jpg" />
+    <Content Include="uploads\categoryimage\851d040c-c60f-4207-afdc-99388552f068_komsufirin_daypart_veriakissemasi_1.jpg" />
+    <Content Include="uploads\categoryimage\91ca3740-82bc-4021-876c-b21e43424d60_112269_1.jpg" />
+    <Content Include="uploads\categoryimage\9cc67ecc-1f2c-4a4e-b550-696e75633121_112269_1.jpg" />
+    <Content Include="uploads\categoryimage\b58b8867-cbc1-4add-9a47-1d0bebf79b20_logoSon2.png" />
+    <Content Include="uploads\categoryimage\cfa07d3f-f2ca-40f8-8664-85ff2ab16263_112269_1.jpg" />
+    <Content Include="uploads\categoryimage\d58bde72-5efc-4348-bc76-354a8ec9fe69_komsufirin_daypart_veriakissemasi.jpg" />
+    <Content Include="uploads\categoryimage\fd6e2dec-9a1b-452a-8dd4-8ddd59bf6806_112269_1.jpg" />
+    <Content Include="uploads\money\52e570be-0611-42b0-b37d-69d2ca0e637a_112269_1.jpg" />
+    <Content Include="uploads\money\9b8f8848-2e39-4154-8eb8-d320e6741736_112269_1.jpg" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Shared\_MessageNotification.cshtml" />
+    <Content Include="Views\Shared\_Modal.cshtml" />
+    <Content Include="Views\Shared\_ModalDelete.cshtml" />
+    <Content Include="Views\Shared\_ModalFooter.cshtml" />
+    <Content Include="Views\Shared\_ModalHeader.cshtml" />
+    <Content Include="Views\Shared\_ValidationSummary.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\View1.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MS.Business\MS.Business.csproj">
+      <Project>{6882c9d6-e43b-4bc4-8c3d-6c5b75faadae}</Project>
+      <Name>MS.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MS.Core\MS.Core.csproj">
+      <Project>{a7df76a7-ae2d-4163-b780-e759d3f93922}</Project>
+      <Name>MS.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56305</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:51509/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

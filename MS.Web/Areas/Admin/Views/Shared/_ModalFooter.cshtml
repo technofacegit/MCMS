@@ -1,0 +1,13 @@
+﻿@using MS.Core.Language;
+@model MS.Web.Models.Others.ModalFooter
+<div class="modal-footer">
+    @if (!Model.IsSubmitButtonOnly)
+    {
+        <button type="button" class="btn btn-default modalsubmit" data-dismiss="modal" id="@Model.CancelButtonID">@Resource_tr_TR.Cancel</button>
+    }
+    @if (!Model.IsCancelButtonOnly)
+    {
+        @Html.Raw(Model.FooterText)
+        <button type="submit" class="@Model.SubmitButtonCSS" id="@Model.SubmitButtonID">@Resource_tr_TR.Submit</button>
+    }
+</div>

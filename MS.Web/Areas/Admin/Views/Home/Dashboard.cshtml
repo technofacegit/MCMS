@@ -1,0 +1,167 @@
+﻿@using MS.Core.Language;
+@{
+    ViewBag.Title = @Resource_tr_TR.Dashboard;
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<section class="content-header">
+    <h1>@Resource_tr_TR.Dashboard</h1>
+</section>
+
+<section class="content">
+        <div class="row">
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3>
+                            @MS.Business.CampaignCategory.GetCampaignCategories().Count
+                        </h3>
+                        <p>
+                            @(MS.Business.CampaignCategory.GetCampaignCategories().Count == 1 ? Resource_tr_TR.Category  : Resource_tr_TR.Categories)
+                        </p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-sitemap"></i>
+                    </div>
+                    <a href="@Url.Action("index", "CampaignCategory")" class="small-box-footer">
+                        @Resource_tr_TR.ViewAll <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3>
+                            @MS.Business.Campaign.GetCampaigns().Count
+                        </h3>
+                        <p>
+                           @(MS.Business.Campaign.GetCampaigns().Count == 1 ? Resource_tr_TR.Campaign : Resource_tr_TR.Campaigns)
+                        </p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-list"></i>
+                    </div>
+                    <a href="@Url.Content("~/admin/Campaign")" class="small-box-footer">
+                        @Resource_tr_TR.ViewAll <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+                <div class="small-box bg-yellow">
+                    <div class="inner">
+                        <h3>
+                            @MS.Business.BebeMoneyKatalogKategorileri.GetBebeMoneyKatalogKategorileries().Count
+                        </h3>
+                        <p>
+                            @(MS.Business.BebeMoneyKatalogKategorileri.GetBebeMoneyKatalogKategorileries().Count == 1 ? "Bebe Money Katalog" : "Bebe Money kataloglar ")
+                        </p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-sitemap"></i>
+                    </div>
+                    <a href="@Url.Content("~/admin/BebeMoneyKatalogKategorileri")" class="small-box-footer">
+                        @Resource_tr_TR.ViewAll <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <h3>
+                            @MS.Business.Kazanclar.GetKazanclars().Count
+                        </h3>
+                        <p>
+                            @(MS.Business.Kazanclar.GetKazanclars().Count == 1 ? "Kazanclar" : "Kazançlarım")
+                        </p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-sitemap"></i>
+                    </div>
+                    <a href="@Url.Content("~/admin/Kazanclar")" class="small-box-footer">
+                        @Resource_tr_TR.ViewAll <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-3 col-xs-6">
+                <div class="small-box bg-maroon">
+                    <div class="inner">
+                        <h3>
+                            @MS.Business.MilKatalogUrunleri.GetMilKatalogUrunleries().Count
+                        </h3>
+                        <p>
+                            @(MS.Business.MilKatalogUrunleri.GetMilKatalogUrunleries().Count == 1 ? "Mil Katalog" : "Mil Kataloglar")
+                        </p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-sitemap"></i>
+                    </div>
+                    <a href="@Url.Content("~/admin/MilKatalogUrunleri")" class="small-box-footer">
+                        @Resource_tr_TR.ViewAll  <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-purple">
+                    <div class="inner">
+                        <h3>
+@*                            @MS.Business.TblDevice.GetTblDevices().Count*@
+                        </h3>
+                        <p style="margin:52px 0 10px">
+                            @*@(MS.Business.TblDevice.GetTblDevices().Count == 1 ? Resource_tr_TR.NotificationDevice : Resource_tr_TR.NotificationDevices)*@
+                            @Resource_tr_TR.NotificationDevices
+                        </p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-comment"></i>
+                    </div>
+                    <a href="@Url.Action("index", "SendNotification")" class="small-box-footer">
+                        @Resource_tr_TR.ViewAll <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+                <div class="small-box bg-teal">
+                    <div class="inner">
+                        <h3>
+                            @MS.Business.SallaKazan.GetSallakazans().Count
+                        </h3>
+                        <p>
+                            @(MS.Business.SallaKazan.GetSallakazans().Count == 1 ? "SallaKazan" : "Salla Kazan")
+                        </p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-sitemap"></i>
+                    </div>
+                    <a href="@Url.Action("index", "SallaKazan")" class="small-box-footer">
+                        @Resource_tr_TR.ViewAll <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+                <div class="small-box bg-blue">
+                    <div class="inner">
+                        <h3>
+                            @MS.Business.tblImage.Getimages().Count
+                        </h3>
+                        <p>
+                            @(MS.Business.tblImage.Getimages().Count == 1 ? Resource_tr_TR.Image : Resource_tr_TR.Images)
+                        </p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-picture-o"></i>
+                    </div>
+                    <a href="@Url.Content("~/admin/Imagefile")" class="small-box-footer">
+                        @Resource_tr_TR.ViewAll <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+

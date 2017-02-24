@@ -1,0 +1,64 @@
+﻿@using MS.Web.Areas.Admin.Models;
+@using MS.Core.Language;
+
+
+@model AdminLoginViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html style="background: url('/migros/areas/admin/content/images/migros_back.jpg') no-repeat scroll center top; background-size: cover;">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+    @Styles.Render("~/Contents/css")
+
+</head>
+<body style="background: url('/migros/areas/admin/content/images/migros_back.jpg') no-repeat scroll center top; background-size: cover; ">
+
+    <div class="form-box" id="login-box">
+        <div class="header"> @Resource_tr_TR.AdministratorLogin</div>
+        @using (Html.BeginForm())
+        {
+             <div id="validation-summary"></div>
+        @Html.ValidationSummary(true)
+            <div class="body bg-gray">
+                @Html.Partial("_AdminNotification")
+                <div class="form-group">
+                    @Html.TextBoxFor(model => model.UserName, true, null, new { @class = "form-control", @placeholder = @Resource_tr_TR.UserName })
+                </div>
+                <div class="form-group">
+                    @Html.PasswordFor(model => model.Password, true, new { @class = "form-control", @placeholder = @Resource_tr_TR.Password })
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="remember_me" />
+                    @Resource_tr_TR.Rememberme
+                </div>
+            </div>
+            <div class="footer body bg-gray">
+                <button type="submit" class="btn bg-olive btn-block">@Resource_tr_TR.Signmein</button>
+            </div>
+        }
+    </div>
+
+   
+    <div class="margin text-center">
+        <span style="color:white;">©@Resource_tr_TR.CopyrightMigrosCMS</span>
+        <br />
+
+
+    </div>
+
+    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js",
+    "~/areas/admin/Script/bootstrap.min.js",
+    "~/bundles/jqueryval",
+    "~/areas/admin/Script/global.js",
+    "~/areas/admin/Script/views/home-login.js")
+
+
+</body>
+</html>
+

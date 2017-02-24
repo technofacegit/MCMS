@@ -1,0 +1,141 @@
+﻿@using MS.Core.Language;
+@using MS.Business;
+@using MS.Web.Models.Others;
+@using MvcContrib.UI.Grid;
+@using MS.Web.Code.LIBS;
+
+@*@model List<TblDevice>*@
+@{
+    ViewBag.Title = @Resource_tr_TR.PushNotification;
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section HeadContent {
+    @Styles.Render("~/Areas/Admin/Content/dataTables.bootstrap.css")
+}
+<style>
+    .btn_tab {
+        border: 1px none;
+        padding: 18px;
+    }
+    .formerror {
+        color:red;
+    }
+
+    .borderremove {
+        border-top: 0px;
+    }
+</style>
+<section class="content-header">
+    <h1>@Resource_tr_TR.PushNotification</h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.Partial("_AdminNotification")
+            <div id="diverror" class="alert alert-warning" role="alert" style="display:none">Please select at least one record from list !!</div>
+            <div class="box" style="border: 1px solid #c1c1c1;">
+
+                <div class="btn_tab">
+                    <button type="button" id="Campaign_Noti" class="btn btn-info">Kampanya Bildirimi</button>
+                    <button type="button" id="Text_Notif" class="btn btn-info">Metin Bildirimi</button>
+                </div>
+                @using (Html.BeginForm("SendCampNotifiaction", "SendNotification", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                     <div id="validation-summary"></div>
+                     @Html.ValidationSummary(true)
+                    <div id="Camp_Noti" class="container" style="width:100%">
+
+
+
+                        <div class="panel-body" style="border: 0px solid #c1c1c1;">
+                            <div class="row">
+
+                                <label for="Campno" class="control-label col-sm-2">@Resource_tr_TR.CampaignNo:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" id="CampNO" name="CampNO" class="form-control" />
+                                   <span  id="camperror" class="formerror"></span>
+                                     <br />
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <label for="CampBody" class="control-label col-sm-2">@Resource_tr_TR.CampaignBody:</label>
+                                <div class="col-sm-4">
+                                    <textarea name="CampBody" id="CampBody" class="form-control"> </textarea>
+                                    <span  id="campbodyerror" class="formerror"></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+
+                            @Html.Hidden("tockenvalueforcamp")
+                         
+                            <input name="submit" type="submit" value="Gönder" id="submit" class="btn bg-orange" />
+                           
+                        </div>
+
+                    </div>
+
+                }
+                @using (Html.BeginForm("SendTextNotifiaction", "SendNotification", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+
+                    <div id="Text_Noti" class="container" style="width: 100%">
+
+
+                        <div class="panel-body" style="border: 0px solid #c1c1c1;">
+                            <div class="row">
+                                <label for="lblTextBody" class="control-label col-sm-2">@Resource_tr_TR.TextBody:</label>
+                                <div class="col-sm-4">
+                                    <textarea name="TextBody" id="TextBody" class="form-control"> </textarea>
+                                    <span id="campbodytexterror" class="formerror"></span>
+                                    <div class="clearfix"></div>
+
+                                </div>
+                            </div>
+                            @Html.Hidden("tockenvalueforText")
+                            <input name="submitText" type="submit" value=" send" id="submitText" class="btn bg-orange" />
+                           
+                        </div>
+
+
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+@*    <div class="row">
+        <div class="col-xs-12">
+           
+            <div class="box borderremove">
+
+                <div class="box-body table-responsive">
+                    @Html.Grid(Model).Columns(column =>
+                    {
+                        column.For(a => Html.CheckBox("SelectDevice", false, new { @value = a.DeviceToken })).Named(Resource_tr_TR.Select).Attributes(@class => "selected");
+                        column.For(a => a.MachineName).Named(@Resource_tr_TR.MachineName).Attributes(@class => "width15p");
+                        column.For(a => a.OSVersion).Named(@Resource_tr_TR.OSVersion).Attributes(@class => "width15p");
+                        column.For(a => a.DeviceToken).Named(@Resource_tr_TR.DeviceToken).Attributes(@class => "width15p");
+
+                        //column.For(a => a.DisplayOrder).Named(Resource_tr_TR.DisplayOrder).Attributes(@class => "width10p");
+                        //column.For(a => "<a class=\"btn btn-primary btn-sm\" href=\"" + Url.Action("addeditkazanclar", new { id = a.KazanciID }) + "\" data-target=\"#modal-create-edit-kazanclar\" data-toggle=\"modal\">Edit <i class=\"fa fa-edit\"></i></a>" +
+                        //                " <a class=\"btn btn-danger btn-sm\" href=\"" + Url.Action("delete", new { id = a.KazanciID }) + "\" data-target=\"#modal-delete-kazanclar\" data-toggle=\"modal\">Delete <i class=\"fa fa-trash-o\"></i></a>").Attributes(@class => "width15p")
+                        //                .Named(Resource_tr_TR.Operations).Encode(false);
+                    }).Attributes(@id => "grid-TblDevice", @class => "table table-bordered table-hover")
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+</section>
+
+
+@section ScriptContent{
+    @Scripts.Render("~/Areas/Admin/Script/jquery.dataTables.js",
+        "~/Areas/Admin/Script/dataTables.bootstrap.js",
+          "~/Areas/Admin/Script/global.js",
+                  "~/Areas/Admin/Script/views/TblDevice-index.js"
+          )
+}
+
+

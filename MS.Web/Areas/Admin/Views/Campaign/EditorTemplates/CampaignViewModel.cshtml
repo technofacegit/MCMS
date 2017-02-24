@@ -1,0 +1,70 @@
+﻿@using MS.Core.Language;
+@using MS.Business;
+@using MS.Web.Models.Others;
+@using MvcContrib.UI.Grid;
+@using MS.Web.Code.LIBS;
+@using MS.Web.Areas.Admin.Models;
+
+@model CampaignViewModel
+
+@Html.HiddenFor(model => model.CampaignID)
+
+<tr>
+    <th>
+        @if (Model.ImageLink!=null && Model.ImageLink!="")
+        {
+           <img src="@Url.Content(Model.ImageLink)"  width="80" />         
+        }
+    </th>
+        <th>
+        @if (Model.ImageLink2!=null && Model.ImageLink2!="")
+        {
+           <img src="@Url.Content(Model.ImageLink2)"  width="80" />         
+        }
+    </th>
+        <th>
+        @Html.DisplayFor(model => model.CampaignID)
+    </th>
+    <th>
+        @Html.EditorFor(model => model.OfferName)
+    </th>
+    <th>
+        @Html.EditorFor(model => model.OfferDesc)
+    </th>
+    <th>@Html.EditorFor(model => model.StartDate,
+      new
+      {
+          htmlAttributes = new
+          {
+              @Value = Model.StartDate,
+              @Class = "time start"
+          }
+      })</th>
+    <th>@Html.EditorFor(model => model.EndDate,
+      new
+      {
+          htmlAttributes = new
+          {
+              @Value = Model.EndDate,
+              @Class = "time end"
+          }
+      })</th>
+    <th>
+        @Html.EditorFor(model=>model.DisplayOrder)
+    </th>
+    <th>
+        @Html.EditorFor(model => model.Status)
+    </th>
+    <th>
+        @if (Model.Status==true)
+        {
+        <a class="btn btn-danger btn-sm" href="@Url.Action("delete", new { id = Model.CampaignID })">@Resource_tr_TR.Delete  <i class="fa fa-trash-o"></i></a>         
+        }
+        else{
+            <a class="btn btn-danger btn-sm" href="@Url.Action("deletePassive", new { id = Model.CampaignID })">@Resource_tr_TR.Delete  <i class="fa fa-trash-o"></i></a> 
+        }
+
+        @*  <a href="@Url.Action("delete", new { ID=Model.CampaignID})" id="deletecampaign" class="btn bg-red" style="display:inline-block" data-target="#modal-delete-campaign" data-toggle="modal"> @Resource_tr_TR.Delete <i class="fa fa-trash-o"></i></a>*@
+    </th>
+</tr>
+

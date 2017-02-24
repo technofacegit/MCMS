@@ -1,0 +1,207 @@
+﻿@using MS.Web.Models.Others;
+@using MS.Web.Code.LIBS;
+@using MS.Core.Language;
+@model MS.Web.Areas.Admin.Models.CampaignCategoryViewModel
+
+<div id="category-box">
+    @using (Html.BeginForm("addeditcategory", "CampaignCategory", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Partial("_ModalHeader", new ModalHeader { ID = "modal-create-edit-category", Title = (Model.CategoryID <= 0 ? Resource_tr_TR.Create + " " + Resource_tr_TR.Category : Resource_tr_TR.Edit + " " + Resource_tr_TR.Category) })
+        <div id="validation-summary"></div>
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.CategoryID)
+        <div class="modal-body box-body">
+            <div class="row">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.CategoryName, Resource_tr_TR.CategoryName)
+                    @Html.TextBoxFor(model => model.CategoryName, true, null, new { @class = "form-control", @data_msg_required = Resource_tr_TR.required })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.CategoryTag, Resource_tr_TR.CategoryTag)
+                    @Html.TextBoxFor(model => model.CategoryTag, true, null, new { @class = "form-control", @data_msg_required = Resource_tr_TR.required })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CategoryType, Resource_tr_TR.CategoryType)
+                    @if (Model.CategoryID > 0)
+                    {
+                        @Html.DropDownListFor(model => model.CategoryType, new SelectList(ViewBag.CategoryTypeList, "kimlik", "KategoriTipi1", Model.CategoryType), "Select kategori", new { @class = "form-control", @data_msg_required = Resource_tr_TR.required })
+                    }
+                    else
+                    {
+                        @Html.DropDownListFor(model => model.CategoryType, new SelectList(ViewBag.CategoryTypeList, "kimlik", "KategoriTipi1"), "Select kategori", new { @class = "form-control width100p required", @data_msg_required = Resource_tr_TR.required })
+                    }
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CacheKey)
+                    @Html.TextBoxFor(model => model.CacheKey, true, null, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DisplayOrder, Resource_tr_TR.DisplayOrder)
+                    @Html.TextBoxFor(model => model.DisplayOrder, true, null, new { @class = "form-control", @data_rule_number = "true", @data_msg_number = "number only" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.OptinText, "OptinText")
+                    @Html.TextBoxFor(model => model.OptinText, true, null, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.OptinHoverText, "OptinHoverText")
+                    @Html.TextBoxFor(model => model.OptinHoverText, true, null, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        @Html.CheckBoxFor(model => model.Status, new { @class = "minimal" }) @Html.Label(Resource_tr_TR.Active)
+                    </div>
+                    <div class="col-lg-6">
+
+                        @Html.CheckBoxFor(model => model.ShowLoginPanel, new { @class = "minimal" }) @Html.Label("Show Login Panel")
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        @Html.CheckBoxFor(model => model.VisibleOnCampPage, new { @class = "minimal" }) @Html.Label("Visible On Camp Page")
+                    </div>
+                    <div class="col-lg-6">
+                        @Html.CheckBoxFor(model => model.VisibleOnMainPage, new { @class = "minimal" }) @Html.Label(Resource_tr_TR.VisibleOnMainPage)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        @Html.CheckBoxFor(model => model.VisibleOnNotLogin, new { @class = "minimal" }) @Html.Label("Visible On Not Login")
+                    </div>
+                    <div class="col-lg-6">
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-lg-6">
+                    @Html.LabelFor(model => model.CategoryImage, Resource_tr_TR.CategoryImage)
+
+                </div>
+                <div class="col-lg-6">
+                    <a data-toggle="modal" href="@Url.Action("AddPhotos")" data-target="#modal-add-photos" class="btn bg-maroon btn-flat btn-sm">
+                        @Resource_tr_TR.UploadImage <i class="fa fa-upload"></i>
+                    </a>
+                    <br />
+                    <div id="divimages" class="upload_images upload-gallery">
+                        @if (Model.CategoryID > 0 && Model.CategoryImage != null)
+                        {
+                            <div class='single' rel='@Model.CategoryImage'>
+                                <img src="@Url.Content(Model.CategoryImage)" /></div>
+                            <div class="ajax-file-upload-red deletePhoto" rel="@Model.CategoryImage" style="display: inline-block;">Delete</div>
+                        }
+                    </div>
+                    @Html.Hidden("UploadedImages", Model.CategoryImage)
+
+                </div>
+
+            </div>
+            <br />
+            <div class="row">
+
+                <div class="col-lg-6">
+                    @Html.LabelFor(model => model.CategoryBackground, Resource_tr_TR.CategoryBackground)
+
+                </div>
+                <div class="col-lg-6">
+                    <a data-toggle="modal" href="@Url.Action("AddPhotos")" data-target="#modal-addbag-photos" class="btn bg-maroon btn-flat btn-sm">
+                        @Resource_tr_TR.UploadImage <i class="fa fa-upload"></i>
+                    </a>
+                    <br />
+                    <div id="divbackimagesbag" class="upload_images upload-gallery">
+                        @if (Model.CategoryID > 0 && Model.CategoryBackground != null)
+                        {
+                            <div class='single' rel='@Model.CategoryBackground'>
+                                <img src="@Url.Content(Model.CategoryBackground)" /></div>
+                            <div class="ajax-file-upload-red deleteBackPhoto" rel="@Model.CategoryBackground" style="display: inline-block;">Delete</div>
+                        }
+                    </div>
+                    @Html.Hidden("UploadedBackImages", Model.CategoryBackground)
+                </div>
+
+            </div>
+
+            <br />
+            <div class="row">
+
+                <div class="col-lg-6">
+                    @Html.LabelFor(model => model.NewCategoryBackground, Resource_tr_TR.NewCategoryBackground)
+
+                </div>
+                <div class="col-lg-6">
+                    <a data-toggle="modal" href="@Url.Action("AddPhotos")" data-target="#modal-new-addbag-photos" class="btn bg-maroon btn-flat btn-sm">
+                        @Resource_tr_TR.UploadImage <i class="fa fa-upload"></i>
+                    </a>
+                    <br />
+                    <div id="divnewbackimagesbag" class="upload_images upload-gallery">
+                        @if (Model.CategoryID > 0 && Model.NewCategoryBackground != null)
+                        {
+                            <div class='single' rel='@Model.NewCategoryBackground'>
+                                <img src="@Url.Content(Model.NewCategoryBackground)" /></div>
+                            <div class="ajax-file-upload-red deleteBackPhoto" rel="@Model.NewCategoryBackground" style="display: inline-block;">Delete</div>
+                        }
+                    </div>
+                    @Html.Hidden("UploadedNewBackImages", Model.NewCategoryBackground)
+                </div>
+
+            </div>
+
+            <br />
+            <div class="row">
+
+                <div class="col-lg-6">
+                    @Html.LabelFor(model => model.NewCategoryBoardImage, Resource_tr_TR.NewCategoryBoardImage)
+
+                </div>
+                <div class="col-lg-6">
+                    <a data-toggle="modal" href="@Url.Action("AddPhotos")" data-target="#modal-new-add-photos" class="btn bg-maroon btn-flat btn-sm">
+                        @Resource_tr_TR.UploadImage <i class="fa fa-upload"></i>
+                    </a>
+                    <br />
+                    <div id="divnewboardimagesbag" class="upload_images upload-gallery">
+                        @if (Model.CategoryID > 0 && Model.NewCategoryBoardImage != null)
+                        {
+                            <div class='single' rel='@Model.NewCategoryBoardImage'>
+                                <img src="@Url.Content(Model.NewCategoryBoardImage)" /></div>
+                            <div class="ajax-file-upload-red deletePhoto" rel="@Model.NewCategoryBoardImage" style="display: inline-block;">Delete</div>
+                        }
+                    </div>
+                    @Html.Hidden("UploadedNewBoardImages", Model.NewCategoryBoardImage)
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="message-error">
+            <span style="white-space: pre-line">@Model.UpdateLogs</span>
+        </div>
+        @Html.Partial("_ModalFooter", new ModalFooter())
+    }
+</div>
+

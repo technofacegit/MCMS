@@ -1,0 +1,229 @@
+﻿@using MS.Web.Models.Others;
+@using MS.Web.Code.LIBS;
+@using MS.Core.Language;
+@model MS.Web.Areas.Admin.Models.CampaignViewModel
+
+<div id="category-box">
+    @using (Html.BeginForm("addeditcampaign", "campaign", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Partial("_ModalHeader", new ModalHeader { ID = "modal-create-edit-campaign", Title = (Model.CategoryId <= 0 ? Resource_tr_TR.Create + " " + Resource_tr_TR.Campaign : Resource_tr_TR.Edit + " " + Resource_tr_TR.Campaign) })
+        <div id="validation-summary"></div>
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.CampaignID)
+
+       
+        <div class="modal-body box-body">
+            <div class="row">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.PromoNo, @Resource_tr_TR.PromoNo)
+                    @Html.TextBoxFor(model => model.PromoNo, true, null, new { @class = "form-control" })
+                    @*@Html.TextBoxFor(model => model.PromoNo, true, null, new { @class = "form-control", @data_rule_required = "true", @data_msg_required = Resource_tr_TR.required })*@
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.OfferNo, @Resource_tr_TR.OfferNo)
+                    @Html.TextBoxFor(model => model.OfferNo, true, null, new { @class = "form-control" })
+                    @*@Html.TextBoxFor(model => model.OfferNo, true, null, new { @class = "form-control", @data_rule_required = "true", @data_msg_required = Resource_tr_TR.required })*@
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.OfferName, @Resource_tr_TR.OfferName)
+                    @Html.TextBoxFor(model => model.OfferName, true, null, new { @class = "form-control", @data_rule_required = "true", @data_msg_required = Resource_tr_TR.required })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.OfferDesc, @Resource_tr_TR.OfferDesc)
+                    @Html.TextBoxFor(model => model.OfferDesc, true, null, new { @class = "form-control" })
+                </div>
+            </div>
+
+            @* <div class="row">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.Discount, @Resource_tr_TR.Discount)
+                    @Html.TextBoxFor(model => model.Discount, true, null, new { @class = "form-control" })
+                </div>
+            </div>*@
+
+            @*<div class="row">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.DiscountType, @Resource_tr_TR.DiscountType)
+                    @Html.TextBoxFor(model => model.DiscountType, true, null, new { @class = "form-control" })
+
+                    @Html.DropDownListFor(model => model.DiscountType, new SelectList(ViewBag.CategoryTypeList, "kimlik", "KategoriTipi1"), "Select kategori", new { @class = "form-control width100p required", @data_msg_required = Resource_tr_TR.required })
+                   
+
+                </div>
+            </div>*@
+
+            @*            <div class="container">
+    <div class='col-md-5'>
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker6'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class='col-md-5'>
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker7'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+            <div class="row">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.StartDate, @Resource_tr_TR.StartDate)
+                    @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control", @id = "date_picker_start", @Value = Model.StartDate != null ? Convert.ToDateTime(Model.StartDate).ToString("dd.MM.yyyy") : @DateTime.Now.ToString("dd.MM.yyyy") })
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+
+                    @Html.Label("Başlangıç Saati")
+                    @Html.TextBoxFor(model => model.StartTime, true, null, new { @class = "form-control", @id = "time_timepicker_start", @Value = Convert.ToDateTime(Model.StartDate).ToString("HH:mm") != null ? Convert.ToDateTime(Model.StartDate).ToString("HH:mm") : @DateTime.Now.ToString("HH:mm") })
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.EndDate, @Resource_tr_TR.EndDate)
+                    @Html.TextBoxFor(model => model.EndDate, true, null, new { @class = "form-control", @id = "date_picker_end", @Value = Model.EndDate != null ? Convert.ToDateTime(Model.EndDate).ToString("dd.MM.yyyy") : @DateTime.Now.ToString("dd.MM.yyyy") })
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    
+                    @Html.Label("Bitiş Saati")
+                    @Html.TextBoxFor(model => model.EndTime, true, null, new { @class = "form-control", @id = "time_timepicker_end", @Value = Convert.ToDateTime(Model.EndDate).ToString("HH:mm")!= null ? Convert.ToDateTime(Model.EndDate).ToString("HH:mm") : @DateTime.Now.ToString("HH:mm") })
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.CategoryId, Resource_tr_TR.CategoryTag)
+                    @Html.DropDownListFor(model => model.CategoryId, new SelectList(ViewBag.CategoryList, "CategoryID", "CategoryName", Model.CategoryId), "Kategori Seç", new { @class = "form-control", @data_rule_required = "true", @data_msg_required = Resource_tr_TR.required })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DisplayOrder, Resource_tr_TR.DisplayOrder)
+                    @Html.TextBoxFor(model => model.DisplayOrder, true, null, new { @class = "form-control", @data_rule_number = "true", @data_msg_number = "number only" })
+                </div>
+            </div>
+
+            @*   <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ExtraData, @Resource_tr_TR.ExtraData)
+                    @Html.TextBoxFor(model => model.ExtraData, true, null, new { @class = "form-control" })
+                </div>
+            </div>*@
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        @Html.CheckBoxFor(model => model.OptinFlag, new { @class = "minimal" }) @Html.Label("OptinFlag")
+                    </div>
+                    <div class="col-lg-6">
+                        @Html.CheckBoxFor(model => model.Status, new { @class = "minimal" }) @Html.Label(Resource_tr_TR.Active)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-6">
+                    @Html.LabelFor(model => model.ImageLink, "Dikdörtgen Görsel")
+
+                </div>
+                <div class="col-lg-6">
+                    <a data-toggle="modal" href="@Url.Action("AddPhotos")" data-target="#modal-add-photos" class="btn bg-maroon btn-flat btn-sm">
+                        @Resource_tr_TR.UploadImage  <i class="fa fa-upload"></i>
+                    </a>
+                    <br />
+                    <div id="divimages" class="upload_images upload-gallery">
+                        @if (Model.CampaignID > 0 && Model.ImageLink != null)
+                        {
+                            <div class='single' rel='@Model.ImageLink'>
+                                <img src="@Url.Content(Model.ImageLink)" />
+                            </div>
+                            <div class="ajax-file-upload-red deletePhoto" rel="@Model.ImageLink" style="display: inline-block;">Delete</div>
+                        }
+                    </div>
+                    @Html.Hidden("UploadedImages", Model.ImageLink)
+
+                </div>
+
+            </div>
+            <br />
+            <div class="row">
+
+                <div class="col-lg-6">
+                    @Html.LabelFor(model => model.ImageLink2, "Kare Görsel")
+
+                </div>
+                <div class="col-lg-6">
+                    <a data-toggle="modal" href="@Url.Action("AddPhotos")" data-target="#modal-add2-photos" class="btn bg-maroon btn-flat btn-sm">
+                        @Resource_tr_TR.UploadImage  <i class="fa fa-upload"></i>
+                    </a>
+                    <br />
+                    <div id="divimages2" class="upload_images upload-gallery">
+                        @if (Model.CampaignID > 0 && Model.ImageLink2 != null)
+                        {
+                            <div class='single' rel='@Model.ImageLink2'>
+                                <img src="@Url.Content(Model.ImageLink2)" />
+                            </div>
+                            <div class="ajax-file-upload-red deletePhoto" rel="@Model.ImageLink2" style="display: inline-block;">Delete</div>
+                        }
+                    </div>
+                    @Html.Hidden("UploadedImages2", Model.ImageLink2)
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="message-error">
+            <span style="white-space: pre-line">@Model.UpdateLogs</span>
+        </div>
+
+
+        @Html.Partial("_ModalFooter", new ModalFooter())
+    }
+</div>
+
+
+@*/migros/areas/admin/content/images/uploads/CampaignImage/http:/technofaceapps.com/migrosiphone/ws2014/uploads/sizeiyigelecek/iyitavuk1.jpg
+
+    http://technofaceapps.com/migrosiphone/ws2014/uploads/sizeiyigelecek/iyitavuk1.jpg*@
+

@@ -1,0 +1,13 @@
+﻿@using MS.Web.Areas.Admin.Models
+
+@{
+    AdminNotificationViewModel model = (AdminNotificationViewModel)(ViewData["MessageModel"] ?? TempData["MessageModel"]);
+}
+
+@if (model != null)
+{
+    <div class="alert alert-@(model.MessageType.ToString().ToLower()) alert-dismissable">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+        @(model.Message)
+    </div>
+}

@@ -1,0 +1,119 @@
+﻿@using MS.Core.Language;
+@using MS.Business;
+@using MS.Web.Models.Others;
+@using MvcContrib.UI.Grid;
+@using MS.Web.Code.LIBS;
+
+@model List<Magazalar>
+
+@{
+    ViewBag.Title = "Mağazalar";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section HeadContent {
+    @Styles.Render("~/Areas/Admin/Content/css/uploadfile.css",
+            "~/Areas/Admin/Content/css/FileUpload.css",
+                        "~/Areas/Admin/Content/bootstrap-switch.css",
+                     "~/Areas/Admin/Content/dataTables.bootstrap.css",
+                                             "~/Areas/Admin/Content/css/select2.css",
+                                                     "~/Areas/Admin/Content/css/select2-bootstrap.css")
+}
+
+<section class="content-header">
+    <h1>Mağazalar</h1>
+</section>
+
+@using (Html.BeginForm("Index", "Magazalar", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                @Html.Partial("_AdminNotification")
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Mağaza Listesi Yükle
+                        </h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="modal-body box-body">
+                        <table>
+                            <tr>
+                                <td>
+                                    <h3 class="box-title">Excel dosyası</h3>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="file" id="uploadFile" name="uploadFile" /></td>
+                                <td>
+                                    <input type="submit" id="Submit" name="Submit" value="Gönder" class="btn btn-primary" style="text-align: right" onclick="return CheckFileName();" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Mağaza Listesi
+                        </h3>
+                    </div>
+                    <div class="box-body table-responsive">
+                        @Html.Grid(Model).Columns(column =>
+               {
+                   column.For(a => a.Sira).Attributes(@class => "width10p");
+                   column.For(a => a.MagazaNo).Attributes(@class => "width10p");
+                   column.For(a => a.MagazaAdi).Attributes(@class => "width10p");
+                   column.For(a => a.Il).Attributes(@class => "width10p");
+                   column.For(a => a.Ilce).Attributes(@class => "width10p");
+                   column.For(a => a.Adres).Attributes(@class => "width10p");
+                   column.For(a => a.Tel).Attributes(@class => "width10p");
+                   column.For(a => a.Sube).Attributes(@class => "width10p");
+                   column.For(a => a.Durum).Attributes(@class => "width10p");
+               }).Attributes(@id => "grid-Magaza", @class => "table table-bordered table-hover")
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+}
+
+@section ScriptContent{
+    @Scripts.Render(
+"~/Areas/Admin/Script/jquery.dataTables.js",
+        "~/Areas/Admin/Script/dataTables.bootstrap.js",
+          "~/Areas/Admin/Script/global.js",
+             "~/Scripts/jquery.uploadfile.js",
+          "~/Areas/Admin/Script/bootstrap-switch.js",
+           "~/Scripts/select2.js")
+
+    <script type="text/javascript">
+        $('#grid-Magaza').DataTable();
+    </script>
+
+
+    <script type="text/javascript">
+        function CheckFileName() {
+            var fileName = document.getElementById("uploadFile").value
+            //debugger;
+            if (fileName == "") {
+                alert("Browse to upload a valid File with xls");
+                return false;
+            }
+            else if (fileName.split(".")[1].toUpperCase() == "XLS")
+                return true;
+            else {
+                alert("File with " + fileName.split(".")[1] + " is invalid. Upload a validfile with xls extensions");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+}
+
+

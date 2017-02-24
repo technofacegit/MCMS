@@ -1,0 +1,179 @@
+﻿@using MS.Core.Language;
+@using MS.Business;
+@using MS.Web.Models.Others;
+@using MvcContrib.UI.Grid;
+@using MS.Web.Code.LIBS;
+
+@model List<Campaign>
+@{
+    ViewBag.Title = @Resource_tr_TR.Campaigns;
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section HeadContent {
+    @Styles.Render("~/Areas/Admin/Content/css/uploadfile.css",
+                    "~/Areas/Admin/Content/css/FileUpload.css",
+                    "~/Areas/Admin/Content/bootstrap-switch.css",
+                    "~/Areas/Admin/Content/datepicker3.css",
+                     "~/Areas/Admin/Content/dataTables.bootstrap.css",
+                    "~/Areas/Admin/Content/bootstrap-datetimepicker.min.css"
+                             )
+}
+<section class="content-header">
+    <h1>@Resource_tr_TR.Campaigns @(ViewBag.CategaoryName != null ? "- " + ViewBag.CategaoryName : "") </h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.Partial("_AdminNotification")
+            <div class="box">
+                <div class="box-header">
+                    <div class="col-xs-6">
+                        <h3 class="box-title">
+                            <a data-toggle="modal" href="@Url.Action("addeditcampaign")" data-target="#modal-create-edit-campaign" class="btn bg-orange">
+                                @Resource_tr_TR.AddNew <i class="fa fa-plus"></i>
+                            </a></h3>
+                    </div>
+                    <div class="col-xs-6">
+                        <h3 class="box-title" style="text-align: right;float: right; margin-right: -15px;">
+                            <a href="@Url.Action("getactive")" class="btn bg-green" style="display:inline-block">Aktif Kampanyaları Getir 
+                            </a>
+                            <a href="@Url.Action("getpassive")" class="btn bg-red" style="display:inline-block">Pasif Kampanyaları Getir 
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive">
+                    @Html.Grid(Model.OrderByDescending(a => a.EndDate)).Columns(column =>
+               {
+                   column.For(a => (!string.IsNullOrEmpty(a.ImageLink) ? (a.ImageLink.Contains("technofaceapps.com/migrosiphone") ? "<img src='" + a.ImageLink + "' height=80 />" : "<img src='" + @Url.Content(a.ImageLink + "?height=80") + "' />") : "")).Named(@Resource_tr_TR.Image).Attributes(@class => "width10p").Encode(false);
+                   column.For(a => a.OfferName).Named(@Resource_tr_TR.OfferName).Attributes(@class => "width10p");
+                   column.For(a => a.OfferDesc).Named(@Resource_tr_TR.OfferDesc).Attributes(@class => "width10p");
+                   column.For(a => a.PromoNo).Named(@Resource_tr_TR.PromoNo).Attributes(@class => "width10p");
+                   column.For(a => Convert.ToDateTime(a.StartDate).ToString("dd.MM.yyyy")).Named(@Resource_tr_TR.StartDate).Attributes(@class => "width10p", @id => "dateCol");
+                   column.For(a => Convert.ToDateTime(a.EndDate).ToString("dd.MM.yyyy")).Named(@Resource_tr_TR.EndDate).Attributes(@class => "width10p", @id => "dateCol");
+                   column.For(a => a.OfferNo).Named(@Resource_tr_TR.OfferNo).Attributes(@class => "width10p");
+                   column.For(a => Html.CheckBox("Status", a.Status.Value, new { @value = a.CampaignID, @class = "switchBox switch-small simple" })).Named(Resource_tr_TR.ActivePassive).Attributes(@class => "width10p");
+                   column.For(a => a.DisplayOrder).Named(Resource_tr_TR.DisplayOrder).Attributes(@class => "width10p");
+                   column.For(a => "<a class=\"btn btn-primary btn-sm\" href=\"" + Url.Action("addeditcampaign", new { id = a.CampaignID }) + "\" data-target=\"#modal-create-edit-campaign\" data-toggle=\"modal\">" + Resource_tr_TR.Edit + " <i class=\"fa fa-edit\"></i></a>" +
+                                   " <a class=\"btn btn-danger btn-sm\" href=\"" + Url.Action("delete", new { id = a.CampaignID }) + "\" data-target=\"#modal-delete-campaign\" data-toggle=\"modal\">" + Resource_tr_TR.Delete + " <i class=\"fa fa-trash-o\"></i></a>").Attributes(@class => "width15p")
+                                   .Named(Resource_tr_TR.Operations).Encode(false);
+
+                  column.For(a => Convert.ToDateTime(a.EndDate).ToString("yyyy.MM.dd")).Named(@Resource_tr_TR.EndDate).Attributes(@class => "width10p");
+               }).Attributes(@id => "grid-campaign", @class => "table table-bordered table-hover")
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_Modal", new Modal { ID = "modal-create-edit-campaign", AreaLabeledID = "modal-create-edit-campaign-label", Size = ModalSize.Medium })
+    @Html.Partial("_Modal", new Modal { ID = "modal-delete-campaign", AreaLabeledID = "modal-delete-campaign-label" })
+    @Html.Partial("_Modal", new Modal { ID = "modal-add-photos", AreaLabeledID = "modal-add-photos-label", Size = ModalSize.Medium })
+    @Html.Partial("_Modal", new Modal { ID = "modal-add2-photos", AreaLabeledID = "modal-add2-photos-label", Size = ModalSize.Medium })
+
+
+</section>
+
+
+@section ScriptContent{
+    @Scripts.Render(
+"~/Areas/Admin/Script/jquery.dataTables.js",
+        "~/Areas/Admin/Script/dataTables.bootstrap.js",
+                        "~/Areas/Admin/Script/bootstrap-datepicker.js",
+                        "~/Scripts/moment.js",
+                "~/Scripts/locale/tr.js",
+                "~/Areas/Admin/Script/bootstrap-collapse.js",
+                "~/Areas/Admin/Script/bootstrap-transition.js",
+                "~/Scripts/bootstrap-datetimepicker.min.js",
+          "~/Areas/Admin/Script/global.js",
+          "~/Scripts/jquery.uploadfile.js",
+          "~/Areas/Admin/Script/bootstrap-switch.js",
+          "~/Areas/Admin/Script/views/campaign-index.js",
+          "~/Areas/Admin/Script/views/campaign-image-upload.js"
+                    )
+
+    <script type="text/javascript">
+        $(function () {
+            $('#grid-campaign').DataTable({
+                stateSave: true,
+                bDestroy: true,
+                "aaSorting": [[10, 'desc']],
+                aoColumnDefs: [
+                  { 'iDataSort': 10, 'aTargets': [5] },
+        { 'bVisible': false, 'aTargets': [10] },
+        { 'bSortable': false, 'aTargets': [0, 7, 9] }
+                ]
+            });
+        });
+
+        //$(function () {
+        //    $('#datetimepicker1').datetimepicker();
+        //    $('#datetimepicker2').datetimepicker({
+        //        useCurrent: false //Important! See issue #1075
+        //        //locale: 'tr'
+        //    });
+        //    $("#datetimepicker1").on("dp.change", function (e) {
+        //        $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+        //    });
+        //    $("#datetimepicker2").on("dp.change", function (e) {
+        //        $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
+        //    });
+        //});
+
+
+    </script>
+    @*<script type="text/javascript">
+    		    //$(function () {
+    		    //    // -- Example Only - Set the date range --
+    		    //    var d = new Date();
+    		    //    d.setDate(10);
+    		    //    $('#start_time').val(d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + " 1:00 pm");
+    		    //    // Example Only - Set the end date to 7 days in the future so we have an actual 
+    		    //    d.setDate(d.getDate() + 7);
+    		    //    $('#end_time').val(d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + " 13:45 ");
+    		    //    // -- End Example Only Code --
+
+    		    //    // Attach a change event to end_time - 
+    		    //    // NOTE we are using '#ID' instead of '*[name=]' selectors in this example to ensure we have the correct field
+    		    //    $('#end_time').change(function () {
+    		    //        $('#start_time').appendDtpicker({
+    		    //            maxDate: $('#end_time').val() // when the end time changes, update the maxDate on the start field
+    		    //        });
+    		    //    });
+
+    		    //    $('#start_time').change(function () {
+    		    //        $('#end_time').appendDtpicker({
+    		    //            minDate: $('#start_time').val() // when the start time changes, update the minDate on the end field
+    		    //        });
+    		    //    });
+
+    		    //    // trigger change event so datapickers get attached
+    		    //    $('#end_time').trigger('change');
+    		    //    $('#start_time').trigger('change');
+    		    //});*@
+
+    @*    $(function () {
+    		        $('#date_timepicker_start').datetimepicker({
+    		            format: 'd.m.Y H:i',
+    		            onShow: function (ct) {
+    		                this.setOptions({
+    		                    maxDate: $('#date_timepicker_end').val() ? $('#date_timepicker_end').val() : false
+    		                })
+    		            },
+    		            timepicker: false
+    		        });
+    		        $('#date_timepicker_end').datetimepicker({
+    		            format: 'd.m.Y H:i',
+    		            onShow: function (ct) {
+    		                this.setOptions({
+    		                    minDate: $('#date_timepicker_start').val() ? $('#date_timepicker_start').val() : false
+    		                })
+    		            }
+    		        });
+    		    });
+		</script>*@
+
+
+}
+
+

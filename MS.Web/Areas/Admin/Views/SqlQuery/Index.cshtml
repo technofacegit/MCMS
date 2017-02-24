@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>Sql Query Çalıştır</h1>
+</section>
+
+
+
+@using (Html.BeginForm("SendTextNotifiaction", "SendNotification", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <section class="content">
+        <div id="Text_Noti" class="container" style="width: 100%">
+
+
+            <div class="panel-body" style="border: 0px solid #c1c1c1;">
+                <div class="row">
+                    <label for="lblTextBody" class="control-label col-sm-2">Sql Query:</label>
+                    <div class="col-sm-4">
+                        <textarea name="querytext" id="querytext" class="form-control"> </textarea>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <input name="submitText" type="submit" value="Çalıştır" id="submitText" class="btn bg-orange" />
+            </div>
+        </div>
+
+    </section>
+}
+
+
+

@@ -1,0 +1,43 @@
+﻿@using MS.Web.Models.Others;
+@using MS.Web.Code.LIBS;
+@using MS.Core.Language;
+@model MS.Business.tblImage
+
+<div id="category-box">
+    @using (Html.BeginForm("addedit", "Imagefile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Partial("_ModalHeader", new ModalHeader { ID = "modal-create-edit-Image", Title = (Model.id <= 0 ? @Resource_tr_TR.UploadImages : @Resource_tr_TR.UploadImages) })
+        <div id="validation-summary"></div>
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.id)
+        <div class="modal-body box-body">
+
+            <div class="row">
+                <div class="form-group">
+                    @Html.Label("ImagePath", Resource_tr_TR.ImagePath)
+                    @Html.DropDownListFor(model => model.ImageDirectory, MS.Web.Code.LIBS.EnumHelper.SelectListFor<ImageFolder>(), "--Select--", new { @class = "required width30p select2", @data_msg_required = "*required" })
+                </div>
+                <div class="col-lg-6">
+                    <a data-toggle="modal" href="@Url.Action("AddPhotos")" data-target="#modal-add-photos" class="btn bg-maroon btn-flat btn-sm">
+                        @Resource_tr_TR.UploadImage <i class="fa fa-upload"></i>
+                    </a>
+                    <br />
+                </div>
+                <div class="col-lg-12">
+                    <div id="divimages" class="upload_images upload-gallery upload-imgnew ">
+                        @if (Model.id > 0 && Model.Image != null)
+                        {
+                            <div class='single' rel='@Model.Image'><img src="@Url.Content(Model.Image)" /></div>
+                            <div class="ajax-file-upload-red deletePhoto" rel="@Model.Image" style="display: inline-block;">Delete</div>
+                        }
+                    </div>
+                    @Html.Hidden("UploadedImages", Model.Image)
+                </div>
+            </div>
+            <br />
+
+        </div>
+        @Html.Partial("_ModalFooter", new ModalFooter())
+    }
+</div>

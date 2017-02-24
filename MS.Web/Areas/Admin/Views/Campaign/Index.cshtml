@@ -1,0 +1,301 @@
+﻿@using MS.Core.Language;
+@using MS.Business;
+@using MS.Web.Models.Others;
+@using MvcContrib.UI.Grid;
+@using MS.Web.Code.LIBS;
+
+@model MS.Web.Areas.Admin.Models.CampaignsByCategoriesViewModel
+@{
+    ViewBag.Title = @Resource_tr_TR.Campaigns;
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section HeadContent {
+    @Styles.Render("~/Areas/Admin/Content/css/uploadfile.css",
+                    "~/Areas/Admin/Content/css/FileUpload.css",
+                    "~/Areas/Admin/Content/bootstrap-switch.css",
+                    "~/Areas/Admin/Content/datepicker3.css",
+                     "~/Areas/Admin/Content/dataTables.bootstrap.css",
+                    "~/Areas/Admin/Content/bootstrap-datetimepicker.min.css"
+                             )
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+        }
+
+        /* ---- grid ---- */
+
+        .grid {
+            background: #DDD;
+            max-width: 1200px;
+        }
+
+            /* clear fix */
+            .grid:after {
+                content: '';
+                display: block;
+                clear: both;
+            }
+
+        /* ---- .grid-item ---- */
+
+        .grid-item {
+            float: left;
+            width: 150px;
+            height: 100px;
+            /*background: #C09;*/
+            border: 1px solid hsla(0, 0%, 0%, 0.5);
+            color: white;
+            font-size: 20px;
+            /*padding: 10px;*/
+        }
+
+            .grid-item:hover {
+                border-color: hsla(0, 0%, 100%, 0.5);
+                cursor: move;
+            }
+
+            .grid-item.is-dragging,
+            .grid-item.is-positioning-post-drag {
+                background: #C90;
+                z-index: 2;
+            }
+
+        .packery-drop-placeholder {
+            outline: 3px dashed hsla(0, 0%, 0%, 0.5);
+            outline-offset: -6px;
+            -webkit-transition: -webkit-transform 0.2s;
+            transition: transform 0.2s;
+        }
+    </style>
+}
+<section class="content-header">
+    <h1>@Resource_tr_TR.Campaigns </h1>
+</section>
+@using (Html.BeginForm("Index", "Campaign", FormMethod.Post, new { id = "editCampaignForm" }))
+{
+    <section class="content">
+
+        @Html.Partial("_AdminNotification")
+
+        <div class="box-body table-responsive">
+            <div class="grid">
+                @foreach (var item in Model.Campaigns.OrderBy(c => c.DisplayOrder))
+                {
+                    if (item.ImageLink != null && item.ImageLink != "")
+                    {
+@*<div class="grid-item" style="background-image:@Url.Content(item.ImageLink)">*@
+@*@Html.Hidden("OrderNo", item.DisplayOrder, new { value=item.DisplayOrder })*@
+                    <img src="@Url.Content(item.ImageLink)" class="grid-item" alt="@item.CampaignID" />
+@*</div>*@              
+                    }
+                    else
+                    {
+                        <img src="~/areas/admin/content/images/bg_bos.png" class="grid-item" alt="@item.CampaignID" />
+                    }
+                }
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <div class="col-xs-12">
+                            <h3 class="box-title">
+                                <button type="button" id="btnupdateorder" class="btn bg-orange">
+                                    Sıralamayı Güncelle <i class="fa fa-refresh"></i>
+                                </button>
+                            </h3>
+                              <div class="col-xs-6">
+                        
+                    </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <h3 class="box-title">@Html.Label("Kategori")</h3>
+                            @Html.DropDownListFor(model => model.CategoryID, (SelectList)ViewBag.CampCats, new { @class = "form-control", @id = "categories", @name="categoryid", @data_rule_required = "true", @data_msg_required = Resource_tr_TR.required})
+                        </div>
+                        <div class="col-xs-6">
+                           @* <h3 class="box-title" style="text-align: right; float: left; margin-right: -15px; margin-top: 36px;">
+                                  <a href="@Url.Action("getactive", "Campaign", new { status=true})" id="getactive" class="btn bg-green" style="display:inline-block">Aktif Kampanyaları Getir 
+                            </a>
+                            <a href="@Url.Action("Index", "Campaign", new { status=false})" onclick="this.form.submit()" id="getpassive" class="btn bg-red" style="display:inline-block">Pasif Kampanyaları Getir 
+                            </a>
+
+                                @Html.DropDownListFor(model => model.Status, (SelectList)ViewBag.Status, new { @class = "form-control", @id = "activepassive", @name = "activepassive", @data_rule_required = "true", @data_msg_required = Resource_tr_TR.required, onchange = "this.form.submit()" })
+                            </h3>*@
+                            <h3 class="box-title" style="text-align: right; float: left; margin-right: -15px; margin-top: 36px;">
+                                <a href="@Url.Action("AddCampaign", "Campaign", new { categoryId = Model.CategoryID })" class="btn bg-orange">
+                                    @Resource_tr_TR.AddNew <i class="fa fa-plus"></i>
+                                </a></h3>
+                            <h3 class="box-title" style="text-align: right;float: right;  margin-top: 36px;">
+                            <a href="@Url.Action("getactivepassive", new { catid=Model.CategoryID, campaignstatus="true" })" class="btn bg-green" style="display:inline-block">Aktif Kampanyaları Getir 
+                            </a>
+                            <a href="@Url.Action("getactivepassive", new { catid=Model.CategoryID, campaignstatus="false" })" class="btn bg-red" style="display:inline-block">Pasif Kampanyaları Getir 
+                            </a>
+                        </h3>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                        <table class="table table-responsive" id="tblS">
+                            <thead>
+                                <tr>
+                                    <th style="vertical-align: top">Image</th>
+                                    <th style="vertical-align: top">Image 2</th>
+                                    <th style="vertical-align: top">Campaign ID</th>
+                                    <th style="vertical-align: top">Offer Name</th>
+                                    <th style="vertical-align: top">Offer Description</th>
+                                    <th style="vertical-align: top">Start Date</th>
+                                    <th style="vertical-align: top">End Date</th>
+                                    <th style="vertical-align: top">Display Order</th>
+                                    <th style="vertical-align: top">Status</th>
+                                    <th style="vertical-align: top"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @Html.EditorFor(model => model.Campaigns)
+                            </tbody>
+                        </table>
+                    </div>
+
+  @*                                 <div class="box-body table-responsive">
+                    @Html.Grid(Model.Campaigns.OrderBy(a => a.DisplayOrder)).Columns(column =>
+               {
+                   column.For(a => Html.Editor("OfferName",a.OfferName)).Named(@Resource_tr_TR.OfferName).Attributes(@class => "width10p");
+                   column.For(a => Html.Editor("OfferDesc",a.OfferDesc)).Named(@Resource_tr_TR.OfferDesc).Attributes(@class => "width10p");
+                   column.For(a => Convert.ToDateTime(a.StartDate).ToString("dd.MM.yyyy")).Named(@Resource_tr_TR.StartDate).Attributes(@class => "width10p", @id => "dateCol");
+                   column.For(a => Convert.ToDateTime(a.EndDate).ToString("dd.MM.yyyy")).Named(@Resource_tr_TR.EndDate).Attributes(@class => "width10p", @id => "dateCol");
+                   column.For(a => Html.CheckBox("Status", a.Status, new { @value = a.CampaignID, @class = "switchBox switch-small simple" })).Named(Resource_tr_TR.ActivePassive).Attributes(@class => "width10p");
+                   column.For(a => a.DisplayOrder).Named(Resource_tr_TR.DisplayOrder).Attributes(@class => "width10p");
+                   column.For(a => " <a class=\"btn btn-danger btn-sm\" href=\"" + Url.Action("delete", new { id = a.CampaignID }) + "\" data-target=\"#modal-delete-campaign\" data-toggle=\"modal\">" + Resource_tr_TR.Delete + " <i class=\"fa fa-trash-o\"></i></a>").Attributes(@class => "width15p")
+                                   .Named(Resource_tr_TR.Operations).Encode(false);
+
+               }).Attributes(@id => "grid-campaign-edit", @class => "table table-bordered table-hover")
+                </div>*@
+                </div>
+            </div>
+        </div>
+
+
+        @*@Html.Partial("_Modal", new Modal { ID = "modal-delete-campaign", AreaLabeledID = "modal-delete-campaign-label" })*@
+    </section>
+    
+        
+    <div class="modal-footer">
+        @*  <button type="submit" class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "Campaign", new { campaignmodel=Model })'" id="btnSubmit">@Resource_tr_TR.Submit</button>*@
+
+        <button type="button" class="btn btn-primary" id="btnSubmit">@Resource_tr_TR.Submit</button>
+    </div>
+}
+
+@section ScriptContent{
+    @Scripts.Render(
+"~/Areas/Admin/Script/jquery.dataTables.js",
+        "~/Areas/Admin/Script/dataTables.bootstrap.js",
+                        "~/Areas/Admin/Script/bootstrap-datepicker.js",
+                        "~/Scripts/moment.js",
+                "~/Scripts/locale/tr.js",
+                "~/Areas/Admin/Script/bootstrap-collapse.js",
+                "~/Areas/Admin/Script/bootstrap-transition.js",
+                "~/Scripts/bootstrap-datetimepicker.min.js",
+          "~/Areas/Admin/Script/global.js",
+          "~/Scripts/jquery.uploadfile.js",
+          "~/Areas/Admin/Script/bootstrap-switch.js",
+          "~/Areas/Admin/Script/views/campaign-index.js",
+          "~/Areas/Admin/Script/views/campaign-image-upload.js",
+          "~/Areas/Admin/Script/packery.pkgd.min.js",
+          "~/Areas/Admin/Script/draggabilly.pkgd.min.js"
+                    )
+    <script>
+        // external js: packery.pkgd.js, draggabilly.pkgd.js
+
+        var $grid = $('.grid').packery({
+            itemSelector: '.grid-item',
+            columnWidth: 150
+        });
+
+        // make all grid-items draggable
+        $grid.find('.grid-item').each(function (i, gridItem) {
+            var draggie = new Draggabilly(gridItem);
+            // bind drag events to Packery
+            $grid.packery('bindDraggabillyEvents', draggie);
+        });
+
+
+        // show item order after layout
+        function orderItems() {
+            var itemElems = $grid.packery('getItemElements');
+            $(itemElems).each(function (i, itemElem) {
+                $(itemElem).text(i + 1);
+                $.post('@Url.Action("OrderImages", "Campaign")', { id: $(itemElem).attr("alt"), order: $(itemElem).text() }, function (result) {
+                    //if (!result.isSuccess) {
+                    //}
+                });
+            });
+
+        }
+
+        $grid.on('layoutComplete', orderItems);
+        $grid.on('dragItemPositioned', orderItems);
+
+        $("#btnSubmit").click(function (e) {
+            e.preventDefault();
+            //var formdata= $("#editCampaignForm").serialize();
+            $.ajax({
+                url: '@Url.Action("Edit", "Campaign")',
+        type: 'POST',
+        data: $("#editCampaignForm").serialize(),
+        success: function (data) {
+            if (data.isRedirect) {
+                url = '@Url.Action("getactivepassive", "Campaign")';
+                window.location.href = url + '?catid=' + data.id + '&campaignstatus=true';
+            }
+        }
+    });
+});
+
+  //var form = document.getElementById("editCampaignForm");
+
+  //document.getElementById("btnupdateorder").addEventListener("click", function () {
+  //    form.submit();
+  //  });
+
+        $('#categories').change(function () {
+            var catid = $(this).val();
+            var url= '@Url.Action("getactivepassive", "Campaign")';
+            if (url != null && url != '') {
+                window.location.href = url + '?catid=' + catid + '&campaignstatus=true';
+            }
+        });
+
+        $("#btnupdateorder").click(function (e) {
+            var catid = $('#categories').val();
+            var campstatus = getUrlVars()["campaignstatus"];
+            var url = '@Url.Action("getactivepassive", "Campaign")';
+                      if (url != null && url != '') {
+                          window.location.href = url + '?catid=' + catid + '&campaignstatus='+ campstatus;
+                      }
+        });
+
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+
+    </script>
+}
+
+

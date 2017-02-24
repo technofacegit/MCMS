@@ -1,0 +1,44 @@
+﻿@using MS.Web.Models.Others;
+@using MS.Web.Code.LIBS;
+@using MS.Core.Language;
+@model MS.Business.Campaign
+
+<div id="category-box">
+    @using (Html.BeginForm("addedit", "Migroskop", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Partial("_ModalHeader", new ModalHeader { ID = "modal-create-edit-Image", Title = (Model.CampaignID <= 0 ? "Migroskop Yükle" : @Resource_tr_TR.UploadImages) })
+        <div id="validation-summary"></div>
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.CampaignID)
+        <div class="modal-body box-body">
+
+            <div class="row">
+                <div class="form-group">
+                    @Html.Label("ImagePath", "Migroskop Başlığı")
+                     @Html.TextBoxFor(model => model.Discount, true, null, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("ImagePath", "Dosya")
+                    <a data-toggle="modal" href="@Url.Action("AddPdf")" data-target="#modal-add-photos" class="btn bg-maroon btn-flat btn-sm">
+                        @Resource_tr_TR.PdfUpload <i class="fa fa-upload"></i>
+                    </a>
+                    <br />
+                </div>
+                <div class="col-lg-12">
+                    <div id="divimages" class="upload_images upload-gallery upload-imgnew ">
+                        @if (Model.CampaignID > 0 && Model.ImageLink != null)
+                        {
+                            <div class='single' rel='@Model.ImageLink'><img src="@Url.Content(Model.ImageLink)" /></div>
+                            <div class="ajax-file-upload-red deletePhoto" rel="@Model.ImageLink" style="display: inline-block;">Delete</div>
+                        }
+                    </div>
+                    @Html.Hidden("UploadedImages", Model.ImageLink)
+                </div>
+            </div>
+            <br />
+
+        </div>
+        @Html.Partial("_ModalFooter", new ModalFooter())
+    }
+</div>

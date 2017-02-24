@@ -1,0 +1,82 @@
+﻿@using MS.Core.Language;
+@using MS.Web.Code.LIBS;
+
+<aside class="left-side sidebar-offcanvas" style="min-height: 379px;">
+    <section class="sidebar">
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="@Url.Content("~/areas/admin/content/images/usr.png")" class="img-circle" alt="">
+            </div>
+            <div class="pull-left info">
+                 @if(SiteSession.TblKullanicilar != null)
+                { 
+                <p>@Resource_tr_TR.Hello, <a href="#"> @SiteSession.TblKullanicilar.Isim</a> </p>
+                }
+                @*<a href="#"><i class="fa fa-circle text-success"></i>Online</a>*@
+            </div>
+        </div>
+        <ul class="sidebar-menu">
+            <li id="mDashboard">
+                <a href="@Url.Content("~/admin/Home/dashboard")">
+                    <i class="fa fa-dashboard"></i><span>@Resource_tr_TR.Dashboard</span>
+                </a>
+            </li>
+            <li id="mAffiliate">
+                <a href="@Url.Content("~/admin/CampaignCategory/Index")">
+                    <i class="fa fa-sitemap"></i><span>@Resource_tr_TR.Category</span>
+                </a>
+            </li>
+            <li id="mCampaign">
+                <a href="@Url.Content("~/admin/Campaign/Index")">
+                    <i class="fa fa-list"></i><span>@Resource_tr_TR.Campaign</span>
+                </a>
+            </li>
+            <li id="mCampaign">
+                <a href="@Url.Content("~/admin/BebeMoneyKatalogKategorileri/Index")">
+                    <i class="fa fa-sitemap"></i><span>BebeMoneyKatalog</span>
+                </a>
+            </li>
+            <li id="mCampaign">
+                <a href="@Url.Content("~/admin/Kazanclar/Index")">
+                    <i class="fa fa-sitemap"></i><span>Kazanclar</span>
+                </a>
+            </li>
+            
+            <li id="mCampaign">
+                <a href="@Url.Content("~/admin/MilKatalogUrunleri/Index")">
+                    <i class="fa fa-sitemap"></i><span>MilKatalog</span>
+                </a>
+            </li>
+
+            <li id="mCampaign">
+                <a href="@Url.Content("~/admin/SendNotification/Index")">
+                    <i class="fa fa-comment"></i><span>@Resource_tr_TR.SendNotification</span>
+                </a>
+            </li>
+         
+            <li id="mCampaign">
+                <a href="@Url.Content("~/admin/SallaKazan/Index")">
+                    <i class="fa fa-sitemap"></i><span>SallaKazan</span>
+                </a>
+            </li>
+
+            <li id="mCampaign">
+                <a href="@Url.Content("~/admin/Imagefile/Index")">
+                    <i class="fa fa-picture-o"></i><span>@Resource_tr_TR.UploadImages</span>
+                </a>
+            </li>
+
+           <li id="mCampaign">
+                <a href="@Url.Content("~/admin/Migroskop/Index")">
+                    <i class="fa fa-picture-o"></i><span>Migroskop</span>
+                </a>
+            </li>
+            
+           <li id="mCampaign">
+                <a href="@Url.Content("~/admin/Magazalar/Index")">
+                    <i class="fa fa-sitemap"></i><span>Mağazalar</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+</aside>

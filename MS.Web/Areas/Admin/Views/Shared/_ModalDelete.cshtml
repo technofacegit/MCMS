@@ -1,0 +1,11 @@
+﻿
+@model MS.Web.Models.Others.Modal
+@using (Html.BeginForm())
+{
+    @Html.Partial("_ModalHeader", Model.Header)
+    <div class="modal-body">
+        @Model.Message
+    </div>
+    @Html.Partial("_ModalFooter", Model.Footer)
+}
+
