@@ -4,7 +4,7 @@
 @using MvcContrib.UI.Grid;
 @using MS.Web.Code.LIBS;
 
-@model List<Campaign>
+@model MS.Web.Areas.Admin.Models.CampaignsByCategoriesViewModel
 @{
     ViewBag.Title = @Resource_tr_TR.UploadImages;
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -20,7 +20,8 @@
 <section class="content-header">
     <h1>@Resource_tr_TR.UploadImage</h1>
 </section>
-
+@using (Html.BeginForm("Index", "Migroskop", FormMethod.Post, new { id = "editCampaignForm" }))
+{
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
@@ -34,20 +35,25 @@
                     </h3>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive">
-                    @Html.Grid(Model).Columns(column =>
-                    {
-                        column.For(a => (a.ImageLink != "" ? "<img src='"+ a.ImageLink.Replace("pgnumber","1") + "' style=\"Width:100px\" />" : "<img src='"+ a.ImageLink + "' style=\"Width:100px\" />")).Named(Resource_tr_TR.Image).Attributes(@class => "width10p").Encode(false);
-                        column.For(a => a.Discount).Named("Migroskop Başlık").Attributes(@class => "width10p");
-                   
-                        @*column.For(a => (a.ImageDirectory > 0 ? "<img src='"+ a.Image + "' style=\"Width:100px\" />" : "<img src='"+ a.Image + "' style=\"Width:100px\" />")).Named(Resource_tr_TR.Image).Attributes(@class => "width10p").Encode(false);
-                        column.For(a => (a.ImageDirectory > 0 ? MS.Web.Code.LIBS.EnumHelper.GetDescription((ImageFolder)a.ImageDirectory): "DemoImagefile")).Named(Resource_tr_TR.ImagePath).Attributes(@class => "width10p").Encode(false);
-                        column.For(a => (a.ImageDirectory > 0 ? "<a target=\"_blank\" href=\"" + Url.Content(a.Image) + "\">" + (a.Image) + " </a>":"<a target=\"_blank\" href=\"" + Url.Content(a.Image) + "\">" + (a.Image) + " </a>")).Attributes(@class => "width15p")
-                                       .Named(Resource_tr_TR.ImagePath).Encode(false);
-                        *@
-                        column.For(a => " <a class=\"btn btn-danger btn-sm\" href=\"" + Url.Action("delete", new { id = a.CampaignID }) + "\" data-target=\"#modal-delete-Image\" data-toggle=\"modal\">" + Resource_tr_TR.Delete + " <i class=\"fa fa-trash-o\"></i></a>").Attributes(@class => "width15p")
-                                        .Named(Resource_tr_TR.Operations).Encode(false);
-                    }).Attributes(@id => "grid-Image", @class => "table table-bordered table-hover")
+                    <table class="table table-responsive" id="tblS">
+                        <thead>
+                            <tr>
+                                <th style="vertical-align: top">Görsel</th>
+                                <th style="vertical-align: top">Başlık</th>
+                                <th style="vertical-align: top">Başlangıç Tarihi</th>
+                                <th style="vertical-align: top">Bitiş Tarihi</th>
+                                <th style="vertical-align: top">Durum</th>
+                                <th style="vertical-align: top"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @Html.EditorFor(model => model.Campaigns)
+                        </tbody>
+                    </table>
                 </div>
+
+
+                
             </div>
         </div>
     </div>
@@ -57,8 +63,15 @@
    
    
 </section>
+<div class="modal-footer">
+    @*  <button type="submit" class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "Campaign", new { campaignmodel=Model })'" id="btnSubmit">@Resource_tr_TR.Submit</button>*@
 
 
+    <button type="button" class="btn btn-primary" id="btnSubmitx">@Resource_tr_TR.Submit</button>
+</div>
+
+
+}
 @section ScriptContent{
     @Scripts.Render(
 "~/Areas/Admin/Script/jquery.dataTables.js",
@@ -69,6 +82,27 @@
            "~/Scripts/select2.js",
                   "~/Areas/Admin/Script/views/Migroskop-index.js")
 
-}
+<script>
 
+    $("#btnSubmitx").click(function (e) {
+        e.preventDefault();
+        //var formdata= $("#editCampaignForm").serialize();
+        $.ajax({
+            url: '@Url.Action("Edit", "Migroskop")',
+            type: 'POST',
+            data: $("#editCampaignForm").serialize(),
+            success: function (data) {
+                if (data.isRedirect) {
+                    url = '@Url.Action("Index", "Migroskop")';
+                    window.location.href = url;/// + '?catid=' + data.id + '&campaignstatus=true';
+                }
+            }
+        });
+    });
+
+  
+
+</script>
+
+}
 

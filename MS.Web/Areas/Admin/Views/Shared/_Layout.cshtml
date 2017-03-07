@@ -19,6 +19,9 @@
     @Styles.Render("~/Contents/css")
 
     @Scripts.Render("~/bundles/modernizr")
+
+    @Styles.Render("~/Content/lightbox.css")
+
     @RenderSection("HeadContent", false)
 </head>
 <body class="skin-black">
@@ -84,7 +87,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueri")
     @Scripts.Render("~/bundles/modernizr")
-      
+    @Scripts.Render("~/bundles/lightbox")  
   
         <script type="text/javascript">
             function SetSubMenu(menuname) {
@@ -92,6 +95,8 @@
                 $("#" + menuname).parents(".treeview").addClass("active");
             }
         </script>
+
+
 
       
     @RenderSection("ScriptContent", false)

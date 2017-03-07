@@ -210,6 +210,7 @@
     <Folder Include="Areas\Admin\Content\images\uploads\SallaKazanImage\" />
     <Folder Include="Areas\Admin\Content\images\uploads\temp\" />
     <Folder Include="Areas\Admin\Views\AdminBase\" />
+    <Folder Include="uploads\campimage\" />
     <Folder Include="uploads\kampanyalar\" />
     <Folder Include="uploads\kategoriler\" />
     <Folder Include="uploads\temp\" />
@@ -240,6 +241,7 @@
     <Compile Include="Areas\Admin\Models\CampaignCategoryViewModel.cs" />
     <Compile Include="Areas\Admin\Models\CampaignsByCategoriesViewModel.cs" />
     <Compile Include="Areas\Admin\Models\CampaignViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\CampaignsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\KazanclarViewModel.cs" />
     <Compile Include="Areas\Admin\Models\MilKatalogUrunleriViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SallaKazanViewModel.cs" />
@@ -429,6 +431,7 @@
     <Content Include="Content\datepicker3.css" />
     <Content Include="Content\FileUpload.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\lightbox.css" />
     <Content Include="Content\uploadfile.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -574,15 +577,23 @@
     <Content Include="Areas\Admin\Views\Campaign\EditorTemplates\CampaignViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\Campaign\AddCampaign.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_ModalDeleteCampaign.cshtml" />
+    <Content Include="Areas\Admin\Views\Migroskop\EditorTemplates\CampaignViewModel.cshtml" />
     <None Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\ionicons.svg" />
+    <Content Include="img\close.png" />
+    <Content Include="img\loading.gif" />
+    <Content Include="img\next.png" />
+    <Content Include="img\prev.png" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\migros.pubxml" />
     <None Include="Properties\PublishProfiles\Published_Migros.pubxml" />
+    <Content Include="sass\screen.sass" />
+    <Content Include="sass\lightbox.sass" />
+    <Content Include="sass\_variables.sass" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\global.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -595,6 +606,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lightbox-2.6.js" />
+    <Content Include="Scripts\lightbox-2.6.min.js" />
     <Content Include="Scripts\locale\tr.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moment-with-locales.js" />
@@ -608,9 +621,6 @@
     <Content Include="Scripts\tr.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="uploads\bebemoney\a6e8e74e-b7a6-49b5-9855-e1a56bf39ba2_112265_1.jpg" />
-    <Content Include="uploads\campimage\805d6876-0eaa-4b30-a253-b6039d5ff7d3_112269_1.jpg" />
-    <Content Include="uploads\campimage\9474cec5-9fbb-443a-b25e-6e155894e3ef_112265_1.jpg" />
-    <Content Include="uploads\campimage\c8149877-0097-4535-975f-9118702f3488_112269_1.jpg" />
     <Content Include="uploads\categorybgimage\1119cece-f13c-420a-bfee-5cc7eeff7727_112265_1.jpg" />
     <Content Include="uploads\categorybgimage\11ccd1f6-b9c2-4627-bfc5-39c30d61ccec_112265_1.jpg" />
     <Content Include="uploads\categorybgimage\14b8e69a-3f51-4bcd-8054-61b2e50bc9f2_112265_1.jpg" />

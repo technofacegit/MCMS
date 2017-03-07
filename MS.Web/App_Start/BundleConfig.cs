@@ -72,6 +72,10 @@ namespace MS.Web
                         "~/Areas/Admin/Script/app.js"
                         ));
 
+
+                bundles.Add(new ScriptBundle("~/bundles/lightbox").Include(
+                      "~/Scripts/lightbox-2.6.js"));
+
         }
     }
 }

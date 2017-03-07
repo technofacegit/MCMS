@@ -27,10 +27,77 @@ namespace MS.Web.Areas.Admin.Conntrollers
         public ActionResult Index()
         {
             var tblimagelist = Campaign.GetMigroskop();
-            return View(tblimagelist);
+
+            CampaignsByCategoriesViewModel camp = new CampaignsByCategoriesViewModel();
+            camp.Status = true;
+            camp.CategoryID = 3;
+            camp.Campaigns = Campaign.GetCampaignByCategory(camp.CategoryID).Select(c => new CampaignViewModel
+            {
+                CampaignID = c.CampaignID,
+                CategoryId = c.CategoryId,
+                CategoryTag = c.CategoryTag,
+                Discount = c.Discount,
+                DiscountType = c.DiscountType,
+                DisplayOrder = Convert.ToInt32(c.DisplayOrder),
+                StartDate = c.StartDate.ToString(),
+                Status = Convert.ToBoolean(c.Status),
+                EndDate = c.EndDate.ToString(),
+                ImageLink = c.ImageLink,
+                ImageLink2 = c.ImageLink2,
+                OfferName = c.OfferName,
+                OfferDesc = c.OfferDesc,
+                OptinFlag = Convert.ToBoolean(c.OptinFlag),
+                EndTime = Convert.ToDateTime(c.EndDate).ToShortTimeString(),
+                StartTime = Convert.ToDateTime(c.StartDate).ToShortTimeString()
+
+            }).OrderBy(x => x.DisplayOrder).ToList();
+            //campaigns = Campaign.GetCampaigns().Where(c => c.Status == true && c.EndDate >= DateTime.Now).OrderByDescending(x => x.EndDate).ToList();
+            ViewBag.CategaoryName = null;
+
+            ViewBag.CategaoryName = CampaignCategory.GetCampaignCategory(camp.CategoryID).CategoryName;
+
+            return View(camp);
+            ////return View(tblimagelist);
         }
 
 
+        public JsonResult Edit(CampaignsByCategoriesViewModel campaignmodel)
+        {
+            try
+            {
+                foreach (var campaign in campaignmodel.Campaigns)
+                {
+                    var camp = Campaign.GetCampaign(campaign.CampaignID);
+                    camp.StartDate = Convert.ToDateTime(campaign.StartDate);
+                    camp.EndDate = Convert.ToDateTime(campaign.EndDate);
+                    camp.Discount =campaign.Discount;
+                    camp.Status = campaign.Status;
+                    camp.Save();
+
+                    EventLog eventLog = new EventLog();
+                    eventLog.UserID = SiteSession.TblKullanicilar.KullaniciID;
+                    eventLog.EventEntityID = camp.CampaignID;
+                    eventLog.EventObjectType = "CAMPAIGN - MIGROSKOP";
+                    eventLog.EventType = "UPDATE";
+                    eventLog.EventDate = DateTime.Now;
+                    eventLog.EventText = DateTime.Now.ToShortDateString() + " tarihinde " + SiteSession.TblKullanicilar.KullaniciAdi + " tarafından güncellendi...";
+
+                    eventLog.EventData = Newtonsoft.Json.JsonConvert.SerializeObject(camp);
+                    Global.Context.EventLogs.AddObject(eventLog);
+
+                    Global.Context.SaveChanges();
+                    var cacheresult = Global.Context.spUpdateCategoryCacheKey(campaignmodel.CategoryID);
+                }
+
+                ShowMessageBox(MessageType.Success, "Campaign list has been updated successfully!!", false);
+            }
+            catch (Exception ex)
+            {
+                ShowMessageBox(MessageType.Danger, "Kayıt sırasında hata oluştu.<br> Hata: <br>" +ex.InnerException.Message+"<br>"+ ex.StackTrace, false);
+            }
+            return Json(new { id = campaignmodel.CategoryID, isRedirect = true, IsSuccess = true });
+            //return NewtonsoftJsonResult(new { IsSuccess = true });
+        }
 
         public static String Decompress(FileInfo fileToDecompress)
         {
@@ -179,7 +246,9 @@ namespace MS.Web.Areas.Admin.Conntrollers
 
                             foreach (Campaign campx in Campaign.GetCampaigns())
                             {
+                                if (campx.CategoryTag.Equals("migroskop")) { 
                                 campx.Status = false;
+                                }
                                 
                             }
 
@@ -250,5 +319,7 @@ namespace MS.Web.Areas.Admin.Conntrollers
             return RedirectToAction("Index");
 
         }
+
+
     }
 }
