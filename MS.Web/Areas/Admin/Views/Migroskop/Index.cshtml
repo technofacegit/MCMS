@@ -100,6 +100,25 @@
         });
     });
 
+
+    $(document).ready(function () {
+        $("form").submit(function (e) {
+            e.preventDefault(); //prevent default form submit
+            $.ajax({
+                url: '@Url.Action("addedit", "Migroskop")',
+                type: 'POST',
+                data: $("form").serialize(),
+                success: function (data) {
+                   //// alert(data);
+                   // if (data.isRedirect) {
+                        url = '@Url.Action("Index", "Migroskop")';
+                        window.location.href = url;/// + '?catid=' + data.id + '&campaignstatus=true';
+                    ///}
+                }
+            });
+        });
+    });
+
   
 
 </script>

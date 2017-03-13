@@ -70,6 +70,14 @@ namespace MS.Web.Areas.Admin.Conntrollers
                     var camp = Campaign.GetCampaign(campaign.CampaignID);
                     camp.StartDate = Convert.ToDateTime(campaign.StartDate);
                     camp.EndDate = Convert.ToDateTime(campaign.EndDate);
+
+                    if (camp.StartDate == null)
+                        camp.StartDate = DateTime.Now;
+
+                    if (camp.EndDate == null)
+                        camp.EndDate = DateTime.Now;
+
+
                     camp.Discount =campaign.Discount;
                     camp.Status = campaign.Status;
                     camp.Save();
