@@ -155,7 +155,9 @@
                                     <th style="vertical-align: top">Start Date</th>
                                     <th style="vertical-align: top">End Date</th>
                                     <th style="vertical-align: top">Display Order</th>
-                                    <th style="vertical-align: top">Status</th>
+                                    <th style="vertical-align: top">Status <input id="my_cb" type="checkbox" value="yes_n"/> 
+
+                                    </th>
                                     <th style="vertical-align: top"></th>
                                 </tr>
                             </thead>
@@ -215,6 +217,29 @@
                     )
     <script>
         // external js: packery.pkgd.js, draggabilly.pkgd.js
+       
+
+        $(document).ready(function () {
+            $("#my_cb").on("ifChanged", hide_row_metod);
+        });
+
+        function hide_row_metod() {
+            var checked = $(this).prop("checked");
+            $('input:checkbox').each(function () {
+                var ix = this;
+                
+               if(checked)
+                $(this).iCheck('check');
+                else
+                   $(this).iCheck('uncheck');
+
+            });
+
+           //// alert($(this).prop("checked"));
+           /// $("input:checkbox").prop('checked', $(this).prop("checked"));
+
+          
+        }
 
         var $grid = $('.grid').packery({
             itemSelector: '.grid-item',

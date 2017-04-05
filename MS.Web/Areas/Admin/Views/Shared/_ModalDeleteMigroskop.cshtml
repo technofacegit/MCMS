@@ -1,0 +1,21 @@
+﻿
+@model MS.Web.Models.Others.Modal
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.Partial("_ModalHeader", Model.Header)
+    <div class="modal-body">
+        @Model.Message
+    </div>
+<div class="modal-footer">
+        <button type="button" class="btn btn-default modalsubmit" data-dismiss="modal" id="btnCancel">İptal</button>
+    <button type="button" class="btn btn-primary" onclick="javascript: deleteMe('@Model.ID');" id="btnDeleteMigroskop">Kaydet</button>
+</div>
+
+
+
+}
+
+

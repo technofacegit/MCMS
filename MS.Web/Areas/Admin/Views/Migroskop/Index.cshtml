@@ -58,7 +58,7 @@
         </div>
     </div>
     @Html.Partial("_Modal", new Modal { ID = "modal-create-edit-Image", AreaLabeledID = "modal-create-edit-Image-label", Size = ModalSize.Medium })
-    @Html.Partial("_Modal", new Modal { ID = "modal-delete-Image", AreaLabeledID = "modal-delete-Image-label" })
+   @Html.Partial("_Modal", new Modal { ID = "modal-delete-Image", AreaLabeledID = "modal-delete-Image-label" })
     @Html.Partial("_Modal", new Modal { ID = "modal-add-photos", AreaLabeledID = "modal-add-photos-label", Size = ModalSize.Medium })
    
    
@@ -84,8 +84,31 @@
 
 <script>
 
+    function deleteMe(id)
+    {
+        var campid = id;
+        $.post('@Url.Action("deletemigroskop", "Migroskop")', { ID: campid }, function (result) {
+            url = '@Url.Action("Index", "Migroskop")';
+            window.location.href = url;/// + '?catid=' + data.id + '&campaignstatus=true';
+        });
+
+        //var formdata= $("#editCampaignForm").serialize();
+        @*$.ajax({
+            url: '@Url.Action("deletemigroskop", "Migroskop")',
+            type: 'POST',
+            data: { ID: campid },
+            success: function (data) {
+                if (data.isRedirect) {
+                    url = '@Url.Action("Index", "Migroskop")';
+                    window.location.href = url;/// + '?catid=' + data.id + '&campaignstatus=true';
+                }
+            }
+        });*@
+    }
+
     $("#btnSubmitx").click(function (e) {
         e.preventDefault();
+        ///alert("deneme 2");
         //var formdata= $("#editCampaignForm").serialize();
         $.ajax({
             url: '@Url.Action("Edit", "Migroskop")',
@@ -101,25 +124,43 @@
     });
 
 
-    $(document).ready(function () {
-        $("form").submit(function (e) {
-            e.preventDefault(); //prevent default form submit
-            $.ajax({
-                url: '@Url.Action("addedit", "Migroskop")',
-                type: 'POST',
-                data: $("form").serialize(),
-                success: function (data) {
-                   //// alert(data);
-                   // if (data.isRedirect) {
+        $(document).ready(function () {
+
+
+
+            $("form").submit(function (e) {
+                e.preventDefault(); //prevent default form submit
+
+                $.ajax({
+                    url: '@Url.Action("addedit", "Migroskop")',
+                    type: 'POST',
+                    data: $("form").serialize(),
+                    success: function (data) {
+                        //// alert(data);
+                        // if (data.isRedirect) {
                         url = '@Url.Action("Index", "Migroskop")';
                         window.location.href = url;/// + '?catid=' + data.id + '&campaignstatus=true';
-                    ///}
-                }
+                        ///}
+                    }
+                });
+
+
             });
         });
-    });
 
-  
+
+        //var $activeElement;
+        //$('#modal-delete-Image').on('hide.bs.modal show.bs.modal', function (event) {
+
+
+
+
+        //});
+
+
+
+
+
 
 </script>
 

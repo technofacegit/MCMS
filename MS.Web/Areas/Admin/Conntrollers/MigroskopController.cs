@@ -254,8 +254,10 @@ namespace MS.Web.Areas.Admin.Conntrollers
 
                             foreach (Campaign campx in Campaign.GetCampaigns())
                             {
-                                if (campx.CategoryTag.Equals("migroskop")) { 
-                                campx.Status = false;
+                                if (campx.CategoryTag != null) { 
+                                    if  (campx.CategoryTag.Equals("migroskop")) { 
+                                       campx.Status = false;
+                                    }
                                 }
                                 
                             }
@@ -290,8 +292,9 @@ namespace MS.Web.Areas.Admin.Conntrollers
         [HttpGet]
         public ActionResult delete(int ID)
         {
-            return PartialView("_ModalDelete", new Modal
+            return PartialView("_ModalDeleteMigroskop", new Modal
             {
+                ID=ID.ToString(),
                 Message = "İlgili migroskop kaydını silmek istiyor musunuz?",
                 Size = ModalSize.Small,
                 Header = new ModalHeader { Title = "Delete PDF" },
@@ -301,6 +304,34 @@ namespace MS.Web.Areas.Admin.Conntrollers
                     CancelButtonText = "No"
                 }
             });
+        }
+
+
+        [HttpPost]
+        public ActionResult deletemigroskop(int ID)
+        {
+             try
+            {
+                Campaign camp=Campaign.GetCampaign(ID);
+                Global.Context.Campaigns.DeleteObject(camp);
+                Global.Context.SaveChanges();
+               
+                ShowMessageBox(MessageType.Success, "Migroskop silindi!!", false);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.GetBaseException().Message;
+                if (message.Contains("DELETE statement conflicted"))
+                {
+                    message = "You can't delete this because it has some child records.";
+                }
+                ShowMessageBox(MessageType.Danger, message, false);
+            }
+
+            return RedirectToAction("Index");
+
+        
+
         }
 
         [HttpPost]

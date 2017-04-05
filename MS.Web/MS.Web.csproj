@@ -578,6 +578,7 @@
     <Content Include="Areas\Admin\Views\Campaign\AddCampaign.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_ModalDeleteCampaign.cshtml" />
     <Content Include="Areas\Admin\Views\Migroskop\EditorTemplates\CampaignViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_ModalDeleteMigroskop.cshtml" />
     <None Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\ionicons.svg" />

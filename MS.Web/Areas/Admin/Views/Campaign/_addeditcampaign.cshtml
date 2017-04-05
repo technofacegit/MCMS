@@ -16,7 +16,6 @@
         <div class="modal-body box-body">
             <div class="row">
                 <div class="form-group">
-
                     @Html.LabelFor(model => model.PromoNo, @Resource_tr_TR.PromoNo)
                     @Html.TextBoxFor(model => model.PromoNo, true, null, new { @class = "form-control" })
                     @*@Html.TextBoxFor(model => model.PromoNo, true, null, new { @class = "form-control", @data_rule_required = "true", @data_msg_required = Resource_tr_TR.required })*@
@@ -155,7 +154,7 @@
                         @Html.CheckBoxFor(model => model.OptinFlag, new { @class = "minimal" }) @Html.Label("OptinFlag")
                     </div>
                     <div class="col-lg-6">
-                        @Html.CheckBoxFor(model => model.Status, new { @class = "minimal" }) @Html.Label(Resource_tr_TR.Active)
+                       @Html.CheckBoxFor(model => model.Status, new { @class = "minimal" }) @Html.Label(Resource_tr_TR.Active)
                     </div>
                 </div>
             </div>
