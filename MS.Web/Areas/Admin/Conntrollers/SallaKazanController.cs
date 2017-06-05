@@ -89,10 +89,10 @@ namespace MS.Web.Areas.Admin.Conntrollers
                     {                      
 
                         SallaKazan SallaKazanDataById = SallaKazan.GetSallaKazan(sallaKazanViewModel.id);
-                        string baslangic = DateTime.ParseExact(sallaKazanViewModel.BaslangicTarih.ToShortDateString(), "d.M.yyyy", CultureInfo.InvariantCulture).ToString("M.d.yyyy", CultureInfo.InvariantCulture);
-                        SallaKazanDataById.BaslangicTarih = DateTime.ParseExact(baslangic, "M.d.yyyy", null);
-                        string bitis = DateTime.ParseExact(sallaKazanViewModel.BitisTarih.ToShortDateString(), "d.M.yyyy", CultureInfo.InvariantCulture).ToString("M.d.yyyy", CultureInfo.InvariantCulture);
-                        SallaKazanDataById.BitisTarih = DateTime.ParseExact(bitis, "M.d.yyyy", null);
+                        string baslangic = DateTime.ParseExact(sallaKazanViewModel.BaslangicTarih.ToString(),"d.M.yyyy hh:mm:ss", CultureInfo.InvariantCulture).ToString("M.d.yyyy hh:mm:ss", CultureInfo.InvariantCulture);
+                        SallaKazanDataById.BaslangicTarih = DateTime.ParseExact(baslangic, "M.d.yyyy hh:mm:ss", null);
+                        string bitis = DateTime.ParseExact(sallaKazanViewModel.BitisTarih.ToString(), "d.M.yyyy hh:mm:ss", CultureInfo.InvariantCulture).ToString("M.d.yyyy hh:mm:ss", CultureInfo.InvariantCulture);
+                        SallaKazanDataById.BitisTarih = DateTime.ParseExact(bitis, "M.d.yyyy hh:mm:ss", null);
                         SallaKazanDataById.Durum = sallaKazanViewModel.Durum;
                         SallaKazanDataById.IndirimOran = sallaKazanViewModel.IndirimOran;
                         SallaKazanDataById.KampanyaID = sallaKazanViewModel.KampanyaID;
@@ -141,11 +141,19 @@ namespace MS.Web.Areas.Admin.Conntrollers
                     else
                     {
                         SallaKazan SallaKazan = new SallaKazan();
+                        
+                        //String dt=sallaKazanViewModel.BaslangicTarih.ToString();
 
-                        string baslangic = DateTime.ParseExact(sallaKazanViewModel.BaslangicTarih.ToShortDateString(), "d.M.yyyy", CultureInfo.InvariantCulture).ToString("M.d.yyyy", CultureInfo.InvariantCulture);
-                        SallaKazan.BaslangicTarih = DateTime.ParseExact(baslangic, "M.d.yyyy", null);
-                        string bitis = DateTime.ParseExact(sallaKazanViewModel.BitisTarih.ToShortDateString(), "d.M.yyyy", CultureInfo.InvariantCulture).ToString("M.d.yyyy", CultureInfo.InvariantCulture);
-                        SallaKazan.BitisTarih = DateTime.ParseExact(bitis, "M.d.yyyy", null);
+                        //DateTime dtShortDate =DateTime.ParseExact(dt, "d.M.yyyy", CultureInfo.InvariantCulture);
+                        //DateTime dtShortTime = DateTime.ParseExact(dt, "hh:mm:ss", CultureInfo.InvariantCulture);
+                        
+                        //DateTime basx = DateTime.ParseExact(dt, "d.M.yyyy hh:mm:ss", CultureInfo.InvariantCulture);
+                        //String bass=basx.ToString("M.d.yyyy hh:mm:ss", CultureInfo.InvariantCulture);
+                        
+                       // string baslangic = DateTime.ParseExact(sallaKazanViewModel.BaslangicTarih.ToString(), "d.M.yyyy hh:mm:ss", CultureInfo.InvariantCulture).ToString("M.d.yyyy hh:mm:ss", CultureInfo.InvariantCulture);
+                        SallaKazan.BaslangicTarih = sallaKazanViewModel.BaslangicTarih;//DateTime.ParseExact(baslangic, "M.d.yyyy hh:mm:ss", null);
+                        //string bitis = DateTime.ParseExact(sallaKazanViewModel.BitisTarih.ToString(), "d.M.yyyy hh:mm:ss", CultureInfo.InvariantCulture).ToString("M.d.yyyy hh:mm:ss", CultureInfo.InvariantCulture);
+                        SallaKazan.BitisTarih = sallaKazanViewModel.BitisTarih;//DateTime.ParseExact(bitis, "M.d.yyyy hh:mm:ss", null);
                         //SallaKazan.BaslangicTarih = sallaKazanViewModel.BaslangicTarih;
                         //SallaKazan.BitisTarih = sallaKazanViewModel.BitisTarih;
                         SallaKazan.Durum = sallaKazanViewModel.Durum;

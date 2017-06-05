@@ -3,6 +3,16 @@
 @using MS.Core.Language;
 @model MS.Web.Areas.Admin.Models.SallaKazanViewModel
 
+@section HeadContent {
+    @Styles.Render("~/Areas/Admin/Content/css/uploadfile.css",
+                    "~/Areas/Admin/Content/css/FileUpload.css",
+                    "~/Areas/Admin/Content/bootstrap-switch.css",
+                    "~/Areas/Admin/Content/datepicker3.css",
+                     "~/Areas/Admin/Content/dataTables.bootstrap.css",
+                    "~/Areas/Admin/Content/bootstrap-datetimepicker.min.css"
+                             )
+}
+
 <div id="category-box">
     @using (Html.BeginForm("addedit", "SallaKazan", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
@@ -67,14 +77,14 @@
             <div class="row">
                 <div class="form-group">
                     @Html.LabelFor(model => model.BaslangicTarih)
-                    @Html.TextBoxFor(model => model.BaslangicTarih, new { @class = "form-control", @Value = Model.BaslangicTarih.ToString("dd.MM.yyyy") })
+                    @Html.TextBoxFor(model => model.BaslangicTarih, new { @class = "form-control", @Value = Model.BaslangicTarih.ToString("d.M.yyyy hh:mm:ss") })
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group">
                     @Html.LabelFor(model => model.BitisTarih)
-                    @Html.TextBoxFor(model => model.BitisTarih, new { @class = "form-control", @Value = Model.BitisTarih.ToString("dd.MM.yyyy") })
+                    @Html.TextBoxFor(model => model.BitisTarih, new { @class = "form-control", @Value = Model.BitisTarih.ToString("d.M.yyyy hh:mm:ss") })
 
                 </div>
             </div>
@@ -115,3 +125,22 @@
         @Html.Partial("_ModalFooter", new ModalFooter())
     }
 </div>
+@section ScriptContent{
+    @Scripts.Render(
+"~/Areas/Admin/Script/jquery.dataTables.js",
+        "~/Areas/Admin/Script/dataTables.bootstrap.js",
+                        "~/Areas/Admin/Script/bootstrap-datepicker.js",
+                        "~/Scripts/moment.js",
+                "~/Scripts/locale/tr.js",
+                "~/Areas/Admin/Script/bootstrap-collapse.js",
+                "~/Areas/Admin/Script/bootstrap-transition.js",
+                         "~/Scripts/moment.js",
+                "/Areas/Admin/Script/bootstrap-datetimepicker.min.js",
+          "~/Areas/Admin/Script/global.js",
+          "~/Scripts/jquery.uploadfile.js",
+          "~/Areas/Admin/Script/bootstrap-switch.js",
+          "~/Areas/Admin/Script/views/campaign-index.js",
+          "~/Areas/Admin/Script/views/campaign-image-upload.js"
+                    )
+
+}

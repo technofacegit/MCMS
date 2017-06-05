@@ -4,16 +4,33 @@
 
         function intiDatePicker() {
             var today = new Date('01/01/0001');
-            $("#BaslangicTarih").datepicker(
+            //$("#BaslangicTarih").datepicker(
+            //    {
+            //        startDate: new Date(),
+            //        format: 'dd.mm.yyyy'
+            //    });
+            //$("#BitisTarih").datepicker(
+            //   {
+            //       startDate: new Date(),
+            //       format: 'dd.mm.yyyy'
+            //   });
+           
+            $("#BaslangicTarih").datetimepicker(
                 {
-                    startDate: new Date(),
-                    format: 'dd.mm.yyyy'
-                });
-            $("#BitisTarih").datepicker(
-               {
-                   startDate: new Date(),
-                   format: 'dd.mm.yyyy'
-               });
+                    format: 'DD.MM.YYYY hh:mm',
+                    sideBySide: true
+                }
+                );
+
+           
+
+            $("#BitisTarih").datetimepicker(
+                {
+                    format: 'DD.MM.YYYY hh:mm',
+                    sideBySide: true
+                }
+                );
+
         }
 
         function initGridControlsWithEvents() {

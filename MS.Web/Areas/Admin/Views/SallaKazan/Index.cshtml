@@ -47,15 +47,15 @@
                         column.For(a => a.Kota).Attributes(@class => "width10p");
                         column.For(a => a.IndirimOran).Attributes(@class => "width10p");
                         column.For(a => a.Metin).Attributes(@class => "width10p");
-                        column.For(a => Convert.ToDateTime(a.BaslangicTarih).ToString("dd.MM.yyyy")).Attributes(@class => "width10p").Named("Başlangıç Tarihi");
-                        column.For(a => Convert.ToDateTime(a.BitisTarih).ToString("dd.MM.yyyy")).Attributes(@class => "width10p").Named("Bitiş Tarihi");
+                        column.For(a => Convert.ToDateTime(a.BaslangicTarih).ToString("dd.MM.yyyy hh:mm")).Attributes(@class => "width10p").Named("Başlangıç Tarihi");
+                        column.For(a => Convert.ToDateTime(a.BitisTarih).ToString("dd.MM.yyyy hh:mm")).Attributes(@class => "width10p").Named("Bitiş Tarihi");
                         column.For(a => Html.CheckBox("Status", a.Durum.Value, new { @value = a.id, @class = "switchBox switch-small simple" })).Named(Resource_tr_TR.ActivePassive).Attributes(@class => "width10p");
 
                         column.For(a => "<a class=\"btn btn-primary btn-sm\" href=\"" + Url.Action("addedit", new { id = a.id }) + "\" data-target=\"#modal-create-edit-SallaKazan\" data-toggle=\"modal\">" + Resource_tr_TR.Edit + " <i class=\"fa fa-edit\"></i></a>" +
                                         " <a class=\"btn btn-danger btn-sm\" href=\"" + Url.Action("delete", new { id = a.id }) + "\" data-target=\"#modal-delete-SallaKazan\" data-toggle=\"modal\">" + Resource_tr_TR.Delete + " <i class=\"fa fa-trash-o\"></i></a>").Attributes(@class => "width15p")
                                         .Named(Resource_tr_TR.Operations).Encode(false);
 
-                        column.For(a => Convert.ToDateTime(a.BaslangicTarih).ToString("yyyy.MM.dd")).Named("Başlangıç Tarihi").Attributes(@class => "width10p");
+                        column.For(a => Convert.ToDateTime(a.BaslangicTarih).ToString("yyyy.MM.dd hh:mm")).Named("Başlangıç Tarihi").Attributes(@class => "width10p");
                     }).Attributes(@id => "grid-SallaKazan", @class => "table table-bordered table-hover")
                 </div>
             </div>
@@ -75,7 +75,9 @@
           "~/Areas/Admin/Script/global.js",
            "~/Scripts/jquery.uploadfile.js",
           "~/Areas/Admin/Script/bootstrap-switch.js",
+                  "~/Scripts/moment.js",
           "~/Areas/Admin/Script/bootstrap-datepicker.js",
+                  "~/Areas/Admin/Script/bootstrap-datetimepicker.js",
                         "~/Areas/Admin/Script/views/SallaKazan-index.js")
 
     <script type="text/javascript">
