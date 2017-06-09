@@ -467,6 +467,63 @@ namespace MS.Business
     
             return base.ExecuteFunction("spUpdateCategoryCacheKey", categoryIdParameter);
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="notifKey">No Metadata Documentation available.</param>
+        public ObjectResult<spCMSGetNotifDevices_Result> spCMSGetNotifDevices(global::System.String notifKey)
+        {
+            ObjectParameter notifKeyParameter;
+            if (notifKey != null)
+            {
+                notifKeyParameter = new ObjectParameter("notifKey", notifKey);
+            }
+            else
+            {
+                notifKeyParameter = new ObjectParameter("notifKey", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<spCMSGetNotifDevices_Result>("spCMSGetNotifDevices", notifKeyParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectResult<spCMSGetNotifMasterData_Result> spCMSGetNotifMasterData()
+        {
+            return base.ExecuteFunction<spCMSGetNotifMasterData_Result>("spCMSGetNotifMasterData");
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="notifText">No Metadata Documentation available.</param>
+        /// <param name="notifKey">No Metadata Documentation available.</param>
+        public int spCMSNotifMaster(global::System.String notifText, global::System.String notifKey)
+        {
+            ObjectParameter notifTextParameter;
+            if (notifText != null)
+            {
+                notifTextParameter = new ObjectParameter("notifText", notifText);
+            }
+            else
+            {
+                notifTextParameter = new ObjectParameter("notifText", typeof(global::System.String));
+            }
+    
+            ObjectParameter notifKeyParameter;
+            if (notifKey != null)
+            {
+                notifKeyParameter = new ObjectParameter("notifKey", notifKey);
+            }
+            else
+            {
+                notifKeyParameter = new ObjectParameter("notifKey", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction("spCMSNotifMaster", notifTextParameter, notifKeyParameter);
+        }
 
         #endregion
 
@@ -2205,6 +2262,30 @@ namespace MS.Business
         private global::System.String _KazancTag;
         partial void OnKazancTagChanging(global::System.String value);
         partial void OnKazancTagChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String FooterText
+        {
+            get
+            {
+                return _FooterText;
+            }
+            set
+            {
+                OnFooterTextChanging(value);
+                ReportPropertyChanging("FooterText");
+                _FooterText = StructuralObject.SetValidValue(value, true, "FooterText");
+                ReportPropertyChanged("FooterText");
+                OnFooterTextChanged();
+            }
+        }
+        private global::System.String _FooterText;
+        partial void OnFooterTextChanging(global::System.String value);
+        partial void OnFooterTextChanged();
 
         #endregion
 
@@ -4383,6 +4464,208 @@ namespace MS.Business
     #endregion
 
     #region ComplexTypes
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="ProjectDbContextModel", Name="spCMSGetNotifDevices_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class spCMSGetNotifDevices_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new spCMSGetNotifDevices_Result object.
+        /// </summary>
+        /// <param name="notifId">Initial value of the NotifId property.</param>
+        public static spCMSGetNotifDevices_Result CreatespCMSGetNotifDevices_Result(global::System.Int32 notifId)
+        {
+            spCMSGetNotifDevices_Result spCMSGetNotifDevices_Result = new spCMSGetNotifDevices_Result();
+            spCMSGetNotifDevices_Result.NotifId = notifId;
+            return spCMSGetNotifDevices_Result;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 NotifId
+        {
+            get
+            {
+                return _NotifId;
+            }
+            set
+            {
+                OnNotifIdChanging(value);
+                ReportPropertyChanging("NotifId");
+                _NotifId = StructuralObject.SetValidValue(value, "NotifId");
+                ReportPropertyChanged("NotifId");
+                OnNotifIdChanged();
+            }
+        }
+        private global::System.Int32 _NotifId;
+        partial void OnNotifIdChanging(global::System.Int32 value);
+        partial void OnNotifIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String DeviceToken
+        {
+            get
+            {
+                return _DeviceToken;
+            }
+            set
+            {
+                OnDeviceTokenChanging(value);
+                ReportPropertyChanging("DeviceToken");
+                _DeviceToken = StructuralObject.SetValidValue(value, true, "DeviceToken");
+                ReportPropertyChanged("DeviceToken");
+                OnDeviceTokenChanged();
+            }
+        }
+        private global::System.String _DeviceToken;
+        partial void OnDeviceTokenChanging(global::System.String value);
+        partial void OnDeviceTokenChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String UniqueId
+        {
+            get
+            {
+                return _UniqueId;
+            }
+            set
+            {
+                OnUniqueIdChanging(value);
+                ReportPropertyChanging("UniqueId");
+                _UniqueId = StructuralObject.SetValidValue(value, true, "UniqueId");
+                ReportPropertyChanged("UniqueId");
+                OnUniqueIdChanged();
+            }
+        }
+        private global::System.String _UniqueId;
+        partial void OnUniqueIdChanging(global::System.String value);
+        partial void OnUniqueIdChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="ProjectDbContextModel", Name="spCMSGetNotifMasterData_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class spCMSGetNotifMasterData_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new spCMSGetNotifMasterData_Result object.
+        /// </summary>
+        /// <param name="notifID">Initial value of the NotifID property.</param>
+        public static spCMSGetNotifMasterData_Result CreatespCMSGetNotifMasterData_Result(global::System.Int32 notifID)
+        {
+            spCMSGetNotifMasterData_Result spCMSGetNotifMasterData_Result = new spCMSGetNotifMasterData_Result();
+            spCMSGetNotifMasterData_Result.NotifID = notifID;
+            return spCMSGetNotifMasterData_Result;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 NotifID
+        {
+            get
+            {
+                return _NotifID;
+            }
+            set
+            {
+                OnNotifIDChanging(value);
+                ReportPropertyChanging("NotifID");
+                _NotifID = StructuralObject.SetValidValue(value, "NotifID");
+                ReportPropertyChanged("NotifID");
+                OnNotifIDChanged();
+            }
+        }
+        private global::System.Int32 _NotifID;
+        partial void OnNotifIDChanging(global::System.Int32 value);
+        partial void OnNotifIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NotifText
+        {
+            get
+            {
+                return _NotifText;
+            }
+            set
+            {
+                OnNotifTextChanging(value);
+                ReportPropertyChanging("NotifText");
+                _NotifText = StructuralObject.SetValidValue(value, true, "NotifText");
+                ReportPropertyChanged("NotifText");
+                OnNotifTextChanged();
+            }
+        }
+        private global::System.String _NotifText;
+        partial void OnNotifTextChanging(global::System.String value);
+        partial void OnNotifTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NotifKey
+        {
+            get
+            {
+                return _NotifKey;
+            }
+            set
+            {
+                OnNotifKeyChanging(value);
+                ReportPropertyChanging("NotifKey");
+                _NotifKey = StructuralObject.SetValidValue(value, true, "NotifKey");
+                ReportPropertyChanged("NotifKey");
+                OnNotifKeyChanged();
+            }
+        }
+        private global::System.String _NotifKey;
+        partial void OnNotifKeyChanging(global::System.String value);
+        partial void OnNotifKeyChanged();
+
+        #endregion
+
+    }
     
     /// <summary>
     /// No Metadata Documentation available.

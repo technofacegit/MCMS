@@ -95,6 +95,7 @@
           <Property Name="ItemTitle" Type="nvarchar(max)" />
           <Property Name="ShowInfo" Type="bit" />
           <Property Name="KazancTag" Type="nvarchar(max)" />
+          <Property Name="FooterText" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Magazalar">
           <Key>
@@ -220,6 +221,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="spCMSGetNotifDevices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="notifKey" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="spCMSGetNotifMasterData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spCMSNotifMaster" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="notifText" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="notifKey" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <Function Name="spUpdateCategoryCacheKey" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="categoryId" Type="int" Mode="In" />
         </Function>
@@ -283,7 +292,15 @@
           </FunctionImport>
           <EntitySet Name="Magazalar" EntityType="ProjectDbContextModel.Magazalar" />
           <FunctionImport Name="spUpdateCategoryCacheKey">
-            <Parameter Name="categoryId" Mode="In" Type="Int32" />
+          <Parameter Name="categoryId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spCMSGetNotifDevices" ReturnType="Collection(ProjectDbContextModel.spCMSGetNotifDevices_Result)">
+            <Parameter Name="notifKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spCMSGetNotifMasterData" ReturnType="Collection(ProjectDbContextModel.spCMSGetNotifMasterData_Result)" />
+          <FunctionImport Name="spCMSNotifMaster">
+            <Parameter Name="notifText" Mode="In" Type="String" />
+            <Parameter Name="notifKey" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="CampaignCategory">
@@ -380,6 +397,7 @@
           <Property Name="ItemTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ShowInfo" Type="Boolean" />
           <Property Name="KazancTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FooterText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="BebeMoneyKatalogKategorileri">
           <Key>
@@ -508,6 +526,16 @@
           <Property Type="String" Name="FaturaTahsilat" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="HediyemKart" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="spCMSGetNotifDevices_Result">
+          <Property Type="Int32" Name="NotifId" Nullable="false" />
+          <Property Type="String" Name="DeviceToken" Nullable="true" />
+          <Property Type="String" Name="UniqueId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spCMSGetNotifMasterData_Result">
+          <Property Type="Int32" Name="NotifID" Nullable="false" />
+          <Property Type="String" Name="NotifText" Nullable="true" />
+          <Property Type="String" Name="NotifKey" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -588,6 +616,7 @@
           <EntitySetMapping Name="Kazanclars">
             <EntityTypeMapping TypeName="ProjectDbContextModel.Kazanclar">
               <MappingFragment StoreEntitySet="Kazanclar">
+                <ScalarProperty Name="FooterText" ColumnName="FooterText" />
                 <ScalarProperty Name="KazancTag" ColumnName="KazancTag" />
                 <ScalarProperty Name="ShowInfo" ColumnName="ShowInfo" />
                 <ScalarProperty Name="ItemTitle" ColumnName="ItemTitle" />
@@ -742,6 +771,25 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="spUpdateCategoryCacheKey" FunctionName="ProjectDbContext.Store.spUpdateCategoryCacheKey" />
+          <FunctionImportMapping FunctionImportName="spCMSGetNotifDevices" FunctionName="ProjectDbContext.Store.spCMSGetNotifDevices">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjectDbContextModel.spCMSGetNotifDevices_Result">
+                <ScalarProperty Name="NotifId" ColumnName="NotifId" />
+                <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spCMSGetNotifMasterData" FunctionName="ProjectDbContext.Store.spCMSGetNotifMasterData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjectDbContextModel.spCMSGetNotifMasterData_Result">
+                <ScalarProperty Name="NotifID" ColumnName="NotifID" />
+                <ScalarProperty Name="NotifText" ColumnName="NotifText" />
+                <ScalarProperty Name="NotifKey" ColumnName="NotifKey" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spCMSNotifMaster" FunctionName="ProjectDbContext.Store.spCMSNotifMaster" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

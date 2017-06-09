@@ -28,6 +28,9 @@ namespace MS.Business
            int baslangicControl = Global.Context.SallaKazans.Count(x => dtBaslangic <= x.BitisTarih && dtBitis >= x.BitisTarih && x.Durum == true);
            return bitisControl + baslangicControl;
        }
+
+
+    
     }
 
      public class SallaKazan_MD

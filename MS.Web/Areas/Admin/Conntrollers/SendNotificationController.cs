@@ -107,24 +107,34 @@ namespace MS.Web.Areas.Admin.Conntrollers
                 string message = null;
                 string IOSToken = string.Empty;
 
-                string s = Guid.NewGuid().ToString();
-                var devices = Global.Context.spV4_AllDevicesWithTrackingNumber(s);
 
                 if (FC["TextBody"] != null)
                 {
                     message = FC["TextBody"];
 
-                    foreach (var device in devices)
-                    {
-                        IOSToken = device.DeviceToken;
+                    string s = Guid.NewGuid().ToString();
 
-                        if (!string.IsNullOrEmpty(IOSToken))
-                        {
-                            PushSharp.PushNotificationService.PushNotificationService push = new PushSharp.PushNotificationService.PushNotificationService(s);
-                            push.SendPushNotification(device.DeviceToken, message);
-                        }
-                    }
+                    int ix = Global.Context.spCMSNotifMaster(message,s);
+
                 }
+
+                //var devices = Global.Context.spV4_AllDevicesWithTrackingNumber(s);
+
+                //if (FC["TextBody"] != null)
+                //{
+                //    message = FC["TextBody"];
+
+                //    foreach (var device in devices)
+                //    {
+                //        IOSToken = device.DeviceToken;
+
+                //        if (!string.IsNullOrEmpty(IOSToken))
+                //        {
+                //            PushSharp.PushNotificationService.PushNotificationService push = new PushSharp.PushNotificationService.PushNotificationService(s);
+                //            push.SendPushNotification(device.DeviceToken, message);
+                //        }
+                //    }
+                //}
 
                 //if (FC["tockenvalueforText"] != null && FC["TextBody"] != null)
                 //{
