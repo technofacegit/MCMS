@@ -83,7 +83,7 @@
   <ItemGroup>
     <EntityDeploy Include="ProjectDbContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ProjectDbContext.Designer.cs</LastGenOutput>
+      <LastGenOutput>ProjectDbContext1.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>

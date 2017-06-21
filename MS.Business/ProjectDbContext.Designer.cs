@@ -262,6 +262,22 @@ namespace MS.Business
             }
         }
         private ObjectSet<Magazalar> _Magazalar;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<TblCMSNotifMaster> TblCMSNotifMaster
+        {
+            get
+            {
+                if ((_TblCMSNotifMaster == null))
+                {
+                    _TblCMSNotifMaster = base.CreateObjectSet<TblCMSNotifMaster>("TblCMSNotifMaster");
+                }
+                return _TblCMSNotifMaster;
+            }
+        }
+        private ObjectSet<TblCMSNotifMaster> _TblCMSNotifMaster;
 
         #endregion
 
@@ -361,6 +377,14 @@ namespace MS.Business
         public void AddToMagazalar(Magazalar magazalar)
         {
             base.AddObject("Magazalar", magazalar);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the TblCMSNotifMaster EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTblCMSNotifMaster(TblCMSNotifMaster tblCMSNotifMaster)
+        {
+            base.AddObject("TblCMSNotifMaster", tblCMSNotifMaster);
         }
 
         #endregion
@@ -500,7 +524,8 @@ namespace MS.Business
         /// </summary>
         /// <param name="notifText">No Metadata Documentation available.</param>
         /// <param name="notifKey">No Metadata Documentation available.</param>
-        public int spCMSNotifMaster(global::System.String notifText, global::System.String notifKey)
+        /// <param name="notifDate">No Metadata Documentation available.</param>
+        public int spCMSNotifMaster(global::System.String notifText, global::System.String notifKey, Nullable<global::System.DateTime> notifDate)
         {
             ObjectParameter notifTextParameter;
             if (notifText != null)
@@ -522,7 +547,17 @@ namespace MS.Business
                 notifKeyParameter = new ObjectParameter("notifKey", typeof(global::System.String));
             }
     
-            return base.ExecuteFunction("spCMSNotifMaster", notifTextParameter, notifKeyParameter);
+            ObjectParameter notifDateParameter;
+            if (notifDate.HasValue)
+            {
+                notifDateParameter = new ObjectParameter("notifDate", notifDate);
+            }
+            else
+            {
+                notifDateParameter = new ObjectParameter("notifDate", typeof(global::System.DateTime));
+            }
+    
+            return base.ExecuteFunction("spCMSNotifMaster", notifTextParameter, notifKeyParameter, notifDateParameter);
         }
 
         #endregion
@@ -3824,6 +3859,182 @@ namespace MS.Business
         private global::System.String _Dusen;
         partial void OnDusenChanging(global::System.String value);
         partial void OnDusenChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="ProjectDbContextModel", Name="TblCMSNotifMaster")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class TblCMSNotifMaster : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new TblCMSNotifMaster object.
+        /// </summary>
+        /// <param name="notifId">Initial value of the NotifId property.</param>
+        public static TblCMSNotifMaster CreateTblCMSNotifMaster(global::System.Int32 notifId)
+        {
+            TblCMSNotifMaster tblCMSNotifMaster = new TblCMSNotifMaster();
+            tblCMSNotifMaster.NotifId = notifId;
+            return tblCMSNotifMaster;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 NotifId
+        {
+            get
+            {
+                return _NotifId;
+            }
+            set
+            {
+                if (_NotifId != value)
+                {
+                    OnNotifIdChanging(value);
+                    ReportPropertyChanging("NotifId");
+                    _NotifId = StructuralObject.SetValidValue(value, "NotifId");
+                    ReportPropertyChanged("NotifId");
+                    OnNotifIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _NotifId;
+        partial void OnNotifIdChanging(global::System.Int32 value);
+        partial void OnNotifIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NotifText
+        {
+            get
+            {
+                return _NotifText;
+            }
+            set
+            {
+                OnNotifTextChanging(value);
+                ReportPropertyChanging("NotifText");
+                _NotifText = StructuralObject.SetValidValue(value, true, "NotifText");
+                ReportPropertyChanged("NotifText");
+                OnNotifTextChanged();
+            }
+        }
+        private global::System.String _NotifText;
+        partial void OnNotifTextChanging(global::System.String value);
+        partial void OnNotifTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NotifKey
+        {
+            get
+            {
+                return _NotifKey;
+            }
+            set
+            {
+                OnNotifKeyChanging(value);
+                ReportPropertyChanging("NotifKey");
+                _NotifKey = StructuralObject.SetValidValue(value, true, "NotifKey");
+                ReportPropertyChanged("NotifKey");
+                OnNotifKeyChanged();
+            }
+        }
+        private global::System.String _NotifKey;
+        partial void OnNotifKeyChanging(global::System.String value);
+        partial void OnNotifKeyChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> NotifDate
+        {
+            get
+            {
+                return _NotifDate;
+            }
+            set
+            {
+                OnNotifDateChanging(value);
+                ReportPropertyChanging("NotifDate");
+                _NotifDate = StructuralObject.SetValidValue(value, "NotifDate");
+                ReportPropertyChanged("NotifDate");
+                OnNotifDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _NotifDate;
+        partial void OnNotifDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnNotifDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> NotifStatus
+        {
+            get
+            {
+                return _NotifStatus;
+            }
+            set
+            {
+                OnNotifStatusChanging(value);
+                ReportPropertyChanging("NotifStatus");
+                _NotifStatus = StructuralObject.SetValidValue(value, "NotifStatus");
+                ReportPropertyChanged("NotifStatus");
+                OnNotifStatusChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _NotifStatus;
+        partial void OnNotifStatusChanging(Nullable<global::System.Boolean> value);
+        partial void OnNotifStatusChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> NotifProgress
+        {
+            get
+            {
+                return _NotifProgress;
+            }
+            set
+            {
+                OnNotifProgressChanging(value);
+                ReportPropertyChanging("NotifProgress");
+                _NotifProgress = StructuralObject.SetValidValue(value, "NotifProgress");
+                ReportPropertyChanged("NotifProgress");
+                OnNotifProgressChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _NotifProgress;
+        partial void OnNotifProgressChanging(Nullable<global::System.Int32> value);
+        partial void OnNotifProgressChanged();
 
         #endregion
 

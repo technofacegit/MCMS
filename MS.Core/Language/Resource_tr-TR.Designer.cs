@@ -520,6 +520,15 @@ namespace MS.Core.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gönderim Tarihi.
+        /// </summary>
+        public static string NotifDate {
+            get {
+                return ResourceManager.GetString("NotifDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bildirim Cihaz.
         /// </summary>
         public static string NotificationDevice {

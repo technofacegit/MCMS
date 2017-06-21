@@ -5,13 +5,23 @@
 @using MS.Web.Code.LIBS;
 
 @*@model List<TblDevice>*@
+@model List<TblCMSNotifMaster>
 @{
     ViewBag.Title = @Resource_tr_TR.PushNotification;
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+
+
 @section HeadContent {
-    @Styles.Render("~/Areas/Admin/Content/dataTables.bootstrap.css")
+    @Styles.Render( "~/Areas/Admin/Content/bootstrap-switch.css",
+                    "~/Areas/Admin/Content/datepicker3.css",
+                     "~/Areas/Admin/Content/dataTables.bootstrap.css",
+                    "~/Areas/Admin/Content/bootstrap-datetimepicker.min.css"
+                             )
 }
+
+
+
 <style>
     .btn_tab {
         border: 1px none;
@@ -89,17 +99,54 @@
                                     <textarea name="TextBody" id="TextBody" class="form-control"> </textarea>
                                     <span id="campbodytexterror" class="formerror"></span>
                                     <div class="clearfix"></div>
-
+                                    <br />
                                 </div>
                             </div>
-                            @Html.Hidden("tockenvalueforText")
-                            <input name="submitText" type="submit" value=" send" id="submitText" class="btn bg-orange" />
-                           
-                        </div>
+                            <div class="row">
+                                <label for="lblTextBody" class="control-label col-sm-2">@Resource_tr_TR.NotifDate:</label>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input type='text' class="form-control" id="dtNotification" name="dtNotification" />
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    </div>
+                                </div>
+
+                                    @Html.Hidden("tockenvalueforText")
+                                    <input name="submitText" type="submit" value=" send" id="submitText" class="btn bg-orange" />
+                                    &nbsp;
+                                    <br />
+                            
+
+                          
+
+
+                                </div>
 
 
                     </div>
                 }
+
+                <br /><br />
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            Bildirim Listesi
+                        </h3>
+                    </div>
+                    <div class="box-body table-responsive">
+                        @Html.Grid(Model).Columns(column =>
+               {
+                   column.For(a => a.NotifId).Named("Bildirim No").Attributes(@class => "width10p");
+                   column.For(a => a.NotifText).Named("Bildirim Metni").Attributes(@class => "width10p");
+                   column.For(a => a.NotifKey).Named("Bildirim Anahtarı").Attributes(@class => "width10p");
+                   column.For(a => a.NotifDate).Named("Bildirim Tarihi").Attributes(@class => "width10p");
+                   column.For(a => a.NotifStatus).Named("Bildirim Durumu").Attributes(@class => "width10p");
+                   column.For(a => a.NotifProgress).Named("Bildirim İlerleme").Attributes(@class => "width10p");
+               }).Attributes(@id => "grid-Notification", @class => "table table-bordered table-hover")
+                    </div>
+                </div>
+
 
             </div>
         </div>
@@ -131,11 +178,28 @@
 
 
 @section ScriptContent{
-    @Scripts.Render("~/Areas/Admin/Script/jquery.dataTables.js",
+    @*@Scripts.Render("~/Areas/Admin/Script/jquery.dataTables.js",
         "~/Areas/Admin/Script/dataTables.bootstrap.js",
           "~/Areas/Admin/Script/global.js",
-                  "~/Areas/Admin/Script/views/TblDevice-index.js"
-          )
+                         "~/Scripts/moment.js",
+                "/Areas/Admin/Script/bootstrap-datetimepicker.min.js",
+                 "~/Areas/Admin/Script/views/TblDevice-index.js"
+          )*@
+
+@Scripts.Render(
+"~/Areas/Admin/Script/jquery.dataTables.js",
+        "~/Areas/Admin/Script/dataTables.bootstrap.js",
+                "~/Areas/Admin/Script/bootstrap-collapse.js",
+                "~/Areas/Admin/Script/bootstrap-transition.js",
+                    "~/Areas/Admin/Script/global.js",
+                         "~/Scripts/moment.js",
+                    "~/Areas/Admin/Script/bootstrap-datetimepicker.js",
+          "~/Areas/Admin/Script/bootstrap-switch.js",
+              "~/Areas/Admin/Script/views/TblDevice-index.js"
+                   )
 }
 
+<script type="text/javascript">
+    $('#grid-Notification').DataTable();
+</script>
 

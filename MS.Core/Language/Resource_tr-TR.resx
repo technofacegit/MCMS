@@ -234,6 +234,9 @@
   <data name="TextBody" xml:space="preserve">
     <value>Metin</value>
   </data>
+  <data name="NotifDate" xml:space="preserve">
+    <value>Gönderim Tarihi</value>
+  </data>
   <data name="Discount" xml:space="preserve">
     <value>İndirim</value>
   </data>

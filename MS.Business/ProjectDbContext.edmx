@@ -172,6 +172,17 @@
           <Property Name="Metin" Type="nvarchar(max)" />
           <Property Name="Dusen" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="TblCMSNotifMaster">
+          <Key>
+            <PropertyRef Name="NotifId" />
+          </Key>
+          <Property Name="NotifId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NotifText" Type="nvarchar(max)" />
+          <Property Name="NotifKey" Type="nvarchar(max)" />
+          <Property Name="NotifDate" Type="datetime" />
+          <Property Name="NotifStatus" Type="bit" />
+          <Property Name="NotifProgress" Type="int" />
+        </EntityType>
         <EntityType Name="TblDevices">
           <Key>
             <PropertyRef Name="UniqueID" />
@@ -228,6 +239,7 @@
         <Function Name="spCMSNotifMaster" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="notifText" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="notifKey" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="notifDate" Type="datetime" Mode="In" />
         </Function>
         <Function Name="spUpdateCategoryCacheKey" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="categoryId" Type="int" Mode="In" />
@@ -252,6 +264,7 @@
           <EntitySet Name="Magazalar" EntityType="Self.Magazalar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MilKatalogUrunleri" EntityType="Self.MilKatalogUrunleri" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SallaKazan" EntityType="Self.SallaKazan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblCMSNotifMaster" EntityType="Self.TblCMSNotifMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblDevices" EntityType="Self.TblDevices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblImage" EntityType="Self.tblImage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblKullanicilar" EntityType="Self.TblKullanicilar" Schema="dbo" store:Type="Tables" />
@@ -295,13 +308,15 @@
           <Parameter Name="categoryId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spCMSGetNotifDevices" ReturnType="Collection(ProjectDbContextModel.spCMSGetNotifDevices_Result)">
-            <Parameter Name="notifKey" Mode="In" Type="String" />
+          <Parameter Name="notifKey" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spCMSGetNotifMasterData" ReturnType="Collection(ProjectDbContextModel.spCMSGetNotifMasterData_Result)" />
           <FunctionImport Name="spCMSNotifMaster">
             <Parameter Name="notifText" Mode="In" Type="String" />
             <Parameter Name="notifKey" Mode="In" Type="String" />
+            <Parameter Name="notifDate" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <EntitySet Name="TblCMSNotifMaster" EntityType="ProjectDbContextModel.TblCMSNotifMaster" />
         </EntityContainer>
         <EntityType Name="CampaignCategory">
           <Key>
@@ -536,6 +551,17 @@
           <Property Type="String" Name="NotifText" Nullable="true" />
           <Property Type="String" Name="NotifKey" Nullable="true" />
         </ComplexType>
+        <EntityType Name="TblCMSNotifMaster">
+          <Key>
+            <PropertyRef Name="NotifId" />
+          </Key>
+          <Property Name="NotifId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NotifText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NotifKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NotifDate" Type="DateTime" Precision="3" />
+          <Property Name="NotifStatus" Type="Boolean" />
+          <Property Name="NotifProgress" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -790,6 +816,18 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spCMSNotifMaster" FunctionName="ProjectDbContext.Store.spCMSNotifMaster" />
+          <EntitySetMapping Name="TblCMSNotifMaster">
+            <EntityTypeMapping TypeName="ProjectDbContextModel.TblCMSNotifMaster">
+              <MappingFragment StoreEntitySet="TblCMSNotifMaster">
+                <ScalarProperty Name="NotifProgress" ColumnName="NotifProgress" />
+                <ScalarProperty Name="NotifStatus" ColumnName="NotifStatus" />
+                <ScalarProperty Name="NotifDate" ColumnName="NotifDate" />
+                <ScalarProperty Name="NotifKey" ColumnName="NotifKey" />
+                <ScalarProperty Name="NotifText" ColumnName="NotifText" />
+                <ScalarProperty Name="NotifId" ColumnName="NotifId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -812,7 +850,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7c045fab4709428287cc5d1d235335a2" Name="Diagram1" ZoomLevel="89" >
+      <Diagram DiagramId="7c045fab4709428287cc5d1d235335a2" Name="Diagram1" ZoomLevel="69" >
         <EntityTypeShape EntityType="ProjectDbContextModel.CampaignCategory" Width="2.25" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="ProjectDbContextModel.Kategoritipi" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="ProjectDbContextModel.TblKullanicilar" Width="1.5" PointX="3.875" PointY="2.75" />
@@ -826,6 +864,7 @@
         <EntityTypeShape EntityType="ProjectDbContextModel.tblImage" Width="1.5" PointX="7.375" PointY="8.75" />
         <EntityTypeShape EntityType="ProjectDbContextModel.EventLog" Width="1.5" PointX="3.75" PointY="5.5" />
         <EntityTypeShape EntityType="ProjectDbContextModel.Magazalar" Width="1.5" PointX="10.75" PointY="3.25" />
+        <EntityTypeShape EntityType="ProjectDbContextModel.TblCMSNotifMaster" Width="1.5" PointX="0.75" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

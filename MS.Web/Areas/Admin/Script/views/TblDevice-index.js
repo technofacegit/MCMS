@@ -163,11 +163,23 @@
             });
         }
 
+        function initDatePicker() {
+
+            $("#dtNotification").datetimepicker(
+                {
+                    format: 'DD.MM.YYYY hh:mm',
+                    sideBySide: true,
+                    defaultDate: new Date(),
+                }
+                );
+
+        }
 
 
         $this.init = function () {
             initializeGrid();
             initializeModalWithForm();
+            initDatePicker();
 
         };
     }

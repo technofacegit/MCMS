@@ -8,6 +8,7 @@ using MS.Web.Code.LIBS;
 using System.Collections;
 using MS.Web.Code.Attributes;
 using PushSharp;
+using System.Globalization;
 
 namespace MS.Web.Areas.Admin.Conntrollers
 {
@@ -19,7 +20,12 @@ namespace MS.Web.Areas.Admin.Conntrollers
         {
             //var tblDevice = TblDevice.GetTblDevices();
             //return View(tblDevice);
-            return View();
+
+            var bildirimler = Global.Context.TblCMSNotifMaster.ToList().OrderByDescending(x => x.NotifDate).Take(10).ToList();
+            return View(bildirimler);
+
+
+            ///return View();
         }
 
 
@@ -112,9 +118,14 @@ namespace MS.Web.Areas.Admin.Conntrollers
                 {
                     message = FC["TextBody"];
 
+                    String dtNotification = FC["dtNotification"];
+
+                    DateTime dtNot = DateTime.ParseExact(dtNotification.ToString(), "d.M.yyyy hh:mm", CultureInfo.InvariantCulture);
+                       
+
                     string s = Guid.NewGuid().ToString();
 
-                    int ix = Global.Context.spCMSNotifMaster(message,s);
+                    int ix = Global.Context.spCMSNotifMaster(message, s, dtNot);
 
                 }
 
