@@ -120,7 +120,7 @@ namespace MS.Web.Areas.Admin.Conntrollers
 
                     String dtNotification = FC["dtNotification"];
 
-                    DateTime dtNot = DateTime.ParseExact(dtNotification.ToString(), "d.M.yyyy hh:mm", CultureInfo.InvariantCulture);
+                    DateTime dtNot = DateTime.ParseExact(dtNotification.ToString(), "d.M.yyyy HH:mm", CultureInfo.InvariantCulture);
                        
 
                     string s = Guid.NewGuid().ToString();
