@@ -525,7 +525,10 @@ namespace MS.Business
         /// <param name="notifText">No Metadata Documentation available.</param>
         /// <param name="notifKey">No Metadata Documentation available.</param>
         /// <param name="notifDate">No Metadata Documentation available.</param>
-        public int spCMSNotifMaster(global::System.String notifText, global::System.String notifKey, Nullable<global::System.DateTime> notifDate)
+        /// <param name="promoNo">No Metadata Documentation available.</param>
+        /// <param name="offerNo">No Metadata Documentation available.</param>
+        /// <param name="notifType">No Metadata Documentation available.</param>
+        public int spCMSNotifMaster(global::System.String notifText, global::System.String notifKey, Nullable<global::System.DateTime> notifDate, global::System.String promoNo, global::System.String offerNo, global::System.String notifType)
         {
             ObjectParameter notifTextParameter;
             if (notifText != null)
@@ -557,7 +560,124 @@ namespace MS.Business
                 notifDateParameter = new ObjectParameter("notifDate", typeof(global::System.DateTime));
             }
     
-            return base.ExecuteFunction("spCMSNotifMaster", notifTextParameter, notifKeyParameter, notifDateParameter);
+            ObjectParameter promoNoParameter;
+            if (promoNo != null)
+            {
+                promoNoParameter = new ObjectParameter("promoNo", promoNo);
+            }
+            else
+            {
+                promoNoParameter = new ObjectParameter("promoNo", typeof(global::System.String));
+            }
+    
+            ObjectParameter offerNoParameter;
+            if (offerNo != null)
+            {
+                offerNoParameter = new ObjectParameter("offerNo", offerNo);
+            }
+            else
+            {
+                offerNoParameter = new ObjectParameter("offerNo", typeof(global::System.String));
+            }
+    
+            ObjectParameter notifTypeParameter;
+            if (notifType != null)
+            {
+                notifTypeParameter = new ObjectParameter("notifType", notifType);
+            }
+            else
+            {
+                notifTypeParameter = new ObjectParameter("notifType", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction("spCMSNotifMaster", notifTextParameter, notifKeyParameter, notifDateParameter, promoNoParameter, offerNoParameter, notifTypeParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="cardNumber">No Metadata Documentation available.</param>
+        /// <param name="notifKey">No Metadata Documentation available.</param>
+        public int spCMSAddNotifDeviceWithCardNumber(global::System.String cardNumber, global::System.String notifKey)
+        {
+            ObjectParameter cardNumberParameter;
+            if (cardNumber != null)
+            {
+                cardNumberParameter = new ObjectParameter("cardNumber", cardNumber);
+            }
+            else
+            {
+                cardNumberParameter = new ObjectParameter("cardNumber", typeof(global::System.String));
+            }
+    
+            ObjectParameter notifKeyParameter;
+            if (notifKey != null)
+            {
+                notifKeyParameter = new ObjectParameter("notifKey", notifKey);
+            }
+            else
+            {
+                notifKeyParameter = new ObjectParameter("notifKey", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction("spCMSAddNotifDeviceWithCardNumber", cardNumberParameter, notifKeyParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="notifKey">No Metadata Documentation available.</param>
+        public int spCMSClearNotifQueue(global::System.String notifKey)
+        {
+            ObjectParameter notifKeyParameter;
+            if (notifKey != null)
+            {
+                notifKeyParameter = new ObjectParameter("notifKey", notifKey);
+            }
+            else
+            {
+                notifKeyParameter = new ObjectParameter("notifKey", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction("spCMSClearNotifQueue", notifKeyParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="skey">No Metadata Documentation available.</param>
+        public int spCMSAddTmpToNotifQueue(global::System.String skey)
+        {
+            ObjectParameter skeyParameter;
+            if (skey != null)
+            {
+                skeyParameter = new ObjectParameter("skey", skey);
+            }
+            else
+            {
+                skeyParameter = new ObjectParameter("skey", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction("spCMSAddTmpToNotifQueue", skeyParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="notifKey">No Metadata Documentation available.</param>
+        public int spCMSDeleteNotifQueue(global::System.String notifKey)
+        {
+            ObjectParameter notifKeyParameter;
+            if (notifKey != null)
+            {
+                notifKeyParameter = new ObjectParameter("notifKey", notifKey);
+            }
+            else
+            {
+                notifKeyParameter = new ObjectParameter("notifKey", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction("spCMSDeleteNotifQueue", notifKeyParameter);
         }
 
         #endregion
@@ -2321,6 +2441,30 @@ namespace MS.Business
         private global::System.String _FooterText;
         partial void OnFooterTextChanging(global::System.String value);
         partial void OnFooterTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String KazancBackgroundNew
+        {
+            get
+            {
+                return _KazancBackgroundNew;
+            }
+            set
+            {
+                OnKazancBackgroundNewChanging(value);
+                ReportPropertyChanging("KazancBackgroundNew");
+                _KazancBackgroundNew = StructuralObject.SetValidValue(value, true, "KazancBackgroundNew");
+                ReportPropertyChanged("KazancBackgroundNew");
+                OnKazancBackgroundNewChanged();
+            }
+        }
+        private global::System.String _KazancBackgroundNew;
+        partial void OnKazancBackgroundNewChanging(global::System.String value);
+        partial void OnKazancBackgroundNewChanged();
 
         #endregion
 
@@ -4035,6 +4179,78 @@ namespace MS.Business
         private Nullable<global::System.Int32> _NotifProgress;
         partial void OnNotifProgressChanging(Nullable<global::System.Int32> value);
         partial void OnNotifProgressChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NotifPromoNo
+        {
+            get
+            {
+                return _NotifPromoNo;
+            }
+            set
+            {
+                OnNotifPromoNoChanging(value);
+                ReportPropertyChanging("NotifPromoNo");
+                _NotifPromoNo = StructuralObject.SetValidValue(value, true, "NotifPromoNo");
+                ReportPropertyChanged("NotifPromoNo");
+                OnNotifPromoNoChanged();
+            }
+        }
+        private global::System.String _NotifPromoNo;
+        partial void OnNotifPromoNoChanging(global::System.String value);
+        partial void OnNotifPromoNoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NotifOfferNo
+        {
+            get
+            {
+                return _NotifOfferNo;
+            }
+            set
+            {
+                OnNotifOfferNoChanging(value);
+                ReportPropertyChanging("NotifOfferNo");
+                _NotifOfferNo = StructuralObject.SetValidValue(value, true, "NotifOfferNo");
+                ReportPropertyChanged("NotifOfferNo");
+                OnNotifOfferNoChanged();
+            }
+        }
+        private global::System.String _NotifOfferNo;
+        partial void OnNotifOfferNoChanging(global::System.String value);
+        partial void OnNotifOfferNoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NotifType
+        {
+            get
+            {
+                return _NotifType;
+            }
+            set
+            {
+                OnNotifTypeChanging(value);
+                ReportPropertyChanging("NotifType");
+                _NotifType = StructuralObject.SetValidValue(value, true, "NotifType");
+                ReportPropertyChanged("NotifType");
+                OnNotifTypeChanged();
+            }
+        }
+        private global::System.String _NotifType;
+        partial void OnNotifTypeChanging(global::System.String value);
+        partial void OnNotifTypeChanged();
 
         #endregion
 
@@ -4363,6 +4579,30 @@ namespace MS.Business
         private Nullable<global::System.Int32> _LogCount;
         partial void OnLogCountChanging(Nullable<global::System.Int32> value);
         partial void OnLogCountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CardNumber
+        {
+            get
+            {
+                return _CardNumber;
+            }
+            set
+            {
+                OnCardNumberChanging(value);
+                ReportPropertyChanging("CardNumber");
+                _CardNumber = StructuralObject.SetValidValue(value, true, "CardNumber");
+                ReportPropertyChanged("CardNumber");
+                OnCardNumberChanged();
+            }
+        }
+        private global::System.String _CardNumber;
+        partial void OnCardNumberChanging(global::System.String value);
+        partial void OnCardNumberChanged();
 
         #endregion
 

@@ -67,17 +67,17 @@
     <Compile Include="Kazanclar.cs" />
     <Compile Include="Magazalar.cs" />
     <Compile Include="MilKatalogUrunleri.cs" />
+    <Compile Include="ProjectDbContext1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectDbContext.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Sallakazan.cs" />
     <Compile Include="TblDevices.cs" />
     <Compile Include="tblImage.cs" />
     <Compile Include="TblKullanicilar.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="ProjectDbContext.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProjectDbContext.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

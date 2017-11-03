@@ -96,6 +96,7 @@
           <Property Name="ShowInfo" Type="bit" />
           <Property Name="KazancTag" Type="nvarchar(max)" />
           <Property Name="FooterText" Type="nvarchar(max)" />
+          <Property Name="KazancBackgroundNew" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Magazalar">
           <Key>
@@ -182,6 +183,9 @@
           <Property Name="NotifDate" Type="datetime" />
           <Property Name="NotifStatus" Type="bit" />
           <Property Name="NotifProgress" Type="int" />
+          <Property Name="NotifPromoNo" Type="nvarchar(max)" />
+          <Property Name="NotifOfferNo" Type="nvarchar(max)" />
+          <Property Name="NotifType" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="TblDevices">
           <Key>
@@ -199,6 +203,7 @@
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
           <Property Name="LastLogTime" Type="datetime" />
           <Property Name="LogCount" Type="int" />
+          <Property Name="CardNumber" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tblImage">
           <Key>
@@ -232,6 +237,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="spCMSAddNotifDeviceWithCardNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cardNumber" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="notifKey" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="spCMSAddTmpToNotifQueue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="skey" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="spCMSClearNotifQueue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="notifKey" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="spCMSDeleteNotifQueue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="notifKey" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <Function Name="spCMSGetNotifDevices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="notifKey" Type="nvarchar(max)" Mode="In" />
         </Function>
@@ -240,6 +258,9 @@
           <Parameter Name="notifText" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="notifKey" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="notifDate" Type="datetime" Mode="In" />
+          <Parameter Name="promoNo" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="offerNo" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="notifType" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="spUpdateCategoryCacheKey" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="categoryId" Type="int" Mode="In" />
@@ -315,8 +336,24 @@
             <Parameter Name="notifText" Mode="In" Type="String" />
             <Parameter Name="notifKey" Mode="In" Type="String" />
             <Parameter Name="notifDate" Mode="In" Type="DateTime" />
+            <Parameter Name="promoNo" Mode="In" Type="String" />
+            <Parameter Name="offerNo" Mode="In" Type="String" />
+            <Parameter Name="notifType" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="TblCMSNotifMaster" EntityType="ProjectDbContextModel.TblCMSNotifMaster" />
+          <FunctionImport Name="spCMSAddNotifDeviceWithCardNumber">
+            <Parameter Name="cardNumber" Mode="In" Type="String" />
+            <Parameter Name="notifKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spCMSClearNotifQueue">
+          <Parameter Name="notifKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spCMSAddTmpToNotifQueue">
+          <Parameter Name="skey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spCMSDeleteNotifQueue">
+          <Parameter Name="notifKey" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="CampaignCategory">
           <Key>
@@ -413,6 +450,7 @@
           <Property Name="ShowInfo" Type="Boolean" />
           <Property Name="KazancTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="FooterText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KazancBackgroundNew" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="BebeMoneyKatalogKategorileri">
           <Key>
@@ -451,6 +489,7 @@
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastLogTime" Type="DateTime" Precision="3" />
           <Property Name="LogCount" Type="Int32" />
+          <Property Name="CardNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="SallaKazan">
           <Key>
@@ -561,6 +600,9 @@
           <Property Name="NotifDate" Type="DateTime" Precision="3" />
           <Property Name="NotifStatus" Type="Boolean" />
           <Property Name="NotifProgress" Type="Int32" />
+          <Property Name="NotifPromoNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NotifOfferNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NotifType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -642,6 +684,7 @@
           <EntitySetMapping Name="Kazanclars">
             <EntityTypeMapping TypeName="ProjectDbContextModel.Kazanclar">
               <MappingFragment StoreEntitySet="Kazanclar">
+                <ScalarProperty Name="KazancBackgroundNew" ColumnName="KazancBackgroundNew" />
                 <ScalarProperty Name="FooterText" ColumnName="FooterText" />
                 <ScalarProperty Name="KazancTag" ColumnName="KazancTag" />
                 <ScalarProperty Name="ShowInfo" ColumnName="ShowInfo" />
@@ -683,6 +726,7 @@
           <EntitySetMapping Name="TblDevices">
             <EntityTypeMapping TypeName="ProjectDbContextModel.TblDevice">
               <MappingFragment StoreEntitySet="TblDevices">
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
                 <ScalarProperty Name="LogCount" ColumnName="LogCount" />
                 <ScalarProperty Name="LastLogTime" ColumnName="LastLogTime" />
                 <ScalarProperty Name="Country" ColumnName="Country" />
@@ -819,6 +863,9 @@
           <EntitySetMapping Name="TblCMSNotifMaster">
             <EntityTypeMapping TypeName="ProjectDbContextModel.TblCMSNotifMaster">
               <MappingFragment StoreEntitySet="TblCMSNotifMaster">
+                <ScalarProperty Name="NotifType" ColumnName="NotifType" />
+                <ScalarProperty Name="NotifOfferNo" ColumnName="NotifOfferNo" />
+                <ScalarProperty Name="NotifPromoNo" ColumnName="NotifPromoNo" />
                 <ScalarProperty Name="NotifProgress" ColumnName="NotifProgress" />
                 <ScalarProperty Name="NotifStatus" ColumnName="NotifStatus" />
                 <ScalarProperty Name="NotifDate" ColumnName="NotifDate" />
@@ -828,6 +875,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spCMSAddNotifDeviceWithCardNumber" FunctionName="ProjectDbContext.Store.spCMSAddNotifDeviceWithCardNumber" />
+          <FunctionImportMapping FunctionImportName="spCMSClearNotifQueue" FunctionName="ProjectDbContext.Store.spCMSClearNotifQueue" />
+          <FunctionImportMapping FunctionImportName="spCMSAddTmpToNotifQueue" FunctionName="ProjectDbContext.Store.spCMSAddTmpToNotifQueue" />
+          <FunctionImportMapping FunctionImportName="spCMSDeleteNotifQueue" FunctionName="ProjectDbContext.Store.spCMSDeleteNotifQueue" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

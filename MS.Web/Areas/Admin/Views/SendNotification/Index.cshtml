@@ -60,7 +60,7 @@
                         <div class="panel-body" style="border: 0px solid #c1c1c1;">
                             <div class="row">
 
-                                <label for="Campno" class="control-label col-sm-2">@Resource_tr_TR.CampaignNo:</label>
+                                <label for="Campno" class="control-label col-sm-2">Promo NO:</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="CampNO" name="CampNO" class="form-control" />
                                    <span  id="camperror" class="formerror"></span>
@@ -69,10 +69,29 @@
 
                             </div>
                             <div class="row">
+
+                                <label for="OfferNo" class="control-label col-sm-2">Offer No:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" id="OfferNo" name="OfferNo" class="form-control" />
+                                    <span id="offernoerror" class="formerror"></span>
+                                    <br />
+                                </div>
+
+                            </div>
+                            <div class="row">
                                 <label for="CampBody" class="control-label col-sm-2">@Resource_tr_TR.CampaignBody:</label>
                                 <div class="col-sm-4">
                                     <textarea name="CampBody" id="CampBody" class="form-control"> </textarea>
                                     <span  id="campbodyerror" class="formerror"></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="lblTextBody" class="control-label col-sm-2">@Resource_tr_TR.NotifDate:</label>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input type='text' class="form-control" id="dtNotificationCamp" name="dtNotificationCamp" />
+                                    </div>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
@@ -112,6 +131,19 @@
                                     </div>
                                 </div>
 
+                            <div class="row">
+                                <label for="lblKitle" class="control-label col-sm-2">Kitleli Gönderim Dosyası (Opsiyonel)</label>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input type="file" id="uploadFile" name="uploadFile" accept=".txt" />
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+
+                               
+                            </div>
+
                                     @Html.Hidden("tockenvalueforText")
                                     <input name="submitText" type="submit" value=" send" id="submitText" class="btn bg-orange" />
                                     &nbsp;
@@ -124,7 +156,7 @@
                                 </div>
 
 
-                    </div>
+                    
                 }
 
                 <br /><br />
@@ -143,6 +175,10 @@
                    column.For(a => a.NotifDate).Named("Bildirim Tarihi").Attributes(@class => "width10p");
                    column.For(a => a.NotifStatus).Named("Bildirim Durumu").Attributes(@class => "width10p");
                    column.For(a => a.NotifProgress).Named("Bildirim İlerleme").Attributes(@class => "width10p");
+                   column.For(a => 
+                                        " <a class=\"btn btn-danger btn-sm\" href=\"" + Url.Action("delete", new { notifKey = a.NotifKey }) + "\" data-target=\"#modal-delete-Notification\" data-toggle=\"modal\">" + Resource_tr_TR.Delete + " <i class=\"fa fa-trash-o\"></i></a>").Attributes(@class => "width15p")
+                                        .Named(Resource_tr_TR.Operations).Encode(false);
+                     
                }).Attributes(@id => "grid-Notification", @class => "table table-bordered table-hover")
                     </div>
                 </div>
@@ -150,6 +186,10 @@
 
             </div>
         </div>
+
+        @Html.Partial("_Modal", new Modal { ID = "modal-delete-Notification", AreaLabeledID = "modal-delete-Notification-label" })
+
+
     </div>
 @*    <div class="row">
         <div class="col-xs-12">
@@ -200,6 +240,8 @@
 }
 
 <script type="text/javascript">
+        $(function () {
     $('#grid-Notification').DataTable();
-</script>
+});
+     </script>
 

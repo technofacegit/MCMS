@@ -173,6 +173,15 @@
                 }
                 );
 
+
+            $("#dtNotificationCamp").datetimepicker(
+               {
+                   format: 'DD.MM.YYYY HH:mm',
+                   sideBySide: true,
+                   defaultDate: new Date(),
+               }
+               );
+
         }
 
 
