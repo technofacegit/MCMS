@@ -106,6 +106,8 @@
             }
             else if (fileName.split(".")[1].toUpperCase() == "XLS")
                 return true;
+            if (fileName.split(".")[1].toUpperCase() == "XLSX")
+                return true;
             else {
                 alert("File with " + fileName.split(".")[1] + " is invalid. Upload a validfile with xls extensions");
                 return false;

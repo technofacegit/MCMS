@@ -152,10 +152,10 @@ namespace MS.Web.Areas.Admin.Conntrollers
                     string s = Guid.NewGuid().ToString();
 
                     
-                     if (Request.Files.Count == 0)
-                    {
+                    // if (Request.Files.Count == 0)
+                    //{
                          int ix = Global.Context.spCMSNotifMaster(message, s, dtNot,"0","0","Genel");
-                     }else
+                     ///}else
                     if (Request.Files.Count > 0)
                     {
                         
@@ -163,7 +163,7 @@ namespace MS.Web.Areas.Admin.Conntrollers
 
                         if (file != null && file.ContentLength > 0)
                         {
-                            int ix = Global.Context.spCMSNotifMaster(message, s, dtNot,"0","0","Kitle");
+                            ix = Global.Context.spCMSNotifMaster(message, s, dtNot,"0","0","Kitle");
 
 
                             Global.Context.spCMSClearNotifQueue(s);

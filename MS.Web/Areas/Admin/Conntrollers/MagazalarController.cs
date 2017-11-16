@@ -46,7 +46,8 @@ namespace MS.Web.Areas.Admin.Conntrollers
 
 
                     ///string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties=Excel 8.0;";
-                    string ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=" + filePath + ";Extended Properties=\"Excel 8.0;HDR=YES;\"";
+                    //string ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=" + filePath + ";Extended Properties=\"Excel 8.0;HDR=YES;\"";
+                    string ConnectionString ="Provider=Microsoft.ACE.OLEDB.12.0;Data Source="+filePath+";Extended Properties=\"Excel 8.0;HDR=YES\"";
 
                     DataSet ds = new DataSet();
 
