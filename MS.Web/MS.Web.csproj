@@ -42,6 +42,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -579,6 +580,8 @@
     <Content Include="Areas\Admin\Views\Shared\_ModalDeleteCampaign.cshtml" />
     <Content Include="Areas\Admin\Views\Migroskop\EditorTemplates\CampaignViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_ModalDeleteMigroskop.cshtml" />
+    <Content Include="Areas\Admin\Views\SendNotification\CardNumberReportItem.cshtml" />
+    <Content Include="Areas\Admin\Views\SendNotification\CardNumberReport.cshtml" />
     <None Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\ionicons.svg" />

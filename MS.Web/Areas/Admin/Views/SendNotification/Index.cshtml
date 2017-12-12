@@ -47,7 +47,8 @@
 
                 <div class="btn_tab">
                     <button type="button" id="Campaign_Noti" class="btn btn-info">Kampanya Bildirimi</button>
-                    <button type="button" id="Text_Notif" class="btn btn-info">Metin Bildirimi</button>
+                    <button type="button" id="Text_Notif" class="btn btn-info">Kitlesiz Metin Bildirimi</button>
+                    <button type="button" id="Text_Notif_WithCard" class="btn btn-info">Kitleli Metin Bildirimi</button>
                 </div>
                 @using (Html.BeginForm("SendCampNotifiaction", "SendNotification", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
@@ -131,7 +132,7 @@
                                     </div>
                                 </div>
 
-                            <div class="row">
+                            @*<div class="row">
                                 <label for="lblKitle" class="control-label col-sm-2">Kitleli Gönderim Dosyası (Opsiyonel)</label>
                                 <div class="col-sm-4">
                                     <div class="form-group">
@@ -139,7 +140,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-                            </div>
+                            </div>*@
 
                                
                             </div>
@@ -158,6 +159,61 @@
 
                     
                 }
+                @using (Html.BeginForm("SendTextNotifiactionWithCard", "SendNotification", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+
+                    <div id="Text_Noti_WCard" class="container" style="width: 100%">
+
+
+                        <div class="panel-body" style="border: 0px solid #c1c1c1;">
+                            <div class="row">
+                                <label for="lblTextBodyWCard" class="control-label col-sm-2">@Resource_tr_TR.TextBody:</label>
+                                <div class="col-sm-4">
+                                    <textarea name="TextBodyWCard" id="TextBodyWCard" class="form-control"> </textarea>
+                                    <span id="campbodytexterrorWCard" class="formerror"></span>
+                                    <div class="clearfix"></div>
+                                    <br />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="lblTextBodyWCard" class="control-label col-sm-2">@Resource_tr_TR.NotifDate:</label>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input type='text' class="form-control" id="dtNotificationWCard" name="dtNotificationWCard" />
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label for="lblKitleWCard" class="control-label col-sm-2">Kitleli Gönderim Dosyası (Opsiyonel)</label>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input type="file" id="uploadFileWCard" name="uploadFileWCard" accept=".txt"  />
+                                        <span id="fileerrorWCard" class="formerror"></span>
+
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        @Html.Hidden("tockenvalueforText")
+                        <input name="submitText" type="submit" value=" send" id="submitTextWCard" class="btn bg-orange" />
+                        &nbsp;
+                        <br />
+
+
+
+
+
+                    </div>
+
+
+
+                }
 
                 <br /><br />
                 <div class="box">
@@ -173,8 +229,22 @@
                    column.For(a => a.NotifText).Named("Bildirim Metni").Attributes(@class => "width10p");
                    column.For(a => a.NotifKey).Named("Bildirim Anahtarı").Attributes(@class => "width10p");
                    column.For(a => a.NotifDate).Named("Bildirim Tarihi").Attributes(@class => "width10p");
+                   column.For(a => a.NotifType).Named("Bildirim Tipi").Attributes(@class => "width10p");
                    column.For(a => a.NotifStatus).Named("Bildirim Durumu").Attributes(@class => "width10p");
                    column.For(a => a.NotifProgress).Named("Bildirim İlerleme").Attributes(@class => "width10p");
+                   column.For(a => a.NotifTotalCount).Named("Toplam Cihaz Sayisi").Attributes(@class => "width10p");
+
+                   column.For(a=>a.NotifType == "Kitle" ? " <a  href=\"" + Url.Action("report", new { notifKey = a.NotifKey }) + "\" data-target=\"#modal-report-Notification\" data-toggle=\"modal\">" + a.NotifTotalCount + "</a>" : "-").Attributes(@class => "width15p")
+                                           .Named("Kart Raporu").Encode(false);
+                   
+                   //column.For(a =>
+                   //                        " <a  href=\"" + Url.Action("report", new { notifKey = a.NotifKey }) + "\" data-target=\"#modal-report-Notification\" data-toggle=\"modal\">" + a.NotifTotalCount + "</a>"
+                           
+                           
+                   //        ).Attributes(@class => "width15p")
+                   //                        .Named("Kart Raporu").Encode(false);
+                   
+                   
                    column.For(a => 
                                         " <a class=\"btn btn-danger btn-sm\" href=\"" + Url.Action("delete", new { notifKey = a.NotifKey }) + "\" data-target=\"#modal-delete-Notification\" data-toggle=\"modal\">" + Resource_tr_TR.Delete + " <i class=\"fa fa-trash-o\"></i></a>").Attributes(@class => "width15p")
                                         .Named(Resource_tr_TR.Operations).Encode(false);
@@ -188,6 +258,9 @@
         </div>
 
         @Html.Partial("_Modal", new Modal { ID = "modal-delete-Notification", AreaLabeledID = "modal-delete-Notification-label" })
+        @Html.Partial("_Modal", new Modal { ID = "modal-report-Notification", AreaLabeledID = "modal-report-Notification-label" })
+
+
 
 
     </div>
@@ -242,6 +315,9 @@
 <script type="text/javascript">
         $(function () {
     $('#grid-Notification').DataTable();
-});
+        });
+
+
+      
      </script>
 

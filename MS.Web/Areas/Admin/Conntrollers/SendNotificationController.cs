@@ -156,101 +156,101 @@ namespace MS.Web.Areas.Admin.Conntrollers
                     //{
                          int ix = Global.Context.spCMSNotifMaster(message, s, dtNot,"0","0","Genel");
                      ///}else
-                    if (Request.Files.Count > 0)
-                    {
+                    //if (Request.Files.Count > 0)
+                    //{
                         
-                        var file = Request.Files[0];
+                    //    var file = Request.Files[0];
 
-                        if (file != null && file.ContentLength > 0)
-                        {
-                            ix = Global.Context.spCMSNotifMaster(message, s, dtNot,"0","0","Kitle");
-
-
-                            Global.Context.spCMSClearNotifQueue(s);
+                    //    if (file != null && file.ContentLength > 0)
+                    //    {
+                    //        ix = Global.Context.spCMSNotifMaster(message, s, dtNot,"0","0","Kitle");
 
 
-
-                            //Create a DataTable.
-                            DataTable dt = new DataTable();
-                            dt.Columns.AddRange(new DataColumn[2] { 
-                                new DataColumn("CardNumber", typeof(string)),
-                                new DataColumn("NotificationKey",typeof(string)) });
+                    //        Global.Context.spCMSClearNotifQueue(s);
 
 
-                            List<DataTable> bulkDts = new List<DataTable>();
-                            for (int i = 0; i < 50; i++)
-                            {
-                                bulkDts.Add(dt.Clone());
-                            }
 
-                            int j = 0;
-                            StreamReader reader = new StreamReader(file.InputStream);
-                            do
-                            {
+                    //        //Create a DataTable.
+                    //        DataTable dt = new DataTable();
+                    //        dt.Columns.AddRange(new DataColumn[2] { 
+                    //            new DataColumn("CardNumber", typeof(string)),
+                    //            new DataColumn("NotificationKey",typeof(string)) });
 
 
-                                String line = reader.ReadLine();
-                                int tblIndex = j / 30000;
+                    //        List<DataTable> bulkDts = new List<DataTable>();
+                    //        for (int i = 0; i < 50; i++)
+                    //        {
+                    //            bulkDts.Add(dt.Clone());
+                    //        }
+
+                    //        int j = 0;
+                    //        StreamReader reader = new StreamReader(file.InputStream);
+                    //        do
+                    //        {
 
 
-                                DataRow dr = bulkDts[tblIndex].NewRow();
+                    //            String line = reader.ReadLine();
+                    //            int tblIndex = j / 30000;
+
+
+                    //            DataRow dr = bulkDts[tblIndex].NewRow();
                                 
-                                    dr["CardNumber"] = line;
-                                    dr["NotificationKey"] = s;
+                    //                dr["CardNumber"] = line;
+                    //                dr["NotificationKey"] = s;
 
                                
-                                bulkDts[tblIndex].Rows.Add(dr);
+                    //            bulkDts[tblIndex].Rows.Add(dr);
 
-                                j++;
-                                //TblCMSDeviceTmp devicetmp = new TblCMSDeviceTmp();
-                                //devicetmp.CardNumber = line;
-                                //devicetmp.NotificationKey = s;
-                                //devicetmp.Save();
-                                ///Global.Context.TblCMSDeviceTmp.AddObject(devicetmp);
+                    //            j++;
+                    //            //TblCMSDeviceTmp devicetmp = new TblCMSDeviceTmp();
+                    //            //devicetmp.CardNumber = line;
+                    //            //devicetmp.NotificationKey = s;
+                    //            //devicetmp.Save();
+                    //            ///Global.Context.TblCMSDeviceTmp.AddObject(devicetmp);
 
-                                ////Global.Context.spCMSAddNotifDeviceWithCardNumber(line, s);
-                            } while (reader.Peek() != -1);
-                            reader.Close();
-
-
+                    //            ////Global.Context.spCMSAddNotifDeviceWithCardNumber(line, s);
+                    //        } while (reader.Peek() != -1);
+                    //        reader.Close();
 
 
 
 
-                            string conString = ConfigurationManager.ConnectionStrings["migrosiphoneConnectionString"].ConnectionString;
-                            using (SqlConnection con = new SqlConnection(conString))
-                            {
-                                using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(con))
-                                {
-                                    //Set the database table name.
-                                    sqlBulkCopy.DestinationTableName = "TblCMSDeviceTmp";
-                                    sqlBulkCopy.BulkCopyTimeout = 90;
-
-                                    //[OPTIONAL]: Map the DataTable columns with that of the database table
-                                    ///sqlBulkCopy.ColumnMappings.Add("Id", "CustomerId");
-                                    sqlBulkCopy.ColumnMappings.Add("CardNumber", "CardNumber");
-                                    sqlBulkCopy.ColumnMappings.Add("NotificationKey", "NotificationKey");
-
-                                    con.Open();
-                                    for (int x = 0; x < bulkDts.Count; x++) {
-                                        if (bulkDts[x].Rows.Count > 0) {
-                                            sqlBulkCopy.WriteToServer(bulkDts[x]);
-                                        }
-                                    }
-                                    con.Close();
-                                }
-                            }
 
 
+                    //        string conString = ConfigurationManager.ConnectionStrings["migrosiphoneConnectionString"].ConnectionString;
+                    //        using (SqlConnection con = new SqlConnection(conString))
+                    //        {
+                    //            using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(con))
+                    //            {
+                    //                //Set the database table name.
+                    //                sqlBulkCopy.DestinationTableName = "TblCMSDeviceTmp";
+                    //                sqlBulkCopy.BulkCopyTimeout = 90;
+
+                    //                //[OPTIONAL]: Map the DataTable columns with that of the database table
+                    //                ///sqlBulkCopy.ColumnMappings.Add("Id", "CustomerId");
+                    //                sqlBulkCopy.ColumnMappings.Add("CardNumber", "CardNumber");
+                    //                sqlBulkCopy.ColumnMappings.Add("NotificationKey", "NotificationKey");
+
+                    //                con.Open();
+                    //                for (int x = 0; x < bulkDts.Count; x++) {
+                    //                    if (bulkDts[x].Rows.Count > 0) {
+                    //                        sqlBulkCopy.WriteToServer(bulkDts[x]);
+                    //                    }
+                    //                }
+                    //                con.Close();
+                    //            }
+                    //        }
 
 
-                           /// Global.Context.spCMSAddTmpToNotifQueue(s);
 
-                            //var fileName = Server.MapPath.GetFileName(file.FileName);
-                            //var path =Server.MapPath.Combine(Server.MapPath("~/Images/"), fileName);
-                            //file.SaveAs(path);
-                        }
-                    }
+
+                    //       /// Global.Context.spCMSAddTmpToNotifQueue(s);
+
+                    //        //var fileName = Server.MapPath.GetFileName(file.FileName);
+                    //        //var path =Server.MapPath.Combine(Server.MapPath("~/Images/"), fileName);
+                    //        //file.SaveAs(path);
+                    //    }
+                    //}
 
                 }
 
@@ -317,6 +317,206 @@ namespace MS.Web.Areas.Admin.Conntrollers
 
         }
 
+        public ActionResult SendTextNotifiactionWithCard(FormCollection FC)
+        {
+            //try
+            //{
+
+
+
+
+
+
+            string[] arraytoken = new string[50];
+            string message = null;
+            string IOSToken = string.Empty;
+
+
+            if (FC["TextBodyWCard"] != null)
+            {
+                message = FC["TextBodyWCard"];
+
+                String dtNotification = FC["dtNotificationWCard"];
+
+                DateTime dtNot = DateTime.ParseExact(dtNotification.ToString(), "d.M.yyyy HH:mm", CultureInfo.InvariantCulture);
+
+
+                string s = Guid.NewGuid().ToString();
+
+
+                // if (Request.Files.Count == 0)
+                //{
+                ///int ix = Global.Context.spCMSNotifMaster(message, s, dtNot, "0", "0", "Genel");
+                ///}else
+                if (Request.Files.Count > 0)
+                {
+
+                    var file = Request.Files[0];
+
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        int ix = Global.Context.spCMSNotifMaster(message, s, dtNot, "0", "0", "Kitle");
+                        Global.Context.spCMSClearNotifQueue(s);
+
+
+
+                        //Create a DataTable.
+                        DataTable dt = new DataTable();
+                        dt.Columns.AddRange(new DataColumn[2] { 
+                                new DataColumn("CardNumber", typeof(string)),
+                                new DataColumn("NotificationKey",typeof(string)) });
+
+
+                        List<DataTable> bulkDts = new List<DataTable>();
+                        for (int i = 0; i < 50; i++)
+                        {
+                            bulkDts.Add(dt.Clone());
+                        }
+
+                        int j = 0;
+                        StreamReader reader = new StreamReader(file.InputStream);
+                        do
+                        {
+
+
+                            String line = reader.ReadLine();
+                            int tblIndex = j / 30000;
+
+
+                            DataRow dr = bulkDts[tblIndex].NewRow();
+
+                            dr["CardNumber"] = line;
+                            dr["NotificationKey"] = s;
+
+
+                            bulkDts[tblIndex].Rows.Add(dr);
+
+                            j++;
+                            //TblCMSDeviceTmp devicetmp = new TblCMSDeviceTmp();
+                            //devicetmp.CardNumber = line;
+                            //devicetmp.NotificationKey = s;
+                            //devicetmp.Save();
+                            ///Global.Context.TblCMSDeviceTmp.AddObject(devicetmp);
+
+                            ////Global.Context.spCMSAddNotifDeviceWithCardNumber(line, s);
+                        } while (reader.Peek() != -1);
+                        reader.Close();
+
+
+
+
+
+
+                        string conString = ConfigurationManager.ConnectionStrings["migrosiphoneConnectionString"].ConnectionString;
+                        using (SqlConnection con = new SqlConnection(conString))
+                        {
+                            using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(con))
+                            {
+                                //Set the database table name.
+                                sqlBulkCopy.DestinationTableName = "TblCMSDeviceTmp";
+                                sqlBulkCopy.BulkCopyTimeout = 90;
+
+                                //[OPTIONAL]: Map the DataTable columns with that of the database table
+                                ///sqlBulkCopy.ColumnMappings.Add("Id", "CustomerId");
+                                sqlBulkCopy.ColumnMappings.Add("CardNumber", "CardNumber");
+                                sqlBulkCopy.ColumnMappings.Add("NotificationKey", "NotificationKey");
+
+                                con.Open();
+                                for (int x = 0; x < bulkDts.Count; x++)
+                                {
+                                    if (bulkDts[x].Rows.Count > 0)
+                                    {
+                                        sqlBulkCopy.WriteToServer(bulkDts[x]);
+                                    }
+                                }
+                                con.Close();
+                            }
+                        }
+
+
+
+
+                        /// Global.Context.spCMSAddTmpToNotifQueue(s);
+
+                        //var fileName = Server.MapPath.GetFileName(file.FileName);
+                        //var path =Server.MapPath.Combine(Server.MapPath("~/Images/"), fileName);
+                        //file.SaveAs(path);
+                    }
+                }
+
+            }
+
+            //var devices = Global.Context.spV4_AllDevicesWithTrackingNumber(s);
+
+            //if (FC["TextBody"] != null)
+            //{
+            //    message = FC["TextBody"];
+
+            //    foreach (var device in devices)
+            //    {
+            //        IOSToken = device.DeviceToken;
+
+            //        if (!string.IsNullOrEmpty(IOSToken))
+            //        {
+            //            PushSharp.PushNotificationService.PushNotificationService push = new PushSharp.PushNotificationService.PushNotificationService(s);
+            //            push.SendPushNotification(device.DeviceToken, message);
+            //        }
+            //    }
+            //}
+
+            //if (FC["tockenvalueforText"] != null && FC["TextBody"] != null)
+            //{
+            //    int i = 0;
+            //    foreach (string value in FC["tockenvalueforText"].Split(','))
+            //    {
+            //        TblDevice TblDevice = TblDevice.GetTblDevicesByDeviceToken(value);
+            //        if (TblDevice.ApplicationName.Contains("Migrosdroid"))
+            //        {
+            //            arraytoken[i] = value;
+            //            i++;
+            //        }
+            //        else
+            //        {
+            //            IOSToken = value;
+            //        }
+
+            //    }
+
+            //    message = FC["TextBody"];
+
+            //}
+
+            //if (arraytoken != null)
+            //{
+            //    Android android = new Android(SiteSession.Apikey);
+            //    android.SendNotification(message, arraytoken);
+            //}
+
+            //if (!string.IsNullOrEmpty(IOSToken))
+            //{
+            //    Apple apple = new Apple(Server.MapPath("~/Content/migros_test_adhoc.p12"), "99");
+            //    apple.SendNotification(message, IOSToken);
+            //}
+
+            ShowMessageBox(MessageType.Success, "Text Notification has been sent successfully!!", false);
+            //}
+            //catch (Exception ex)
+            //{
+            //    ModelState.AddModelError("", "Some problem has occurred while sending notification!!"+ex.StackTrace);
+            //    return CreateModelStateErrors();
+            //}
+            return RedirectToAction("Index");
+
+        }
+
+
+
+        [HttpGet]
+        public ActionResult report(string notifKey)
+        {
+            var notifreports = Global.Context.NotifReport(notifKey).ToList();
+            return PartialView("CardNumberReport", notifreports);
+        }
 
 
         [HttpGet]

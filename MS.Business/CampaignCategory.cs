@@ -13,7 +13,7 @@ namespace MS.Business
     {
         public static List<CampaignCategory> GetCampaignCategories()
         {
-            return Global.Context.CampaignCategories.ToList();
+            return Global.Context.CampaignCategories.Where(x => x.NewVersion == true).ToList();
         }
 
         public static CampaignCategory GetCampaignCategory(int id)

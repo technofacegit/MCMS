@@ -36,6 +36,7 @@
           <Property Name="NewCategoryBoardImage" Type="nvarchar(max)" />
           <Property Name="OptinText" Type="nvarchar(max)" />
           <Property Name="OptinHoverText" Type="nvarchar(max)" />
+          <Property Name="NewVersion" Type="bit" />
         </EntityType>
         <EntityType Name="Campaigns">
           <Key>
@@ -186,6 +187,8 @@
           <Property Name="NotifPromoNo" Type="nvarchar(max)" />
           <Property Name="NotifOfferNo" Type="nvarchar(max)" />
           <Property Name="NotifType" Type="nvarchar(max)" />
+          <Property Name="NotifSuccededCount" Type="int" />
+          <Property Name="NotifTotalCount" Type="int" />
         </EntityType>
         <EntityType Name="TblDevices">
           <Key>
@@ -261,6 +264,9 @@
           <Parameter Name="promoNo" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="offerNo" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="notifType" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="spGetNotifReports" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="notifKey" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="spUpdateCategoryCacheKey" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="categoryId" Type="int" Mode="In" />
@@ -354,6 +360,12 @@
           <FunctionImport Name="spCMSDeleteNotifQueue">
           <Parameter Name="notifKey" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="spGetNotifReports">
+            <Parameter Name="notifKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="NotifReport" ReturnType="Collection(ProjectDbContextModel.NotifReports_Result)">
+            <Parameter Name="notifKey" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="CampaignCategory">
           <Key>
@@ -378,6 +390,7 @@
           <Property Type="String" Name="NewCategoryBoardImage" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="OptinText" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="OptinHoverText" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NewVersion" Type="Boolean" />
         </EntityType>
         <EntityType Name="Kategoritipi">
           <Key>
@@ -603,7 +616,12 @@
           <Property Name="NotifPromoNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NotifOfferNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NotifType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NotifSuccededCount" Type="Int32" />
+          <Property Name="NotifTotalCount" Type="Int32" />
         </EntityType>
+        <ComplexType Name="NotifReports_Result" >
+          <Property Type="String" Name="CardNumber" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -615,6 +633,7 @@
           <EntitySetMapping Name="CampaignCategories">
             <EntityTypeMapping TypeName="ProjectDbContextModel.CampaignCategory">
               <MappingFragment StoreEntitySet="CampaignCategories">
+                <ScalarProperty Name="NewVersion" ColumnName="NewVersion" />
                 <ScalarProperty Name="OptinHoverText" ColumnName="OptinHoverText" />
                 <ScalarProperty Name="OptinText" ColumnName="OptinText" />
                 <ScalarProperty Name="NewCategoryBoardImage" ColumnName="NewCategoryBoardImage" />
@@ -863,6 +882,8 @@
           <EntitySetMapping Name="TblCMSNotifMaster">
             <EntityTypeMapping TypeName="ProjectDbContextModel.TblCMSNotifMaster">
               <MappingFragment StoreEntitySet="TblCMSNotifMaster">
+                <ScalarProperty Name="NotifTotalCount" ColumnName="NotifTotalCount" />
+                <ScalarProperty Name="NotifSuccededCount" ColumnName="NotifSuccededCount" />
                 <ScalarProperty Name="NotifType" ColumnName="NotifType" />
                 <ScalarProperty Name="NotifOfferNo" ColumnName="NotifOfferNo" />
                 <ScalarProperty Name="NotifPromoNo" ColumnName="NotifPromoNo" />
@@ -879,6 +900,14 @@
           <FunctionImportMapping FunctionImportName="spCMSClearNotifQueue" FunctionName="ProjectDbContext.Store.spCMSClearNotifQueue" />
           <FunctionImportMapping FunctionImportName="spCMSAddTmpToNotifQueue" FunctionName="ProjectDbContext.Store.spCMSAddTmpToNotifQueue" />
           <FunctionImportMapping FunctionImportName="spCMSDeleteNotifQueue" FunctionName="ProjectDbContext.Store.spCMSDeleteNotifQueue" />
+          <FunctionImportMapping FunctionImportName="spGetNotifReports" FunctionName="ProjectDbContext.Store.spGetNotifReports" />
+          <FunctionImportMapping FunctionImportName="NotifReport" FunctionName="ProjectDbContext.Store.spGetNotifReports" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjectDbContextModel.NotifReports_Result">
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

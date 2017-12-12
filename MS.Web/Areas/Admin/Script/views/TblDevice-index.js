@@ -7,19 +7,33 @@
           
             $("#Camp_Noti").show();
             $("#Text_Noti").hide();
+            $("#Text_Noti_WCard").hide();
 
             $("#Text_Notif").click(function (event)
             {
               
+                $("#Text_Noti_WCard").hide();
                 $("#Camp_Noti").hide();
                 $("#Text_Noti").show();
             });
         
             $("#Campaign_Noti").click(function (event) {
               
+                $("#Text_Noti_WCard").hide();
                 $("#Camp_Noti").show();
                 $("#Text_Noti").hide();
             });
+
+            $("#Text_Notif_WithCard").click(function (event) {
+
+                $("#Text_Noti_WCard").show();
+                $("#Camp_Noti").hide();
+                $("#Text_Noti").hide();
+            });
+
+            
+
+
 
             $("#submit").click(function (event) {
 
@@ -73,6 +87,29 @@
                 else { return false;}
             });
 
+
+            $("#submitTextWCard").click(function (event) {
+
+                var result = wcardformvalidate();
+                if (result == true) {
+                    var valued = '';
+                    var oTable = $('#grid-TblDevice').dataTable();
+                    $(".selected").each(function () {
+                        if ($(this).find('input:checkbox').prop('checked')) {
+                            valued = valued + $(this).find('input:checkbox').attr('value') + ',';
+
+                        }
+                    });
+
+                    $("#tockenvalueforText").val(valued);
+                    //var rowcollection = oTable.$(".selected").find('input:checkbox').prop('checked');
+                    //alert(rowcollection);
+
+
+                }
+                else { return false; }
+            });
+
         }
 
         function campformvalidate()
@@ -80,8 +117,7 @@
             var messagevalidation = true;
            
             var campvalue = $("#CampNO").val();
-            
-            var campbodyvalue = $("#CampBody").val();
+             var campbodyvalue = $("#CampBody").val();
 
             var checkboxvalidation = 'false';
             $(".selected").each(function () {
@@ -154,6 +190,54 @@
 
             }
 
+        function wcardformvalidate() {
+            var messagevalidation = true;
+
+            var campvalue = $("#TextBodyWCard").val();
+
+            var fileValue = $("#uploadFileWCard").val();
+           //// alert(fileValue);
+            var checkboxvalidation = 'false';
+            $(".selected").each(function () {
+                if ($(this).find('input:checkbox').prop('checked') == true)
+                { checkboxvalidation = true }
+            });
+
+            //if (checkboxvalidation == 'false') {
+            //  //  alert('Please select at least one record from list !!');
+            //    $('#diverror').show();
+            //    messagevalidation = false;
+            //    return false;
+            //}
+
+            if (campvalue.trim() == null || campvalue.trim() == "") {
+
+                messagevalidation = false;
+                $('#campbodytexterrorWCard').text('*required');
+            }
+            else {
+                $('#campbodytexterrorWCard').text('');
+
+            }
+
+            if (fileValue.trim() == null || fileValue.trim() == "") {
+
+                messagevalidation = false;
+                $('#fileerrorWCard').text('*required');
+            }
+            else {
+                $('#fileerrorWCard').text('');
+
+            }
+
+
+            return messagevalidation;
+
+        }
+
+
+
+
         function initializeGrid() {
             $('#grid-TblDevice').DataTable({
                 "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [0] }],
@@ -181,6 +265,15 @@
                    defaultDate: new Date(),
                }
                );
+
+
+            $("#dtNotificationWCard").datetimepicker(
+              {
+                  format: 'DD.MM.YYYY HH:mm',
+                  sideBySide: true,
+                  defaultDate: new Date(),
+              }
+              );
 
         }
 

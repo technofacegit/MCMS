@@ -679,6 +679,44 @@ namespace MS.Business
     
             return base.ExecuteFunction("spCMSDeleteNotifQueue", notifKeyParameter);
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="notifKey">No Metadata Documentation available.</param>
+        public int spGetNotifReports(global::System.String notifKey)
+        {
+            ObjectParameter notifKeyParameter;
+            if (notifKey != null)
+            {
+                notifKeyParameter = new ObjectParameter("notifKey", notifKey);
+            }
+            else
+            {
+                notifKeyParameter = new ObjectParameter("notifKey", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction("spGetNotifReports", notifKeyParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="notifKey">No Metadata Documentation available.</param>
+        public ObjectResult<NotifReports_Result> NotifReport(global::System.String notifKey)
+        {
+            ObjectParameter notifKeyParameter;
+            if (notifKey != null)
+            {
+                notifKeyParameter = new ObjectParameter("notifKey", notifKey);
+            }
+            else
+            {
+                notifKeyParameter = new ObjectParameter("notifKey", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<NotifReports_Result>("NotifReport", notifKeyParameter);
+        }
 
         #endregion
 
@@ -1791,6 +1829,30 @@ namespace MS.Business
         private global::System.String _OptinHoverText;
         partial void OnOptinHoverTextChanging(global::System.String value);
         partial void OnOptinHoverTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> NewVersion
+        {
+            get
+            {
+                return _NewVersion;
+            }
+            set
+            {
+                OnNewVersionChanging(value);
+                ReportPropertyChanging("NewVersion");
+                _NewVersion = StructuralObject.SetValidValue(value, "NewVersion");
+                ReportPropertyChanged("NewVersion");
+                OnNewVersionChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _NewVersion;
+        partial void OnNewVersionChanging(Nullable<global::System.Boolean> value);
+        partial void OnNewVersionChanged();
 
         #endregion
 
@@ -4251,6 +4313,54 @@ namespace MS.Business
         private global::System.String _NotifType;
         partial void OnNotifTypeChanging(global::System.String value);
         partial void OnNotifTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> NotifSuccededCount
+        {
+            get
+            {
+                return _NotifSuccededCount;
+            }
+            set
+            {
+                OnNotifSuccededCountChanging(value);
+                ReportPropertyChanging("NotifSuccededCount");
+                _NotifSuccededCount = StructuralObject.SetValidValue(value, "NotifSuccededCount");
+                ReportPropertyChanged("NotifSuccededCount");
+                OnNotifSuccededCountChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _NotifSuccededCount;
+        partial void OnNotifSuccededCountChanging(Nullable<global::System.Int32> value);
+        partial void OnNotifSuccededCountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> NotifTotalCount
+        {
+            get
+            {
+                return _NotifTotalCount;
+            }
+            set
+            {
+                OnNotifTotalCountChanging(value);
+                ReportPropertyChanging("NotifTotalCount");
+                _NotifTotalCount = StructuralObject.SetValidValue(value, "NotifTotalCount");
+                ReportPropertyChanged("NotifTotalCount");
+                OnNotifTotalCountChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _NotifTotalCount;
+        partial void OnNotifTotalCountChanging(Nullable<global::System.Int32> value);
+        partial void OnNotifTotalCountChanged();
 
         #endregion
 
@@ -4915,6 +5025,44 @@ namespace MS.Business
     #endregion
 
     #region ComplexTypes
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="ProjectDbContextModel", Name="NotifReports_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class NotifReports_Result : ComplexObject
+    {
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CardNumber
+        {
+            get
+            {
+                return _CardNumber;
+            }
+            set
+            {
+                OnCardNumberChanging(value);
+                ReportPropertyChanging("CardNumber");
+                _CardNumber = StructuralObject.SetValidValue(value, true, "CardNumber");
+                ReportPropertyChanged("CardNumber");
+                OnCardNumberChanged();
+            }
+        }
+        private global::System.String _CardNumber;
+        partial void OnCardNumberChanging(global::System.String value);
+        partial void OnCardNumberChanged();
+
+        #endregion
+
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
