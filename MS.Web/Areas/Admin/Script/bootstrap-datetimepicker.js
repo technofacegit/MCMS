@@ -50,6 +50,7 @@
     }
 
     var dateTimePicker = function (element, options) {
+        ///alert("actualFormat" + actualFormat);
         var picker = {},
             date = moment(),
             viewDate = date.clone(),
@@ -57,7 +58,7 @@
             input,
             component = false,
             widget = false,
-            use24Hours,
+            use24Hours=true,
             minViewModeNumber = 0,
             actualFormat,
             parseFormats,
@@ -201,6 +202,7 @@
                             .append($('<span>').addClass(options.icons.down))));
                 }
 
+                use24Hours = true;
                 if (!use24Hours) {
                     topRow.append($('<td>').addClass('separator'));
                     middleRow.append($('<td>')
@@ -256,6 +258,8 @@
                     content = $('<ul>').addClass('list-unstyled'),
                     toolbar = $('<li>').addClass('picker-switch' + (options.collapse ? ' accordion-toggle' : '')).append(getToolbar());
 
+                ////alert("AM/PM" + use24Hours);
+                use24Hours = true;
                 if (use24Hours) {
                     template.addClass('usetwentyfour');
                 }
@@ -571,7 +575,7 @@
                     currentHour = viewDate.clone().startOf('d'),
                     html = [],
                     row = $('<tr>');
-
+                use24Hours = true;
                 if (viewDate.hour() > 11 && !use24Hours) {
                     currentHour.hour(12);
                 }
@@ -623,6 +627,7 @@
             },
 
             fillTime = function () {
+                use24Hours = true;
                 var timeComponents = widget.find('.timepicker span[data-time-component]');
                 if (!use24Hours) {
                     widget.find('.timepicker [data-action=togglePeriod]').text(date.format('A'));
@@ -645,6 +650,11 @@
             },
 
             setValue = function (targetMoment) {
+
+
+                //alert("date " + date);
+                ///alert("olddate " + oldDate);
+
                 var oldDate = unset ? null : date;
 
                 // case of calling setValue(null or false)
@@ -856,7 +866,7 @@
 
                 selectHour: function (e) {
                     var hour = parseInt($(e.target).text(), 10);
-
+                    use24Hours = true;
                     if (!use24Hours) {
                         if (date.hours() >= 12) {
                             if (hour !== 12) {
@@ -1049,9 +1059,9 @@
                 if (parseFormats.indexOf(format) < 0 && parseFormats.indexOf(actualFormat) < 0) {
                     parseFormats.push(actualFormat);
                 }
-
+                ///alert("format: "+actualFormat.toLowerCase());
                 use24Hours = (actualFormat.toLowerCase().indexOf('a') < 1 && actualFormat.indexOf('h') < 1);
-
+                use24Hours = true;
                 if (isEnabled('y')) {
                     minViewModeNumber = 2;
                 }

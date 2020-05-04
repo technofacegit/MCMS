@@ -81,7 +81,8 @@ namespace MS.Web.Areas.Admin.Conntrollers
                                 tblImage objphotos = new tblImage
                                   {
                                       Image = SiteKeys.DBImagePath+DemoImagefileDirectory+"/" + ix,
-                                      ImageDirectory= model.ImageDirectory.Value
+                                      ImageDirectory= model.ImageDirectory.Value,
+                                      PromoNo=model.PromoNo
                                   };
                                 Global.Context.tblImages.AddObject(objphotos);
 

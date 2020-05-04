@@ -77,14 +77,14 @@
             <div class="row">
                 <div class="form-group">
                     @Html.LabelFor(model => model.BaslangicTarih)
-                    @Html.TextBoxFor(model => model.BaslangicTarih, new { @class = "form-control", @Value = Model.BaslangicTarih.ToString("d.M.yyyy hh:mm:ss") })
+                    @Html.TextBoxFor(model => model.BaslangicTarih, new { @class = "form-control", @Value = Model.BaslangicTarih.ToString("d.M.yyyy HH:mm:ss") })
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group">
                     @Html.LabelFor(model => model.BitisTarih)
-                    @Html.TextBoxFor(model => model.BitisTarih, new { @class = "form-control", @Value = Model.BitisTarih.ToString("d.M.yyyy hh:mm:ss") })
+                    @Html.TextBoxFor(model => model.BitisTarih, new { @class = "form-control", @Value = Model.BitisTarih.ToString("d.M.yyyy HH:mm:ss") })
 
                 </div>
             </div>

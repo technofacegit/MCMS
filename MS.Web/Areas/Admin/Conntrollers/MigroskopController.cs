@@ -195,26 +195,67 @@ namespace MS.Web.Areas.Admin.Conntrollers
                         String Images = (FC["UploadedImages"]).Trim('#');
                         foreach (var item in Images.Split(new string[] { "##" }, StringSplitOptions.None))
                         {
+
+
                             JsonController objjson = new JsonController();
                             string DemoImagefileDirectory = "migroskop";
                             String filepath = this.Server.MapPath("~/areas/admin/content/images/uploads/temp/" + item);
 
                             FileInfo fi=new FileInfo(filepath);
+                            String newDirectory = fi.Directory.FullName;
+                            if (item.Contains(".zip"))
+                            {
+                                newDirectory = Decompress(fi);
 
-                            String newDirectory = Decompress(fi);
+                                FileInfo[] imgs = new DirectoryInfo(newDirectory).GetFiles();
+
+                                List<FileInfo> fis = new List<FileInfo>();
 
 
 
+                                if (imgs.Length == 0)
+                                {
+                                    DirectoryInfo[] dirs = new DirectoryInfo(newDirectory).GetDirectories();
+                                    foreach (System.IO.DirectoryInfo dr in dirs)
+                                    {
+                                        foreach (System.IO.FileInfo bmp in dr.GetFiles())
+                                        {
+                                            fis.Add(bmp);
+                                        }
+                                    }
 
-                            FileInfo[] imgs = new DirectoryInfo(newDirectory).GetFiles();
+
+                                }
+                                else {
+
+                                    foreach (System.IO.FileInfo bmp in imgs)
+                                    {
+                                        fis.Add(bmp);
+                                    }
+                                }
+
+
 
                                 System.IO.Directory.CreateDirectory(this.Server.MapPath("~/uploads/migroskop/" + guid));
-                                foreach (System.IO.FileInfo bmp in imgs)
+                                foreach (System.IO.FileInfo bmp in fis)
                                 {
-                                    bmp.CopyTo(this.Server.MapPath("~/uploads/migroskop/" + guid + "/" + ix + ".jpg"));
+                                    String x = this.Server.MapPath("~/uploads/migroskop/" + guid + "/" + bmp.Name);
+                                    ///bmp.CopyTo(this.Server.MapPath("~/uploads/migroskop/" + guid + "/" + ix + ".jpg"));
+                                    bmp.CopyTo(x);
+
+
                                     ix++;
                                 }
 
+                            }
+                            else
+                            {
+                                System.IO.Directory.CreateDirectory(this.Server.MapPath("~/uploads/migroskop/" + guid));
+                                String x = this.Server.MapPath("~/uploads/migroskop/" + guid + "/0pgnumber.jpg");
+                                ///bmp.CopyTo(this.Server.MapPath("~/uploads/migroskop/" + guid + "/" + ix + ".jpg"));
+                                fi.CopyTo(x);
+
+                            }
                             
 
                             //Pdf2Image converter = new Pdf2Image(filepath);
@@ -230,15 +271,20 @@ namespace MS.Web.Areas.Admin.Conntrollers
                             //}
                         }
 
+
+
+                        
+
+
                             Campaign camp = new Campaign();
                             camp.CategoryId = 3;
                             camp.CategoryTag = "migroskop";
                             camp.CreatedBy = SiteSession.TblKullanicilar.KullaniciID;
                             camp.ExtraData = (ix-1).ToString();
-                            camp.ImageLink = SiteKeys.DBImagePath + "/migroskop/" + guid + "/pgnumber.jpg";
+                            camp.ImageLink = SiteKeys.DBImagePath + "/migroskop/" + guid + "/0pgnumber.jpg";
                             camp.ImageLink2 = camp.ImageLink;
-                            camp.OfferName = "Migroskop";
-                            camp.OfferDesc = "Migroskop";
+                            camp.OfferName = "Migroskop_"+DateTime.Now.ToShortDateString();
+                            camp.OfferDesc = "Migroskop_"+DateTime.Now.ToShortDateString();
                             camp.Discount = model.Discount;
                             camp.PromoNo = "";
                             camp.OfferNo = "";
@@ -262,10 +308,18 @@ namespace MS.Web.Areas.Admin.Conntrollers
                                 
                             }
 
-                            Global.Context.Campaigns.AddObject(camp);
+                            
+                        
+                        
+                        
+                        
+                        //mc
+                        Global.Context.Campaigns.AddObject(camp);
                             
                         
                     }
+                    
+                    //mc
                     Global.Context.SaveChanges();
 
                     ShowMessageBox(MessageType.Success, "Migroskop listesi güncellendi!!", false);
@@ -286,6 +340,13 @@ namespace MS.Web.Areas.Admin.Conntrollers
         public ActionResult AddPdf()
         {
             return PartialView("_AddPdf");
+        }
+
+
+        [HttpGet]
+        public ActionResult AddCover()
+        {
+            return PartialView("_AddCover");
         }
 
 

@@ -619,7 +619,7 @@ namespace MS.Core.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Promosyon No(PromoNo).
+        ///   Looks up a localized string similar to Kampanya No.
         /// </summary>
         public static string PromoNo {
             get {

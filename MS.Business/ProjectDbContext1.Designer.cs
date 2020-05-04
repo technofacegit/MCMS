@@ -717,6 +717,25 @@ namespace MS.Business
     
             return base.ExecuteFunction<NotifReports_Result>("NotifReport", notifKeyParameter);
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="logDate">No Metadata Documentation available.</param>
+        public ObjectResult<global::System.String> spGetIdleDevices(Nullable<global::System.DateTime> logDate)
+        {
+            ObjectParameter logDateParameter;
+            if (logDate.HasValue)
+            {
+                logDateParameter = new ObjectParameter("logDate", logDate);
+            }
+            else
+            {
+                logDateParameter = new ObjectParameter("logDate", typeof(global::System.DateTime));
+            }
+    
+            return base.ExecuteFunction<global::System.String>("spGetIdleDevices", logDateParameter);
+        }
 
         #endregion
 
@@ -1374,20 +1393,10 @@ namespace MS.Business
         /// Create a new CampaignCategory object.
         /// </summary>
         /// <param name="categoryID">Initial value of the CategoryID property.</param>
-        /// <param name="status">Initial value of the Status property.</param>
-        /// <param name="visibleOnMainPage">Initial value of the VisibleOnMainPage property.</param>
-        /// <param name="visibleOnCampPage">Initial value of the VisibleOnCampPage property.</param>
-        /// <param name="visibleOnNotLogin">Initial value of the VisibleOnNotLogin property.</param>
-        /// <param name="showLoginPanel">Initial value of the ShowLoginPanel property.</param>
-        public static CampaignCategory CreateCampaignCategory(global::System.Int32 categoryID, global::System.Boolean status, global::System.Boolean visibleOnMainPage, global::System.Boolean visibleOnCampPage, global::System.Boolean visibleOnNotLogin, global::System.Boolean showLoginPanel)
+        public static CampaignCategory CreateCampaignCategory(global::System.Int32 categoryID)
         {
             CampaignCategory campaignCategory = new CampaignCategory();
             campaignCategory.CategoryID = categoryID;
-            campaignCategory.Status = status;
-            campaignCategory.VisibleOnMainPage = visibleOnMainPage;
-            campaignCategory.VisibleOnCampPage = visibleOnCampPage;
-            campaignCategory.VisibleOnNotLogin = visibleOnNotLogin;
-            campaignCategory.ShowLoginPanel = showLoginPanel;
             return campaignCategory;
         }
 
@@ -1545,9 +1554,9 @@ namespace MS.Business
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Boolean Status
+        public Nullable<global::System.Boolean> Status
         {
             get
             {
@@ -1562,8 +1571,8 @@ namespace MS.Business
                 OnStatusChanged();
             }
         }
-        private global::System.Boolean _Status;
-        partial void OnStatusChanging(global::System.Boolean value);
+        private Nullable<global::System.Boolean> _Status;
+        partial void OnStatusChanging(Nullable<global::System.Boolean> value);
         partial void OnStatusChanged();
     
         /// <summary>
@@ -1593,9 +1602,9 @@ namespace MS.Business
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Boolean VisibleOnMainPage
+        public Nullable<global::System.Boolean> VisibleOnMainPage
         {
             get
             {
@@ -1610,16 +1619,16 @@ namespace MS.Business
                 OnVisibleOnMainPageChanged();
             }
         }
-        private global::System.Boolean _VisibleOnMainPage;
-        partial void OnVisibleOnMainPageChanging(global::System.Boolean value);
+        private Nullable<global::System.Boolean> _VisibleOnMainPage;
+        partial void OnVisibleOnMainPageChanging(Nullable<global::System.Boolean> value);
         partial void OnVisibleOnMainPageChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Boolean VisibleOnCampPage
+        public Nullable<global::System.Boolean> VisibleOnCampPage
         {
             get
             {
@@ -1634,16 +1643,16 @@ namespace MS.Business
                 OnVisibleOnCampPageChanged();
             }
         }
-        private global::System.Boolean _VisibleOnCampPage;
-        partial void OnVisibleOnCampPageChanging(global::System.Boolean value);
+        private Nullable<global::System.Boolean> _VisibleOnCampPage;
+        partial void OnVisibleOnCampPageChanging(Nullable<global::System.Boolean> value);
         partial void OnVisibleOnCampPageChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Boolean VisibleOnNotLogin
+        public Nullable<global::System.Boolean> VisibleOnNotLogin
         {
             get
             {
@@ -1658,16 +1667,16 @@ namespace MS.Business
                 OnVisibleOnNotLoginChanged();
             }
         }
-        private global::System.Boolean _VisibleOnNotLogin;
-        partial void OnVisibleOnNotLoginChanging(global::System.Boolean value);
+        private Nullable<global::System.Boolean> _VisibleOnNotLogin;
+        partial void OnVisibleOnNotLoginChanging(Nullable<global::System.Boolean> value);
         partial void OnVisibleOnNotLoginChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Boolean ShowLoginPanel
+        public Nullable<global::System.Boolean> ShowLoginPanel
         {
             get
             {
@@ -1682,8 +1691,8 @@ namespace MS.Business
                 OnShowLoginPanelChanged();
             }
         }
-        private global::System.Boolean _ShowLoginPanel;
-        partial void OnShowLoginPanelChanging(global::System.Boolean value);
+        private Nullable<global::System.Boolean> _ShowLoginPanel;
+        partial void OnShowLoginPanelChanging(Nullable<global::System.Boolean> value);
         partial void OnShowLoginPanelChanged();
     
         /// <summary>
@@ -1853,6 +1862,54 @@ namespace MS.Business
         private Nullable<global::System.Boolean> _NewVersion;
         partial void OnNewVersionChanging(Nullable<global::System.Boolean> value);
         partial void OnNewVersionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ShowBottomLink
+        {
+            get
+            {
+                return _ShowBottomLink;
+            }
+            set
+            {
+                OnShowBottomLinkChanging(value);
+                ReportPropertyChanging("ShowBottomLink");
+                _ShowBottomLink = StructuralObject.SetValidValue(value, "ShowBottomLink");
+                ReportPropertyChanged("ShowBottomLink");
+                OnShowBottomLinkChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ShowBottomLink;
+        partial void OnShowBottomLinkChanging(Nullable<global::System.Int32> value);
+        partial void OnShowBottomLinkChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ShowBottomLinkText
+        {
+            get
+            {
+                return _ShowBottomLinkText;
+            }
+            set
+            {
+                OnShowBottomLinkTextChanging(value);
+                ReportPropertyChanging("ShowBottomLinkText");
+                _ShowBottomLinkText = StructuralObject.SetValidValue(value, true, "ShowBottomLinkText");
+                ReportPropertyChanged("ShowBottomLinkText");
+                OnShowBottomLinkTextChanged();
+            }
+        }
+        private global::System.String _ShowBottomLinkText;
+        partial void OnShowBottomLinkTextChanging(global::System.String value);
+        partial void OnShowBottomLinkTextChanged();
 
         #endregion
 
@@ -2527,6 +2584,54 @@ namespace MS.Business
         private global::System.String _KazancBackgroundNew;
         partial void OnKazancBackgroundNewChanging(global::System.String value);
         partial void OnKazancBackgroundNewChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PopupText
+        {
+            get
+            {
+                return _PopupText;
+            }
+            set
+            {
+                OnPopupTextChanging(value);
+                ReportPropertyChanging("PopupText");
+                _PopupText = StructuralObject.SetValidValue(value, true, "PopupText");
+                ReportPropertyChanged("PopupText");
+                OnPopupTextChanged();
+            }
+        }
+        private global::System.String _PopupText;
+        partial void OnPopupTextChanging(global::System.String value);
+        partial void OnPopupTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> ShowPopupText
+        {
+            get
+            {
+                return _ShowPopupText;
+            }
+            set
+            {
+                OnShowPopupTextChanging(value);
+                ReportPropertyChanging("ShowPopupText");
+                _ShowPopupText = StructuralObject.SetValidValue(value, "ShowPopupText");
+                ReportPropertyChanged("ShowPopupText");
+                OnShowPopupTextChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _ShowPopupText;
+        partial void OnShowPopupTextChanging(Nullable<global::System.Boolean> value);
+        partial void OnShowPopupTextChanged();
 
         #endregion
 
@@ -4689,30 +4794,6 @@ namespace MS.Business
         private Nullable<global::System.Int32> _LogCount;
         partial void OnLogCountChanging(Nullable<global::System.Int32> value);
         partial void OnLogCountChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String CardNumber
-        {
-            get
-            {
-                return _CardNumber;
-            }
-            set
-            {
-                OnCardNumberChanging(value);
-                ReportPropertyChanging("CardNumber");
-                _CardNumber = StructuralObject.SetValidValue(value, true, "CardNumber");
-                ReportPropertyChanged("CardNumber");
-                OnCardNumberChanged();
-            }
-        }
-        private global::System.String _CardNumber;
-        partial void OnCardNumberChanging(global::System.String value);
-        partial void OnCardNumberChanged();
 
         #endregion
 
@@ -4817,6 +4898,30 @@ namespace MS.Business
         private Nullable<global::System.Int32> _ImageDirectory;
         partial void OnImageDirectoryChanging(Nullable<global::System.Int32> value);
         partial void OnImageDirectoryChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PromoNo
+        {
+            get
+            {
+                return _PromoNo;
+            }
+            set
+            {
+                OnPromoNoChanging(value);
+                ReportPropertyChanging("PromoNo");
+                _PromoNo = StructuralObject.SetValidValue(value, true, "PromoNo");
+                ReportPropertyChanged("PromoNo");
+                OnPromoNoChanged();
+            }
+        }
+        private global::System.String _PromoNo;
+        partial void OnPromoNoChanging(global::System.String value);
+        partial void OnPromoNoChanged();
 
         #endregion
 
@@ -5034,6 +5139,21 @@ namespace MS.Business
     [Serializable()]
     public partial class NotifReports_Result : ComplexObject
     {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new NotifReports_Result object.
+        /// </summary>
+        /// <param name="result">Initial value of the Result property.</param>
+        public static NotifReports_Result CreateNotifReports_Result(global::System.String result)
+        {
+            NotifReports_Result notifReports_Result = new NotifReports_Result();
+            notifReports_Result.Result = result;
+            return notifReports_Result;
+        }
+
+        #endregion
+
         #region Simple Properties
     
         /// <summary>
@@ -5059,6 +5179,30 @@ namespace MS.Business
         private global::System.String _CardNumber;
         partial void OnCardNumberChanging(global::System.String value);
         partial void OnCardNumberChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Result
+        {
+            get
+            {
+                return _Result;
+            }
+            set
+            {
+                OnResultChanging(value);
+                ReportPropertyChanging("Result");
+                _Result = StructuralObject.SetValidValue(value, false, "Result");
+                ReportPropertyChanged("Result");
+                OnResultChanged();
+            }
+        }
+        private global::System.String _Result;
+        partial void OnResultChanging(global::System.String value);
+        partial void OnResultChanged();
 
         #endregion
 

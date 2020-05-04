@@ -47,8 +47,8 @@
                         column.For(a => a.Kota).Attributes(@class => "width10p");
                         column.For(a => a.IndirimOran).Attributes(@class => "width10p");
                         column.For(a => a.Metin).Attributes(@class => "width10p");
-                        column.For(a => Convert.ToDateTime(a.BaslangicTarih).ToString("dd.MM.yyyy hh:mm")).Attributes(@class => "width10p").Named("Başlangıç Tarihi");
-                        column.For(a => Convert.ToDateTime(a.BitisTarih).ToString("dd.MM.yyyy hh:mm")).Attributes(@class => "width10p").Named("Bitiş Tarihi");
+                        column.For(a => Convert.ToDateTime(a.BaslangicTarih).ToString("dd.MM.yyyy HH:mm")).Attributes(@class => "width10p").Named("Başlangıç Tarihi");
+                        column.For(a => Convert.ToDateTime(a.BitisTarih).ToString("dd.MM.yyyy HH:mm")).Attributes(@class => "width10p").Named("Bitiş Tarihi");
                         column.For(a => Html.CheckBox("Status", a.Durum.Value, new { @value = a.id, @class = "switchBox switch-small simple" })).Named(Resource_tr_TR.ActivePassive).Attributes(@class => "width10p");
 
                         column.For(a => "<a class=\"btn btn-primary btn-sm\" href=\"" + Url.Action("addedit", new { id = a.id }) + "\" data-target=\"#modal-create-edit-SallaKazan\" data-toggle=\"modal\">" + Resource_tr_TR.Edit + " <i class=\"fa fa-edit\"></i></a>" +

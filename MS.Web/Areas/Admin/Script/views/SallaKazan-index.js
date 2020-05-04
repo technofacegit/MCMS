@@ -17,7 +17,7 @@
            
             $("#BaslangicTarih").datetimepicker(
                 {
-                    format: 'DD.MM.YYYY hh:mm',
+                    format: 'DD.MM.YYYY HH:mm',
                     sideBySide: true
                 }
                 );
@@ -26,7 +26,7 @@
 
             $("#BitisTarih").datetimepicker(
                 {
-                    format: 'DD.MM.YYYY hh:mm',
+                    format: 'DD.MM.YYYY HH:mm',
                     sideBySide: true
                 }
                 );

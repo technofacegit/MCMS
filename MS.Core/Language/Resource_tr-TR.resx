@@ -279,6 +279,9 @@
   <data name="ImagePath" xml:space="preserve">
     <value>Görüntü Yolu</value>
   </data>
+  <data name="PromoNo" xml:space="preserve">
+    <value>Kampanya No</value>
+  </data>
   <data name="Campaigns" xml:space="preserve">
     <value>Kampanyalar</value>
   </data>

@@ -91,7 +91,7 @@
                     {
 @*<div class="grid-item" style="background-image:@Url.Content(item.ImageLink)">*@
 @*@Html.Hidden("OrderNo", item.DisplayOrder, new { value=item.DisplayOrder })*@
-                    <img src="@Url.Content(item.ImageLink)" class="grid-item" alt="@item.CampaignID" />
+                    <img src="@Url.Content(item.ImageLink).ToString().Replace("http://","https://")" class="grid-item" alt="@item.CampaignID" />
 @*</div>*@              
                     }
                     else

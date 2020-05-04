@@ -25,6 +25,15 @@
                     </a>
                     <br />
                 </div>
+
+                <div class="col-lg-6">
+                    <a data-toggle="modal" href="@Url.Action("AddCover")" data-target="#modal-add-cover" class="btn bg-maroon btn-flat btn-sm">
+                        @Resource_tr_TR.UploadImage <i class="fa fa-upload"></i>
+                    </a>
+                    <br />
+                </div>
+
+
                 <div class="col-lg-12">
                     <div id="divimages" class="upload_images upload-gallery upload-imgnew ">
                         @if (Model.CampaignID > 0 && Model.ImageLink != null)

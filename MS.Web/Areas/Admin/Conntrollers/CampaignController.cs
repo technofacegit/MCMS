@@ -10,7 +10,10 @@ using MS.Web.Models.Others;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -24,14 +27,14 @@ namespace MS.Web.Areas.Admin.Conntrollers
             var campaigns = Campaign.GetCampaigns();
 
 
-            foreach (Campaign cp in campaigns)
-            {
-                if (cp.EndDate < DateTime.Now)
-                {
-                    cp.Status = false;
-                    cp.Save();
-                }
-            }
+            //foreach (Campaign cp in campaigns)
+            //{
+            //    if (cp.EndDate < DateTime.Now)
+            //    {
+            //        cp.Status = false;
+            //        cp.Save();
+            //    }
+            //}
 
             var cats = CampaignCategory.GetCampaignCategories().ToList();
             ViewBag.CampCats = new SelectList(cats, "CategoryID", "CategoryName");
@@ -95,14 +98,14 @@ namespace MS.Web.Areas.Admin.Conntrollers
             var campaigns = Campaign.GetCampaigns();
 
 
-            foreach (Campaign cp in campaigns)
-            {
-                if (cp.EndDate < DateTime.Now)
-                {
-                    cp.Status = false;
-                    cp.Save();
-                }
-            }
+            //foreach (Campaign cp in campaigns)
+            //{
+            //    if (cp.EndDate < DateTime.Now)
+            //    {
+            //        cp.Status = false;
+            //        cp.Save();
+            //    }
+            //}
 
             var cats = CampaignCategory.GetCampaignCategories().ToList();
             ViewBag.CampCats = new SelectList(cats, "CategoryID", "CategoryName");
@@ -171,6 +174,8 @@ namespace MS.Web.Areas.Admin.Conntrollers
 
                     Global.Context.SaveChanges();
                     var cacheresult = Global.Context.spUpdateCategoryCacheKey(campaignmodel.CategoryID);
+
+                    ClearMobileCache();
                 }
 
                 ShowMessageBox(MessageType.Success, "Campaign list has been updated successfully!!", false);
@@ -247,7 +252,7 @@ namespace MS.Web.Areas.Admin.Conntrollers
                         campaign.CategoryId = campaignViewModel.CategoryId;
                         campaign.CategoryTag = CampaignCategory.GetCampaignCategory(Convert.ToInt32(campaign.CategoryId)).CategoryTag.ToString();
                         campaign.DisplayOrder = -1;
-                        campaign.StartDate = DateTime.Now;
+                        campaign.StartDate = DateTime.Now.AddHours(-4);
                         campaign.EndDate = DateTime.Now.AddDays(15);
                         campaign.Status = true;
                         campaign.OfferName = CampaignCategory.GetCampaignCategory(Convert.ToInt32(campaign.CategoryId)).CategoryName.ToString();
@@ -278,7 +283,7 @@ namespace MS.Web.Areas.Admin.Conntrollers
                 }
 
 
-                
+                ClearMobileCache();
 
                 ShowMessageBox(MessageType.Success, "Campaign list has been updated successfully!!", false);
                 //return RedirectToAction("Index");
@@ -292,6 +297,59 @@ namespace MS.Web.Areas.Admin.Conntrollers
             }
 
         }
+
+
+
+
+        public void ClearMobileCache()
+        {
+
+
+            HttpWebRequest req = null;
+            HttpWebResponse res = null;
+            try
+            {
+
+                string data = "act=clearcontentcache";
+
+                String url = System.Configuration.ConfigurationManager.AppSettings["CacheUrl"].ToString();
+                req = (HttpWebRequest)WebRequest.Create(url);
+                req.Method = "POST";
+                req.ContentType = "application/x-www-form-urlencoded";
+                //req.Timeout = 30000; 
+
+                byte[] dataStream = Encoding.UTF8.GetBytes(data);
+
+
+                req.ContentLength = dataStream.Length;
+                Stream newStream = req.GetRequestStream();
+                newStream.Write(dataStream, 0, dataStream.Length);
+                newStream.Close();
+
+                res = (HttpWebResponse)req.GetResponse();
+                Stream responseStream = res.GetResponseStream();
+                var streamReader = new StreamReader(responseStream);
+
+                //Read the response into an xml document 
+                String s = streamReader.ReadToEnd();
+
+
+                ///ShowMessageBox(MessageType.Success, "İçerik devreye alındı.\r\nLütfen Mobil uygulamayı kontrol ediniz", true);
+            }
+            catch (Exception ex)
+            {
+                ///ShowMessageBox(MessageType.Warning, "Hata oluştu:" + ex.Message, true);
+
+                // Response.Write(ex.Message);
+            }
+
+            //return RedirectToAction("Confirmation");
+            //return View("Dashboard");
+            // return View("Dashboard");
+            // return RedirectToAction("Index");
+            ////return View();
+        }
+
 
         [HttpPost]
         public JsonResult OrderImages(string id, string order)
@@ -540,7 +598,7 @@ namespace MS.Web.Areas.Admin.Conntrollers
 
                         Global.Context.SaveChanges();
                         ShowMessageBox(MessageType.Success, "Campaign list has been updated successfully!!", false);
-
+                        ClearMobileCache();
                     }
                     else
                     {
@@ -645,6 +703,8 @@ namespace MS.Web.Areas.Admin.Conntrollers
 
                         Global.Context.SaveChanges();
                         ShowMessageBox(MessageType.Success, "Campaign list has been updated successfully!!", false);
+
+                        ClearMobileCache();
                         // return Redirect("~/admin/CampaignCategory/Index");
                     }
                     //return RedirectToAction("Index");

@@ -36,10 +36,11 @@
                 <div class="box-body table-responsive">
                     @Html.Grid(Model).Columns(column =>
                     {
-                        column.For(a => (a.ImageDirectory > 0 ? "<img src='"+ a.Image + "' style=\"Width:100px\" />" : "<img src='"+ a.Image + "' style=\"Width:100px\" />")).Named(Resource_tr_TR.Image).Attributes(@class => "width10p").Encode(false);
+                        column.For(a => (a.ImageDirectory > 0 ? "<img src='" + a.Image.Replace("http://", "https://") + "' style=\"Width:100px\" />" : "<img src='" + a.Image.Replace("http://", "https://") + "' style=\"Width:100px\" />")).Named(Resource_tr_TR.Image).Attributes(@class => "width10p").Encode(false);
                         column.For(a => (a.ImageDirectory > 0 ? MS.Web.Code.LIBS.EnumHelper.GetDescription((ImageFolder)a.ImageDirectory): "DemoImagefile")).Named(Resource_tr_TR.ImagePath).Attributes(@class => "width10p").Encode(false);
                         column.For(a => (a.ImageDirectory > 0 ? "<a target=\"_blank\" href=\"" + Url.Content(a.Image) + "\">" + (a.Image) + " </a>":"<a target=\"_blank\" href=\"" + Url.Content(a.Image) + "\">" + (a.Image) + " </a>")).Attributes(@class => "width15p")
                                        .Named(Resource_tr_TR.ImagePath).Encode(false);
+                        column.For(a => (String.IsNullOrEmpty(a.PromoNo) == false ? MS.Web.Code.LIBS.EnumHelper.GetDescription(a.PromoNo) : "-")).Named(Resource_tr_TR.CampaignNo).Attributes(@class => "width10p").Encode(false);
                         
                         column.For(a => " <a class=\"btn btn-danger btn-sm\" href=\"" + Url.Action("delete", new { id = a.id }) + "\" data-target=\"#modal-delete-Image\" data-toggle=\"modal\">" + Resource_tr_TR.Delete + " <i class=\"fa fa-trash-o\"></i></a>").Attributes(@class => "width15p")
                                         .Named(Resource_tr_TR.Operations).Encode(false);

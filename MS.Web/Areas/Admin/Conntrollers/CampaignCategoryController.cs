@@ -72,11 +72,11 @@ namespace MS.Web.Areas.Admin.Conntrollers
                 campaigncategoryviewmodel.CategoryBackground = campaigncategory.CategoryBackground;
                 campaigncategoryviewmodel.CategoryImage = campaigncategory.CategoryImage;
                 campaigncategoryviewmodel.DisplayOrder = campaigncategory.DisplayOrder.Value;
-                campaigncategoryviewmodel.ShowLoginPanel = campaigncategory.ShowLoginPanel;
-                campaigncategoryviewmodel.Status = campaigncategory.Status;
-                campaigncategoryviewmodel.VisibleOnCampPage = campaigncategory.VisibleOnCampPage;
-                campaigncategoryviewmodel.VisibleOnMainPage = campaigncategory.VisibleOnMainPage;
-                campaigncategoryviewmodel.VisibleOnNotLogin = campaigncategory.VisibleOnNotLogin;
+                campaigncategoryviewmodel.ShowLoginPanel = campaigncategory.ShowLoginPanel.Value;
+                campaigncategoryviewmodel.Status = campaigncategory.Status.Value;
+                campaigncategoryviewmodel.VisibleOnCampPage = campaigncategory.VisibleOnCampPage.Value;
+                campaigncategoryviewmodel.VisibleOnMainPage = campaigncategory.VisibleOnMainPage.Value;
+                campaigncategoryviewmodel.VisibleOnNotLogin = campaigncategory.VisibleOnNotLogin.Value;
                 campaigncategoryviewmodel.CategoryID = campaigncategory.CategoryID;
                 campaigncategoryviewmodel.CacheKey = campaigncategory.CacheKey;
                 campaigncategoryviewmodel.NewCategoryBackground = campaigncategory.NewCategoryBackground;

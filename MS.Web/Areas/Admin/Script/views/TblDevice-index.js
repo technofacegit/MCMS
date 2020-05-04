@@ -8,6 +8,7 @@
             $("#Camp_Noti").show();
             $("#Text_Noti").hide();
             $("#Text_Noti_WCard").hide();
+            $("#Text_Noti_DeviceToken").hide();
 
             $("#Text_Notif").click(function (event)
             {
@@ -15,6 +16,7 @@
                 $("#Text_Noti_WCard").hide();
                 $("#Camp_Noti").hide();
                 $("#Text_Noti").show();
+                $("#Text_Noti_DeviceToken").hide();
             });
         
             $("#Campaign_Noti").click(function (event) {
@@ -22,6 +24,7 @@
                 $("#Text_Noti_WCard").hide();
                 $("#Camp_Noti").show();
                 $("#Text_Noti").hide();
+                $("#Text_Noti_DeviceToken").hide();
             });
 
             $("#Text_Notif_WithCard").click(function (event) {
@@ -29,6 +32,15 @@
                 $("#Text_Noti_WCard").show();
                 $("#Camp_Noti").hide();
                 $("#Text_Noti").hide();
+                $("#Text_Noti_DeviceToken").hide();
+            });
+
+            $("#Text_Notif_WithDeviceToken").click(function (event) {
+                
+                $("#Text_Noti_WCard").hide();
+                $("#Camp_Noti").hide();
+                $("#Text_Noti").hide();
+                $("#Text_Noti_DeviceToken").show();
             });
 
             
@@ -274,6 +286,14 @@
                   defaultDate: new Date(),
               }
               );
+
+            $("#dtNotificationWDeviceToken").datetimepicker(
+             {
+                 format: 'DD.MM.YYYY HH:mm',
+                 sideBySide: true,
+                 defaultDate: new Date(),
+             }
+             );
 
         }
 

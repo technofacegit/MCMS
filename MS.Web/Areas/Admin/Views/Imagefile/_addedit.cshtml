@@ -17,6 +17,10 @@
                 <div class="form-group">
                     @Html.Label("ImagePath", Resource_tr_TR.ImagePath)
                     @Html.DropDownListFor(model => model.ImageDirectory, MS.Web.Code.LIBS.EnumHelper.SelectListFor<ImageFolder>(), "--Select--", new { @class = "required width30p select2", @data_msg_required = "*required" })
+               </div>
+                <div class="form-group">
+                    @Html.Label("CampaignNo", Resource_tr_TR.CampaignNo)
+                    @Html.TextBoxFor(model => model.PromoNo, true, null, new { @class = " width30p " })
                 </div>
                 <div class="col-lg-6">
                     <a data-toggle="modal" href="@Url.Action("AddPhotos")" data-target="#modal-add-photos" class="btn bg-maroon btn-flat btn-sm">

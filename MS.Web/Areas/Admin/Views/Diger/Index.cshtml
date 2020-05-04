@@ -1,0 +1,76 @@
+﻿@using MS.Core.Language;
+@using MS.Business;
+@using MS.Web.Models.Others;
+@using MvcContrib.UI.Grid;
+@using MS.Web.Code.LIBS;
+
+
+@{
+    ViewBag.Title = "Diğer";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section HeadContent {
+    @Styles.Render("~/Areas/Admin/Content/css/uploadfile.css",
+            "~/Areas/Admin/Content/css/FileUpload.css",
+                        "~/Areas/Admin/Content/bootstrap-switch.css",
+                     "~/Areas/Admin/Content/dataTables.bootstrap.css",
+                                             "~/Areas/Admin/Content/css/select2.css",
+                                                     "~/Areas/Admin/Content/css/select2-bootstrap.css")
+}
+
+<section class="content-header">
+    <h1>Diğer</h1>
+</section>
+
+@using (Html.BeginForm("Index", "Diger", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                @Html.Partial("_AdminNotification")
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Pasif Cihazlar Dosyası indir
+                        </h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="modal-body box-body">
+                        <table>
+                            <tr>
+                                <td>
+                                    <h3 class="box-title">Txt dosyası</h3>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                   
+                                    <input type="submit" id="Submit" name="Submit" value="Indir" class="btn btn-primary" style="text-align: right" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+             
+            </div>
+        </div>
+
+    </section>
+}
+
+@section ScriptContent{
+    @Scripts.Render(
+"~/Areas/Admin/Script/jquery.dataTables.js",
+        "~/Areas/Admin/Script/dataTables.bootstrap.js",
+          "~/Areas/Admin/Script/global.js",
+             "~/Scripts/jquery.uploadfile.js",
+          "~/Areas/Admin/Script/bootstrap-switch.js",
+           "~/Scripts/select2.js")
+
+
+}
+
+

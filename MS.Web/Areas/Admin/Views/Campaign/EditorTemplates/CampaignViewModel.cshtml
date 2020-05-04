@@ -14,15 +14,15 @@
         @if (Model.ImageLink != null && Model.ImageLink != "")
         {
             
-            <a href="@Url.Content(Model.ImageLink)" data-lightbox="image"><img src="@Url.Content(Model.ImageLink)" width="80" /></a>
+            <a href="@Url.Content(Model.ImageLink).Replace("http://", "https://")" data-lightbox="image"><img src="@Url.Content(Model.ImageLink).Replace("http://", "https://")" width="80" /></a>
 
             }
 </th>
         <th>
         @if (Model.ImageLink2 != null && Model.ImageLink2 != "")
         {
-            <a href="@Url.Content(Model.ImageLink2)" data-lightbox="image">
-                <img src="@Url.Content(Model.ImageLink2)" width="80" /></a>
+            <a href="@Url.Content(Model.ImageLink2).Replace("http://", "https://")" data-lightbox="image">
+                <img src="@Url.Content(Model.ImageLink2).Replace("http://", "https://")" width="80" /></a>
         }
 </th>
         <th>

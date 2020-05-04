@@ -24,12 +24,12 @@
           <Property Name="CategoryImage" Type="nvarchar(max)" />
           <Property Name="CategoryBackground" Type="nvarchar(max)" />
           <Property Name="DisplayOrder" Type="int" />
-          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="bit" />
           <Property Name="CategoryType" Type="int" />
-          <Property Name="VisibleOnMainPage" Type="bit" Nullable="false" />
-          <Property Name="VisibleOnCampPage" Type="bit" Nullable="false" />
-          <Property Name="VisibleOnNotLogin" Type="bit" Nullable="false" />
-          <Property Name="ShowLoginPanel" Type="bit" Nullable="false" />
+          <Property Name="VisibleOnMainPage" Type="bit" />
+          <Property Name="VisibleOnCampPage" Type="bit" />
+          <Property Name="VisibleOnNotLogin" Type="bit" />
+          <Property Name="ShowLoginPanel" Type="bit" />
           <Property Name="Cachekey" Type="nvarchar(max)" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="NewCategoryBackground" Type="nvarchar(max)" />
@@ -37,6 +37,8 @@
           <Property Name="OptinText" Type="nvarchar(max)" />
           <Property Name="OptinHoverText" Type="nvarchar(max)" />
           <Property Name="NewVersion" Type="bit" />
+          <Property Name="ShowBottomLink" Type="int" />
+          <Property Name="ShowBottomLinkText" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Campaigns">
           <Key>
@@ -49,7 +51,6 @@
           <Property Name="OfferDesc" Type="nvarchar(max)" />
           <Property Name="Discount" Type="nvarchar(max)" />
           <Property Name="DiscountType" Type="nvarchar(max)" />
-          <Property Name="StartDate" Type="datetime" />
           <Property Name="EndDate" Type="datetime" />
           <Property Name="OptinFlag" Type="bit" />
           <Property Name="ImageLink" Type="nvarchar(max)" />
@@ -58,8 +59,9 @@
           <Property Name="Status" Type="bit" />
           <Property Name="DisplayOrder" Type="int" />
           <Property Name="ExtraData" Type="nvarchar(max)" />
-          <Property Name="CategoryId" Type="int" />
           <Property Name="CreatedBy" Type="int" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="StartDate" Type="datetime" />
         </EntityType>
         <EntityType Name="EventLogs">
           <Key>
@@ -98,6 +100,8 @@
           <Property Name="KazancTag" Type="nvarchar(max)" />
           <Property Name="FooterText" Type="nvarchar(max)" />
           <Property Name="KazancBackgroundNew" Type="nvarchar(max)" />
+          <Property Name="PopupText" Type="nvarchar(max)" />
+          <Property Name="ShowPopupText" Type="bit" />
         </EntityType>
         <EntityType Name="Magazalar">
           <Key>
@@ -187,8 +191,8 @@
           <Property Name="NotifPromoNo" Type="nvarchar(max)" />
           <Property Name="NotifOfferNo" Type="nvarchar(max)" />
           <Property Name="NotifType" Type="nvarchar(max)" />
-          <Property Name="NotifSuccededCount" Type="int" />
           <Property Name="NotifTotalCount" Type="int" />
+          <Property Name="NotifSuccededCount" Type="int" />
         </EntityType>
         <EntityType Name="TblDevices">
           <Key>
@@ -201,12 +205,11 @@
           <Property Name="RegisterationTime" Type="datetime" />
           <Property Name="UniqueID" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="MachineName" Type="nvarchar" MaxLength="100" />
-          <Property Name="UserAgent" Type="nvarchar(max)" />
+          <Property Name="UserAgent" Type="nvarchar" MaxLength="100" />
           <Property Name="Lang" Type="nvarchar" MaxLength="50" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
           <Property Name="LastLogTime" Type="datetime" />
           <Property Name="LogCount" Type="int" />
-          <Property Name="CardNumber" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tblImage">
           <Key>
@@ -215,6 +218,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Image" Type="nvarchar(max)" />
           <Property Name="ImageDirectory" Type="int" />
+          <Property Name="PromoNo" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="TblKullanicilar">
           <Key>
@@ -222,24 +226,12 @@
           </Key>
           <Property Name="KullaniciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" />
-          <Property Name="Sifre" Type="nvarchar" MaxLength="10" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="12" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="SicilNo" Type="nvarchar" MaxLength="50" />
           <Property Name="IsAdmin" Type="bit" />
           <Property Name="Isim" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_Campaigns_CampaignCategories">
-          <End Role="CampaignCategories" Type="Self.CampaignCategories" Multiplicity="0..1" />
-          <End Role="Campaigns" Type="Self.Campaigns" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CampaignCategories">
-              <PropertyRef Name="CategoryID" />
-            </Principal>
-            <Dependent Role="Campaigns">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Function Name="spCMSAddNotifDeviceWithCardNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cardNumber" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="notifKey" Type="nvarchar(max)" Mode="In" />
@@ -265,6 +257,9 @@
           <Parameter Name="offerNo" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="notifType" Type="nvarchar(max)" Mode="In" />
         </Function>
+        <Function Name="spGetIdleDevices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="logDate" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="spGetNotifReports" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="notifKey" Type="nvarchar(max)" Mode="In" />
         </Function>
@@ -277,9 +272,6 @@
           <Parameter Name="NMessage" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="Status" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="NType" Type="nvarchar(max)" Mode="In" />
-        </Function>
-        <Function Name="spV4_AllDevicesWithTrackingNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="trackingNumber" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="ProjectDbContextStoreContainer">
           <EntitySet Name="BebeMoneyKatalogKategorileri" EntityType="Self.BebeMoneyKatalogKategorileri" Schema="dbo" store:Type="Tables" />
@@ -295,10 +287,6 @@
           <EntitySet Name="TblDevices" EntityType="Self.TblDevices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblImage" EntityType="Self.tblImage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblKullanicilar" EntityType="Self.TblKullanicilar" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Campaigns_CampaignCategories" Association="Self.FK_Campaigns_CampaignCategories">
-            <End Role="CampaignCategories" EntitySet="CampaignCategories" />
-            <End Role="Campaigns" EntitySet="Campaigns" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -361,10 +349,13 @@
           <Parameter Name="notifKey" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spGetNotifReports">
-            <Parameter Name="notifKey" Mode="In" Type="String" />
+          <Parameter Name="notifKey" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="NotifReport" ReturnType="Collection(ProjectDbContextModel.NotifReports_Result)">
-            <Parameter Name="notifKey" Mode="In" Type="String" />
+          <Parameter Name="notifKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spGetIdleDevices" ReturnType="Collection(String)">
+          <Parameter Name="logDate" Mode="In" Type="DateTime" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="CampaignCategory">
@@ -377,12 +368,12 @@
           <Property Name="CategoryImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CategoryBackground" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DisplayOrder" Type="Int32" />
-          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="Boolean" />
           <Property Name="CategoryType" Type="Int32" />
-          <Property Name="VisibleOnMainPage" Type="Boolean" Nullable="false" />
-          <Property Name="VisibleOnCampPage" Type="Boolean" Nullable="false" />
-          <Property Name="VisibleOnNotLogin" Type="Boolean" Nullable="false" />
-          <Property Name="ShowLoginPanel" Type="Boolean" Nullable="false" />
+          <Property Name="VisibleOnMainPage" Type="Boolean" />
+          <Property Name="VisibleOnCampPage" Type="Boolean" />
+          <Property Name="VisibleOnNotLogin" Type="Boolean" />
+          <Property Name="ShowLoginPanel" Type="Boolean" />
           <NavigationProperty Name="Campaigns" Relationship="ProjectDbContextModel.FK_Campaigns_CampaignCategories" FromRole="CampaignCategory" ToRole="Campaign" />
           <Property Name="CacheKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="CreatedBy" />
@@ -391,6 +382,8 @@
           <Property Type="String" Name="OptinText" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="OptinHoverText" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NewVersion" Type="Boolean" />
+          <Property Name="ShowBottomLink" Type="Int32" />
+          <Property Name="ShowBottomLinkText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Kategoritipi">
           <Key>
@@ -405,7 +398,7 @@
           </Key>
           <Property Name="KullaniciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="KullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Sifre" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Sifre" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SicilNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsAdmin" Type="Boolean" />
@@ -464,6 +457,8 @@
           <Property Name="KazancTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="FooterText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="KazancBackgroundNew" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PopupText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShowPopupText" Type="Boolean" />
         </EntityType>
         <EntityType Name="BebeMoneyKatalogKategorileri">
           <Key>
@@ -497,12 +492,11 @@
           <Property Name="RegisterationTime" Type="DateTime" Precision="3" />
           <Property Name="UniqueID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="MachineName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UserAgent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserAgent" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Lang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastLogTime" Type="DateTime" Precision="3" />
           <Property Name="LogCount" Type="Int32" />
-          <Property Name="CardNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="SallaKazan">
           <Key>
@@ -528,6 +522,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ImageDirectory" Type="Int32" />
+          <Property Name="PromoNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="EventLog">
           <Key>
@@ -621,6 +616,7 @@
         </EntityType>
         <ComplexType Name="NotifReports_Result" >
           <Property Type="String" Name="CardNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Result" Nullable="false" MaxLength="9" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -633,6 +629,8 @@
           <EntitySetMapping Name="CampaignCategories">
             <EntityTypeMapping TypeName="ProjectDbContextModel.CampaignCategory">
               <MappingFragment StoreEntitySet="CampaignCategories">
+                <ScalarProperty Name="ShowBottomLinkText" ColumnName="ShowBottomLinkText" />
+                <ScalarProperty Name="ShowBottomLink" ColumnName="ShowBottomLink" />
                 <ScalarProperty Name="NewVersion" ColumnName="NewVersion" />
                 <ScalarProperty Name="OptinHoverText" ColumnName="OptinHoverText" />
                 <ScalarProperty Name="OptinText" ColumnName="OptinText" />
@@ -703,6 +701,8 @@
           <EntitySetMapping Name="Kazanclars">
             <EntityTypeMapping TypeName="ProjectDbContextModel.Kazanclar">
               <MappingFragment StoreEntitySet="Kazanclar">
+                <ScalarProperty Name="ShowPopupText" ColumnName="ShowPopupText" />
+                <ScalarProperty Name="PopupText" ColumnName="PopupText" />
                 <ScalarProperty Name="KazancBackgroundNew" ColumnName="KazancBackgroundNew" />
                 <ScalarProperty Name="FooterText" ColumnName="FooterText" />
                 <ScalarProperty Name="KazancTag" ColumnName="KazancTag" />
@@ -745,7 +745,6 @@
           <EntitySetMapping Name="TblDevices">
             <EntityTypeMapping TypeName="ProjectDbContextModel.TblDevice">
               <MappingFragment StoreEntitySet="TblDevices">
-                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
                 <ScalarProperty Name="LogCount" ColumnName="LogCount" />
                 <ScalarProperty Name="LastLogTime" ColumnName="LastLogTime" />
                 <ScalarProperty Name="Country" ColumnName="Country" />
@@ -782,6 +781,7 @@
           <EntitySetMapping Name="tblImages">
             <EntityTypeMapping TypeName="ProjectDbContextModel.tblImage">
               <MappingFragment StoreEntitySet="tblImage">
+                <ScalarProperty Name="PromoNo" ColumnName="PromoNo" />
                 <ScalarProperty Name="ImageDirectory" ColumnName="ImageDirectory" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -802,15 +802,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="spV4_AllDevicesWithTrackingNumber" FunctionName="ProjectDbContext.Store.spV4_AllDevicesWithTrackingNumber">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ProjectDbContextModel.spV4_AllDevicesWithTrackingNumber_Result">
-                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
-                <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
-                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spV4_AddNotificationLog" FunctionName="ProjectDbContext.Store.spV4_AddNotificationLog" />
           <EntitySetMapping Name="Magazalar">
             <EntityTypeMapping TypeName="ProjectDbContextModel.Magazalar">
@@ -905,9 +896,11 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="ProjectDbContextModel.NotifReports_Result">
                 <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetIdleDevices" FunctionName="ProjectDbContext.Store.spGetIdleDevices" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -939,9 +932,9 @@
         <EntityTypeShape EntityType="ProjectDbContextModel.Kazanclar" Width="1.5" PointX="0.75" PointY="5.75" />
         <EntityTypeShape EntityType="ProjectDbContextModel.BebeMoneyKatalogKategorileri" Width="1.5" PointX="7.375" PointY="0.75" />
         <EntityTypeShape EntityType="ProjectDbContextModel.MilKatalogUrunleri" Width="1.5" PointX="8.125" PointY="3.125" />
-        <EntityTypeShape EntityType="ProjectDbContextModel.TblDevice" Width="1.5" PointX="3.375" PointY="8.75" />
+        <EntityTypeShape EntityType="ProjectDbContextModel.TblDevice" Width="1.5" PointX="3.375" PointY="9.875" />
         <EntityTypeShape EntityType="ProjectDbContextModel.SallaKazan" Width="1.5" PointX="5.375" PointY="8.75" />
-        <EntityTypeShape EntityType="ProjectDbContextModel.tblImage" Width="1.5" PointX="7.375" PointY="8.75" />
+        <EntityTypeShape EntityType="ProjectDbContextModel.tblImage" Width="1.5" PointX="7.5" PointY="9.25" />
         <EntityTypeShape EntityType="ProjectDbContextModel.EventLog" Width="1.5" PointX="3.75" PointY="5.5" />
         <EntityTypeShape EntityType="ProjectDbContextModel.Magazalar" Width="1.5" PointX="10.75" PointY="3.25" />
         <EntityTypeShape EntityType="ProjectDbContextModel.TblCMSNotifMaster" Width="1.5" PointX="0.75" PointY="10.75" />

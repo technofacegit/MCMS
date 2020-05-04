@@ -42,16 +42,16 @@ namespace MS.Web.Controllers
                 {
                     string path = Server.MapPath(currentpath + folder + "/" + filenameToSave);
 
-                    if (System.IO.File.Exists(path))
-                    {
-                        filenameToSave = DateTime.Now.Ticks.ToString() + "_" + filenameToSave;
-                        path = Server.MapPath(currentpath + folder + "/" + filenameToSave);
-                    }
-
                     //if (System.IO.File.Exists(path))
                     //{
-                    //    System.IO.File.Delete(path);
+                    //    filenameToSave = DateTime.Now.Ticks.ToString() + "_" + filenameToSave;
+                    //    path = Server.MapPath(currentpath + folder + "/" + filenameToSave);
                     //}
+
+                    if (System.IO.File.Exists(path))
+                    {
+                        System.IO.File.Delete(path);
+                    }
 
 
 
@@ -97,7 +97,7 @@ namespace MS.Web.Controllers
 
                 if (file2.Exists)
                 {
-                    filename = DateTime.Now.Ticks.ToString() +"_"+ filename;
+                    ////filename = DateTime.Now.Ticks.ToString() +"_"+ filename;
                     file2 = new FileInfo(System.Web.Hosting.HostingEnvironment.MapPath("~/uploads/" + movefolder + "/") + filename);
                 }
 

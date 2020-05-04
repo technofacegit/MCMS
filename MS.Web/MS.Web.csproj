@@ -211,9 +211,13 @@
     <Folder Include="Areas\Admin\Content\images\uploads\SallaKazanImage\" />
     <Folder Include="Areas\Admin\Content\images\uploads\temp\" />
     <Folder Include="Areas\Admin\Views\AdminBase\" />
+    <Folder Include="uploads\bebemoney\" />
     <Folder Include="uploads\campimage\" />
+    <Folder Include="uploads\categorybgimage\" />
+    <Folder Include="uploads\categoryimage\" />
     <Folder Include="uploads\kampanyalar\" />
     <Folder Include="uploads\kategoriler\" />
+    <Folder Include="uploads\money\" />
     <Folder Include="uploads\temp\" />
     <Folder Include="uploads\tmp\" />
     <Folder Include="Views\Json\" />
@@ -230,6 +234,7 @@
     <Compile Include="Areas\Admin\Conntrollers\HomeController.cs" />
     <Compile Include="Areas\Admin\Conntrollers\ImagefileController.cs" />
     <Compile Include="Areas\Admin\Conntrollers\KazanclarController.cs" />
+    <Compile Include="Areas\Admin\Conntrollers\DigerController.cs" />
     <Compile Include="Areas\Admin\Conntrollers\MagazalarController.cs" />
     <Compile Include="Areas\Admin\Conntrollers\MigroskopController.cs" />
     <Compile Include="Areas\Admin\Conntrollers\MilKatalogUrunleriController.cs" />
@@ -582,6 +587,9 @@
     <Content Include="Areas\Admin\Views\Shared\_ModalDeleteMigroskop.cshtml" />
     <Content Include="Areas\Admin\Views\SendNotification\CardNumberReportItem.cshtml" />
     <Content Include="Areas\Admin\Views\SendNotification\CardNumberReport.cshtml" />
+    <Content Include="Areas\Admin\Views\Diger\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Confirmation.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AddCover.cshtml" />
     <None Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\ionicons.svg" />
@@ -624,33 +632,6 @@
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\tr.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="uploads\bebemoney\a6e8e74e-b7a6-49b5-9855-e1a56bf39ba2_112265_1.jpg" />
-    <Content Include="uploads\categorybgimage\1119cece-f13c-420a-bfee-5cc7eeff7727_112265_1.jpg" />
-    <Content Include="uploads\categorybgimage\11ccd1f6-b9c2-4627-bfc5-39c30d61ccec_112265_1.jpg" />
-    <Content Include="uploads\categorybgimage\14b8e69a-3f51-4bcd-8054-61b2e50bc9f2_112265_1.jpg" />
-    <Content Include="uploads\categorybgimage\34f9b7a0-e59a-47c7-82f9-89edeb232f36_img079.jpg" />
-    <Content Include="uploads\categorybgimage\4456d119-2719-4121-89d6-c4b60175ba08_112265_1.jpg" />
-    <Content Include="uploads\categorybgimage\5c977c8e-48a7-4306-988d-4f46b5189d59_112265_1.jpg" />
-    <Content Include="uploads\categorybgimage\61d44a37-c9e2-4b62-8f94-a4693494fcc9_112265_1.jpg" />
-    <Content Include="uploads\categorybgimage\825f87c1-8991-4100-a156-152bc14ba3c1_112210_1.jpg" />
-    <Content Include="uploads\categorybgimage\c69fd4fe-cf77-4f4f-8448-9e51a915b6a0_112265_1.jpg" />
-    <Content Include="uploads\categoryimage\04b2ce26-ea69-4c27-9be6-22cb9a386c1d_komsufirin_daypart_kapsam.jpg" />
-    <Content Include="uploads\categoryimage\06b89bba-ef71-4dda-86a0-00bd65394e17_112269_1.jpg" />
-    <Content Include="uploads\categoryimage\1009bdb4-fda9-435f-96e4-0ff31b50d5bf_Screen_Shot_2015-06-29_at_10.52.53.png" />
-    <Content Include="uploads\categoryimage\16a3b4a4-59d1-446d-9e6e-45fb411ed4a6_uygulama_revize_görsel.jpg" />
-    <Content Include="uploads\categoryimage\2ab96769-9185-4f96-98f3-5f89075f3ae4_112210_1.jpg" />
-    <Content Include="uploads\categoryimage\45c44d97-9ca4-41e7-a484-de97c1042c7c_112269_1.jpg" />
-    <Content Include="uploads\categoryimage\75245f52-a279-4518-9096-cf0be055768d_gör_inan.jpg" />
-    <Content Include="uploads\categoryimage\79c30211-2dbf-42c6-8e93-c2d5e9f47a0c_uygulama_revize_görsel.jpg" />
-    <Content Include="uploads\categoryimage\851d040c-c60f-4207-afdc-99388552f068_komsufirin_daypart_veriakissemasi_1.jpg" />
-    <Content Include="uploads\categoryimage\91ca3740-82bc-4021-876c-b21e43424d60_112269_1.jpg" />
-    <Content Include="uploads\categoryimage\9cc67ecc-1f2c-4a4e-b550-696e75633121_112269_1.jpg" />
-    <Content Include="uploads\categoryimage\b58b8867-cbc1-4add-9a47-1d0bebf79b20_logoSon2.png" />
-    <Content Include="uploads\categoryimage\cfa07d3f-f2ca-40f8-8664-85ff2ab16263_112269_1.jpg" />
-    <Content Include="uploads\categoryimage\d58bde72-5efc-4348-bc76-354a8ec9fe69_komsufirin_daypart_veriakissemasi.jpg" />
-    <Content Include="uploads\categoryimage\fd6e2dec-9a1b-452a-8dd4-8ddd59bf6806_112269_1.jpg" />
-    <Content Include="uploads\money\52e570be-0611-42b0-b37d-69d2ca0e637a_112269_1.jpg" />
-    <Content Include="uploads\money\9b8f8848-2e39-4154-8eb8-d320e6741736_112269_1.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -699,6 +680,24 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

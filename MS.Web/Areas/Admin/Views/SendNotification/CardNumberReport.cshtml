@@ -1,0 +1,24 @@
+﻿@model List<MS.Business.NotifReports_Result>
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">
+            Kart Listesi - @Model.Count Kart'a gönderim yapıldı...
+        </h3>
+    </div>
+    <div class="box-body table-responsive">
+
+        <table border="1" cellpadding="10">
+            <tr>
+                <th>Kart Numarası</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CardNumber</td>
+        </tr>
+            }
+        </table>
+
+</div>
+    </div>
