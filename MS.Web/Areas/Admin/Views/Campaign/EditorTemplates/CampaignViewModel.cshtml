@@ -18,13 +18,13 @@
 
             }
 </th>
-        <th>
+        @*<th>
         @if (Model.ImageLink2 != null && Model.ImageLink2 != "")
         {
             <a href="@Url.Content(Model.ImageLink2).Replace("http://", "https://")" data-lightbox="image">
                 <img src="@Url.Content(Model.ImageLink2).Replace("http://", "https://")" width="80" /></a>
         }
-</th>
+</th>*@
         <th>
         @Html.DisplayFor(model => model.CampaignID)
     </th>
@@ -33,6 +33,8 @@
     </th>
     <th>
         @Html.EditorFor(model => model.OfferDesc)
+        <a class="btn btn-primary btn-sm" href="@Url.Action("addeditcampaign", new { id = Model.CampaignID })" data-target="#modal-create-edit-campaign" data-toggle="modal">Düzenle</a>
+
     </th>
     <th>@Html.EditorFor(model => model.StartDate,
       new

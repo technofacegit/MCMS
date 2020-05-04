@@ -13,9 +13,12 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace MS.Web.Areas.Admin.Conntrollers
 {
@@ -468,7 +471,15 @@ namespace MS.Web.Areas.Admin.Conntrollers
 
         }
 
+
+
+        public string RemoveHTML(string strHTML)
+        {
+            return Regex.Replace(strHTML, "<(.|\n)*?>", "");
+        }
+
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult addeditcampaign(CampaignViewModel campaignViewModel, FormCollection FC)
         {
             try
@@ -536,6 +547,10 @@ namespace MS.Web.Areas.Admin.Conntrollers
                         //campaign.StartDate = campaignViewModel.StartDate.Value;
                         //campaign.EndDate = campaignViewModel.EndDate.Value;
                         campaign.ExtraData = campaignViewModel.ExtraData != null ? campaignViewModel.ExtraData : "";
+                        //String s = System.Web.HttpUtility.HtmlDecode(campaignViewModel.OfferDesc);
+                        //String ixx=PCLWebUtility.WebUtility.HtmlDecode(campaignViewModel.OfferDesc);
+                        //String t = RemoveHTML(campaignViewModel.OfferDesc);
+
                         campaign.OfferDesc = campaignViewModel.OfferDesc != null ? campaignViewModel.OfferDesc : "";
                         campaign.Status = campaignViewModel.Status;
                         campaign.OfferName = campaignViewModel.OfferName;

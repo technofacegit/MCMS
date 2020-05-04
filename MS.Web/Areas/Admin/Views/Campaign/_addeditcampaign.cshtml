@@ -4,6 +4,9 @@
 @model MS.Web.Areas.Admin.Models.CampaignViewModel
 
 <div id="category-box">
+
+  
+
     @using (Html.BeginForm("addeditcampaign", "campaign", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
@@ -42,7 +45,13 @@
                 <div class="form-group">
 
                     @Html.LabelFor(model => model.OfferDesc, @Resource_tr_TR.OfferDesc)
-                    @Html.TextBoxFor(model => model.OfferDesc, true, null, new { @class = "form-control" })
+                    @*@Html.TextBoxFor(model => model.OfferDesc, true, null, new { @class = "form-control",@style="height:100px"})*@
+                
+                    <textarea id="OfferDesc"
+                              name="OfferDesc"
+                              class=" form-control"
+                              style="height:100px">@Model.OfferDesc</textarea>
+
                 </div>
             </div>
 
@@ -219,6 +228,20 @@
 
         @Html.Partial("_ModalFooter", new ModalFooter())
     }
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+          
+
+
+            //$('.contentofferdesc').richText({
+            //    code: false
+            //});
+        });
+
+    </script>
+
+      
 </div>
 
 

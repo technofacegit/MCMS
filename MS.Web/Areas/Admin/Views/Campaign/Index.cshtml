@@ -17,7 +17,13 @@
                     "~/Areas/Admin/Content/datepicker3.css",
                      "~/Areas/Admin/Content/dataTables.bootstrap.css",
                     "~/Areas/Admin/Content/bootstrap-datetimepicker.min.css"
+                           //"~/Content/examplesite.css",
+                           //                "~/Content/richtext.min.css",
+                           //                                "~/Content/font-awesome.min.css"
                              )
+
+@*<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="~/Areas/Admin/Script/dist/cazary.min.js"></script>*@
 
     <style>
         * {
@@ -81,6 +87,8 @@
 {
     <section class="content">
 
+     
+        
         @Html.Partial("_AdminNotification")
 
         <div class="box-body table-responsive">
@@ -148,7 +156,7 @@
                             <thead>
                                 <tr>
                                     <th style="vertical-align: top">Image</th>
-                                    <th style="vertical-align: top">Image 2</th>
+                                    @*<th style="vertical-align: top">Image 2</th>*@
                                     <th style="vertical-align: top">Campaign ID</th>
                                     <th style="vertical-align: top">Offer Name</th>
                                     <th style="vertical-align: top">Offer Description</th>
@@ -185,6 +193,8 @@
             </div>
         </div>
 
+        @Html.Partial("_Modal", new Modal { ID = "modal-create-edit-campaign", AreaLabeledID = "modal-create-edit-campaign-label", Size = ModalSize.Medium })
+
 
         @*@Html.Partial("_Modal", new Modal { ID = "modal-delete-campaign", AreaLabeledID = "modal-delete-campaign-label" })*@
     </section>
@@ -214,6 +224,7 @@
           "~/Areas/Admin/Script/views/campaign-image-upload.js",
           "~/Areas/Admin/Script/packery.pkgd.min.js",
           "~/Areas/Admin/Script/draggabilly.pkgd.min.js"
+                   //"~/Scripts/jquery.richtext.js"
                     )
     <script>
         // external js: packery.pkgd.js, draggabilly.pkgd.js
@@ -221,6 +232,18 @@
 
         $(document).ready(function () {
             $("#my_cb").on("ifChanged", hide_row_metod);
+
+            /****/
+
+           
+               
+               
+          
+                
+           
+
+            /***/
+
         });
 
         function hide_row_metod() {

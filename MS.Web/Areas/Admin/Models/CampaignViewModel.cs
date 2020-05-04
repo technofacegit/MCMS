@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace MS.Web.Areas.Admin.Models
 {
@@ -26,16 +27,17 @@ namespace MS.Web.Areas.Admin.Models
         [DisplayName("Image Link2")]
         public string ImageLink2 { get; set; }
 
-        [DisplayName("Promo No")]
+        [DisplayName("Kampanya No - Promo No")]
         public string PromoNo { get; set; }
 
-        [DisplayName("Offer No")]
+        [DisplayName("Teklif No - Offer No")]
         public string OfferNo { get; set; }
 
-        [DisplayName("Offer Name")]
+        [DisplayName("Teklif Adı")]
         public string OfferName { get; set; }
 
-        [DisplayName("Offer Desc")]
+        [DisplayName("Teklif Detayı")]
+        [AllowHtml]
         public string OfferDesc { get; set; }
 
         [DisplayName("Discount")]
