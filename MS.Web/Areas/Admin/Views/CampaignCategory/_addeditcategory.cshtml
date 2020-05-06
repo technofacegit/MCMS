@@ -52,14 +52,14 @@
                     @Html.TextBoxFor(model => model.DisplayOrder, true, null, new { @class = "form-control", @data_rule_number = "true", @data_msg_number = "number only" })
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="display:none">
                 <div class="form-group">
 
                     @Html.LabelFor(model => model.OptinText, "OptinText")
                     @Html.TextBoxFor(model => model.OptinText, true, null, new { @class = "form-control" })
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="display:none">
                 <div class="form-group">
 
                     @Html.LabelFor(model => model.OptinHoverText, "OptinHoverText")
@@ -97,7 +97,7 @@
                 </div>
 
             </div>
-            <div class="row">
+            <div class="row" style="display:none">
 
                 <div class="col-lg-6">
                     @Html.LabelFor(model => model.CategoryImage, Resource_tr_TR.CategoryImage)
@@ -122,7 +122,7 @@
 
             </div>
             <br />
-            <div class="row">
+            <div class="row" style="display:none">
 
                 <div class="col-lg-6">
                     @Html.LabelFor(model => model.CategoryBackground, Resource_tr_TR.CategoryBackground)
@@ -137,7 +137,8 @@
                         @if (Model.CategoryID > 0 && Model.CategoryBackground != null)
                         {
                             <div class='single' rel='@Model.CategoryBackground'>
-                                <img src="@Url.Content(Model.CategoryBackground)" /></div>
+                                <img src="@Url.Content(Model.CategoryBackground)" />
+                            </div>
                             <div class="ajax-file-upload-red deleteBackPhoto" rel="@Model.CategoryBackground" style="display: inline-block;">Delete</div>
                         }
                     </div>
@@ -147,7 +148,7 @@
             </div>
 
             <br />
-            <div class="row">
+            <div class="row" style="display:none">
 
                 <div class="col-lg-6">
                     @Html.LabelFor(model => model.NewCategoryBackground, Resource_tr_TR.NewCategoryBackground)
@@ -162,7 +163,8 @@
                         @if (Model.CategoryID > 0 && Model.NewCategoryBackground != null)
                         {
                             <div class='single' rel='@Model.NewCategoryBackground'>
-                                <img src="@Url.Content(Model.NewCategoryBackground)" /></div>
+                                <img src="@Url.Content(Model.NewCategoryBackground)" />
+                            </div>
                             <div class="ajax-file-upload-red deleteBackPhoto" rel="@Model.NewCategoryBackground" style="display: inline-block;">Delete</div>
                         }
                     </div>
@@ -172,7 +174,7 @@
             </div>
 
             <br />
-            <div class="row">
+            <div class="row" style="display:none">
 
                 <div class="col-lg-6">
                     @Html.LabelFor(model => model.NewCategoryBoardImage, Resource_tr_TR.NewCategoryBoardImage)
@@ -187,7 +189,8 @@
                         @if (Model.CategoryID > 0 && Model.NewCategoryBoardImage != null)
                         {
                             <div class='single' rel='@Model.NewCategoryBoardImage'>
-                                <img src="@Url.Content(Model.NewCategoryBoardImage)" /></div>
+                                <img src="@Url.Content(Model.NewCategoryBoardImage)" />
+                            </div>
                             <div class="ajax-file-upload-red deletePhoto" rel="@Model.NewCategoryBoardImage" style="display: inline-block;">Delete</div>
                         }
                     </div>

@@ -112,12 +112,12 @@ namespace MS.Web.Areas.Admin.Conntrollers
                     {
 
                         CampaignCategory campaigncategory =  CampaignCategory.GetCampaignCategory(CampaignCategoryViewModel.CategoryID);
-                        
-                        
-                        campaigncategory.CategoryBackground = CampaignCategoryViewModel.CategoryBackground;
-                        campaigncategory.CategoryImage = CampaignCategoryViewModel.CategoryImage;
+
+
+                        campaigncategory.CategoryBackground = "";// CampaignCategoryViewModel.CategoryBackground;
+                        campaigncategory.CategoryImage = "";// CampaignCategoryViewModel.CategoryImage;
                         campaigncategory.CategoryName = CampaignCategoryViewModel.CategoryName;
-                        campaigncategory.CategoryTag = CampaignCategoryViewModel.CategoryTag;
+                        campaigncategory.CategoryTag = CampaignCategoryViewModel.CategoryTag.Replace(" ","");
                         campaigncategory.CategoryType = CampaignCategoryViewModel.CategoryType;
                         campaigncategory.DisplayOrder = CampaignCategoryViewModel.DisplayOrder;
                         campaigncategory.ShowLoginPanel = CampaignCategoryViewModel.ShowLoginPanel;
@@ -127,10 +127,11 @@ namespace MS.Web.Areas.Admin.Conntrollers
                         campaigncategory.Status = CampaignCategoryViewModel.Status;
                         campaigncategory.CategoryID = CampaignCategoryViewModel.CategoryID;
                         campaigncategory.CacheKey = CampaignCategoryViewModel.CacheKey;
-                        campaigncategory.NewCategoryBackground = CampaignCategoryViewModel.NewCategoryBackground;
-                        campaigncategory.NewCategoryBoardImage = CampaignCategoryViewModel.NewCategoryBoardImage;
-                        campaigncategory.OptinText = CampaignCategoryViewModel.OptinText;
-                        campaigncategory.OptinHoverText = CampaignCategoryViewModel.OptinHoverText;
+                        campaigncategory.NewCategoryBackground = "";// CampaignCategoryViewModel.NewCategoryBackground;
+                        campaigncategory.NewCategoryBoardImage = "";// CampaignCategoryViewModel.NewCategoryBoardImage;
+                        campaigncategory.OptinText = "";// CampaignCategoryViewModel.OptinText;
+                        campaigncategory.OptinHoverText = "";// CampaignCategoryViewModel.OptinHoverText;
+                      
                         if (!String.IsNullOrEmpty(FC["UploadedImages"]))
                         {
                             String Images = (FC["UploadedImages"]).Trim('#');
@@ -211,6 +212,22 @@ namespace MS.Web.Areas.Admin.Conntrollers
                                 }
                             }
                         }
+
+                        campaigncategory.CategoryImage = "http://magaza-iphone.migros.com.tr/box//categoryimage/tam_bana_gore.png";
+                        campaigncategory.NewCategoryBoardImage = "http://magaza-iphone.migros.com.tr/box//categoryimage/tam_bana_gore.png";
+                        campaigncategory.NewCategoryBackground = "http://magaza-iphone.migros.com.tr/box//categoryimage/tam_bana_gore.png";
+                        campaigncategory.CategoryBackground = "http://magaza-iphone.migros.com.tr/box//categoryimage/tam_bana_gore.png";
+                        campaigncategory.NewVersion = true;
+                        campaigncategory.ShowBottomLink = 0;
+                        campaigncategory.ShowBottomLinkText = "";
+                        campaigncategory.EventTag = campaigncategory.CategoryTag.Replace(" ", "");
+
+                        if (String.IsNullOrEmpty(campaigncategory.CacheKey))
+                            campaigncategory.CacheKey = "0";
+
+                        campaigncategory.EventTag = campaigncategory.CategoryTag.Replace(" ", "");
+                        campaigncategory.BranchDeeplink = "";
+
                         Global.Context.SaveChanges();
 
                         EventLog eventLog = new EventLog();
@@ -230,10 +247,10 @@ namespace MS.Web.Areas.Admin.Conntrollers
                     else
                     {
                         CampaignCategory campaigncategory = new CampaignCategory();
-                        campaigncategory.CategoryBackground = CampaignCategoryViewModel.CategoryBackground;
+                        campaigncategory.CategoryBackground = "";// CampaignCategoryViewModel.CategoryBackground;
                       
                         campaigncategory.CategoryName = CampaignCategoryViewModel.CategoryName;
-                        campaigncategory.CategoryTag = CampaignCategoryViewModel.CategoryTag;
+                        campaigncategory.CategoryTag = CampaignCategoryViewModel.CategoryTag.Replace(" ", "");
                         campaigncategory.CategoryType = CampaignCategoryViewModel.CategoryType;
                         campaigncategory.DisplayOrder = CampaignCategoryViewModel.DisplayOrder;
                         campaigncategory.ShowLoginPanel = CampaignCategoryViewModel.ShowLoginPanel;
@@ -241,12 +258,13 @@ namespace MS.Web.Areas.Admin.Conntrollers
                         campaigncategory.VisibleOnMainPage = CampaignCategoryViewModel.VisibleOnMainPage;
                         campaigncategory.VisibleOnNotLogin = CampaignCategoryViewModel.VisibleOnNotLogin;
                         campaigncategory.Status = CampaignCategoryViewModel.Status;
+                        campaigncategory.CacheKey = CampaignCategoryViewModel.CacheKey;
                         campaigncategory.CreatedBy = SiteSession.TblKullanicilar.KullaniciID;
-                        campaigncategory.NewCategoryBackground = CampaignCategoryViewModel.NewCategoryBackground;
-                        campaigncategory.NewCategoryBoardImage = CampaignCategoryViewModel.NewCategoryBoardImage;
-                        campaigncategory.OptinText = CampaignCategoryViewModel.OptinText;
-                        campaigncategory.OptinHoverText = CampaignCategoryViewModel.OptinHoverText;
-
+                        campaigncategory.NewCategoryBackground = "";// CampaignCategoryViewModel.NewCategoryBackground;
+                        campaigncategory.NewCategoryBoardImage = "";// CampaignCategoryViewModel.NewCategoryBoardImage;
+                        campaigncategory.OptinText = "";// CampaignCategoryViewModel.OptinText;
+                        campaigncategory.OptinHoverText = "";// CampaignCategoryViewModel.OptinHoverText;
+                        
                         if (!String.IsNullOrEmpty(FC["UploadedImages"]))
                         {
                             String Images = (FC["UploadedImages"]).Trim('#');
@@ -309,6 +327,21 @@ namespace MS.Web.Areas.Admin.Conntrollers
                                 }
                             }
                         }
+
+                        campaigncategory.CategoryImage = "http://magaza-iphone.migros.com.tr/box//categoryimage/tam_bana_gore.png";
+                        campaigncategory.NewCategoryBoardImage = "http://magaza-iphone.migros.com.tr/box//categoryimage/tam_bana_gore.png";
+                        campaigncategory.NewCategoryBackground = "http://magaza-iphone.migros.com.tr/box//categoryimage/tam_bana_gore.png";
+                        campaigncategory.CategoryBackground = "http://magaza-iphone.migros.com.tr/box//categoryimage/tam_bana_gore.png";
+                        campaigncategory.NewVersion = true;
+                        campaigncategory.ShowBottomLink = 0;
+                        campaigncategory.ShowBottomLinkText = "";
+                        campaigncategory.EventTag = campaigncategory.CategoryTag.Replace(" ", "");
+
+                        if (String.IsNullOrEmpty(campaigncategory.CacheKey))
+                            campaigncategory.CacheKey = "0";
+
+                        campaigncategory.BranchDeeplink = "";
+
                         Global.Context.CampaignCategories.AddObject(campaigncategory);
                         Global.Context.SaveChanges();
 

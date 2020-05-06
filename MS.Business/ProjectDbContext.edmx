@@ -39,6 +39,8 @@
           <Property Name="NewVersion" Type="bit" />
           <Property Name="ShowBottomLink" Type="int" />
           <Property Name="ShowBottomLinkText" Type="nvarchar(max)" />
+          <Property Name="EventTag" Type="nvarchar(max)" />
+          <Property Name="BranchDeeplink" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Campaigns">
           <Key>
@@ -62,6 +64,7 @@
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CategoryId" Type="int" />
           <Property Name="StartDate" Type="datetime" />
+          <Property Name="BranchDeeplink" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="EventLogs">
           <Key>
@@ -102,6 +105,7 @@
           <Property Name="KazancBackgroundNew" Type="nvarchar(max)" />
           <Property Name="PopupText" Type="nvarchar(max)" />
           <Property Name="ShowPopupText" Type="bit" />
+          <Property Name="EventTag" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Magazalar">
           <Key>
@@ -384,6 +388,8 @@
           <Property Name="NewVersion" Type="Boolean" />
           <Property Name="ShowBottomLink" Type="Int32" />
           <Property Name="ShowBottomLinkText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EventTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BranchDeeplink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Kategoritipi">
           <Key>
@@ -427,6 +433,7 @@
           <Property Type="Int32" Name="CreatedBy" />
           <Property Type="DateTime" Name="StartDate" Precision="3" />
           <Property Type="String" Name="ImageLink2" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BranchDeeplink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Campaigns_CampaignCategories">
           <End Type="ProjectDbContextModel.CampaignCategory" Role="CampaignCategory" Multiplicity="0..1" />
@@ -459,6 +466,7 @@
           <Property Name="KazancBackgroundNew" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PopupText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ShowPopupText" Type="Boolean" />
+          <Property Name="EventTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="BebeMoneyKatalogKategorileri">
           <Key>
@@ -629,6 +637,8 @@
           <EntitySetMapping Name="CampaignCategories">
             <EntityTypeMapping TypeName="ProjectDbContextModel.CampaignCategory">
               <MappingFragment StoreEntitySet="CampaignCategories">
+                <ScalarProperty Name="BranchDeeplink" ColumnName="BranchDeeplink" />
+                <ScalarProperty Name="EventTag" ColumnName="EventTag" />
                 <ScalarProperty Name="ShowBottomLinkText" ColumnName="ShowBottomLinkText" />
                 <ScalarProperty Name="ShowBottomLink" ColumnName="ShowBottomLink" />
                 <ScalarProperty Name="NewVersion" ColumnName="NewVersion" />
@@ -677,6 +687,7 @@
           <EntitySetMapping Name="Campaigns">
             <EntityTypeMapping TypeName="ProjectDbContextModel.Campaign">
               <MappingFragment StoreEntitySet="Campaigns">
+                <ScalarProperty Name="BranchDeeplink" ColumnName="BranchDeeplink" />
                 <ScalarProperty Name="ImageLink2" ColumnName="ImageLink2" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
@@ -701,6 +712,7 @@
           <EntitySetMapping Name="Kazanclars">
             <EntityTypeMapping TypeName="ProjectDbContextModel.Kazanclar">
               <MappingFragment StoreEntitySet="Kazanclar">
+                <ScalarProperty Name="EventTag" ColumnName="EventTag" />
                 <ScalarProperty Name="ShowPopupText" ColumnName="ShowPopupText" />
                 <ScalarProperty Name="PopupText" ColumnName="PopupText" />
                 <ScalarProperty Name="KazancBackgroundNew" ColumnName="KazancBackgroundNew" />

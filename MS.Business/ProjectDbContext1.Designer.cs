@@ -1332,6 +1332,30 @@ namespace MS.Business
         private global::System.String _ImageLink2;
         partial void OnImageLink2Changing(global::System.String value);
         partial void OnImageLink2Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String BranchDeeplink
+        {
+            get
+            {
+                return _BranchDeeplink;
+            }
+            set
+            {
+                OnBranchDeeplinkChanging(value);
+                ReportPropertyChanging("BranchDeeplink");
+                _BranchDeeplink = StructuralObject.SetValidValue(value, true, "BranchDeeplink");
+                ReportPropertyChanged("BranchDeeplink");
+                OnBranchDeeplinkChanged();
+            }
+        }
+        private global::System.String _BranchDeeplink;
+        partial void OnBranchDeeplinkChanging(global::System.String value);
+        partial void OnBranchDeeplinkChanged();
 
         #endregion
 
@@ -1910,6 +1934,54 @@ namespace MS.Business
         private global::System.String _ShowBottomLinkText;
         partial void OnShowBottomLinkTextChanging(global::System.String value);
         partial void OnShowBottomLinkTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String EventTag
+        {
+            get
+            {
+                return _EventTag;
+            }
+            set
+            {
+                OnEventTagChanging(value);
+                ReportPropertyChanging("EventTag");
+                _EventTag = StructuralObject.SetValidValue(value, true, "EventTag");
+                ReportPropertyChanged("EventTag");
+                OnEventTagChanged();
+            }
+        }
+        private global::System.String _EventTag;
+        partial void OnEventTagChanging(global::System.String value);
+        partial void OnEventTagChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String BranchDeeplink
+        {
+            get
+            {
+                return _BranchDeeplink;
+            }
+            set
+            {
+                OnBranchDeeplinkChanging(value);
+                ReportPropertyChanging("BranchDeeplink");
+                _BranchDeeplink = StructuralObject.SetValidValue(value, true, "BranchDeeplink");
+                ReportPropertyChanged("BranchDeeplink");
+                OnBranchDeeplinkChanged();
+            }
+        }
+        private global::System.String _BranchDeeplink;
+        partial void OnBranchDeeplinkChanging(global::System.String value);
+        partial void OnBranchDeeplinkChanged();
 
         #endregion
 
@@ -2632,6 +2704,30 @@ namespace MS.Business
         private Nullable<global::System.Boolean> _ShowPopupText;
         partial void OnShowPopupTextChanging(Nullable<global::System.Boolean> value);
         partial void OnShowPopupTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String EventTag
+        {
+            get
+            {
+                return _EventTag;
+            }
+            set
+            {
+                OnEventTagChanging(value);
+                ReportPropertyChanging("EventTag");
+                _EventTag = StructuralObject.SetValidValue(value, true, "EventTag");
+                ReportPropertyChanged("EventTag");
+                OnEventTagChanged();
+            }
+        }
+        private global::System.String _EventTag;
+        partial void OnEventTagChanging(global::System.String value);
+        partial void OnEventTagChanged();
 
         #endregion
 
