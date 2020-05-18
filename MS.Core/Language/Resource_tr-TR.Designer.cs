@@ -124,6 +124,15 @@ namespace MS.Core.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cache Yönetim.
+        /// </summary>
+        public static string CacheManagement {
+            get {
+                return ResourceManager.GetString("CacheManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kampanya.
         /// </summary>
         public static string Campaign {

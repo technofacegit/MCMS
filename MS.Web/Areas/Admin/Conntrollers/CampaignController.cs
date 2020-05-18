@@ -157,8 +157,8 @@ namespace MS.Web.Areas.Admin.Conntrollers
                     var camp = Campaign.GetCampaign(campaign.CampaignID);
                     camp.StartDate = Convert.ToDateTime(campaign.StartDate);
                     camp.EndDate = Convert.ToDateTime(campaign.EndDate);
-                    camp.OfferName = campaign.OfferName;
-                    camp.OfferDesc = campaign.OfferDesc;
+                    camp.OfferName = (campaign.OfferName==null?"":campaign.OfferName);
+                    camp.OfferDesc = (campaign.OfferDesc == null ? "" : campaign.OfferDesc);
                     camp.OptinFlag = campaign.OptinFlag;
                     camp.Status = campaign.Status;
                     camp.DisplayOrder = campaign.DisplayOrder;
@@ -265,6 +265,7 @@ namespace MS.Web.Areas.Admin.Conntrollers
                         campaign.ExtraData = "";
                         campaign.OfferNo = "";
                         campaign.PromoNo = "";
+                        campaign.BranchDeeplink = "";
                         campaign.OptinFlag = false;
                         campaign.CreatedBy = SiteSession.TblKullanicilar.KullaniciID;
 

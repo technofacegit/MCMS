@@ -228,6 +228,9 @@
   <data name="PushNotification" xml:space="preserve">
     <value>Bildirim Gönder</value>
   </data>
+  <data name="CacheManagement" xml:space="preserve">
+    <value>Cache Yönetim</value>
+  </data>
   <data name="SendNotification" xml:space="preserve">
     <value>Bildirim gönder</value>
   </data>
